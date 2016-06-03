@@ -1,6 +1,3 @@
-/**
- * Created by bosc on 03/10/2014.
- */
 var winston = require('winston');
 winston.emitErrs = true;
 

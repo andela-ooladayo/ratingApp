@@ -1,33 +1,19 @@
 'use strict';
 
-/**
- * Module dependencies.
- */
 var crypto = require('crypto');
 
-/**
- * A Validation function for local strategy properties
- */
 var validateLocalStrategyProperty = function(property) {
     if( ((this.provider !== 'local' && !this.updated) || property.length!==0) === false ){
         throw new Error('Local strategy failed');
     }
 };
 
-/**
- * A Validation function for local strategy password
- */
 var validateLocalStrategyPassword = function(password) {
     if( (this.provider !== 'local' || (password && password.length > 6)) === false ){
         throw new Error('One field is missing');
     }
 };
 
-/**
- * hash the password
- * @param user
- * @param fn
- */
 var cryptPassword =function(user, fn) {
     if (user.password && user.password.length > 6) {
         user.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
@@ -36,9 +22,6 @@ var cryptPassword =function(user, fn) {
     fn(null, user);
 };
 
-/**
- * Article Schema
- */
 module.exports = function(sequelize, DataTypes) {
 
     var User = sequelize.define('User', {
@@ -147,8 +130,6 @@ module.exports = function(sequelize, DataTypes) {
             },
             hooks: {
                 beforeCreate: cryptPassword
-                // TODO: If create users as bulk
-                //beforeBulkCreate: cryptPasswordArray,
             }
         });
     return User;

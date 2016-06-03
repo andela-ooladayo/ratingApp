@@ -2,11 +2,11 @@
 
 module.exports = {
 	db: {
-       dbName:'sean-dev',
-       username : 'SeanDB',
-       password : 'HU7XQQBNWq',
-       dialect: "postgres", // 'sqlite', 'postgres', 'mariadb','mysql'
-       port : 5432 //    5432 for postgres, 3306 for mysql and mariaDB ,
+       dbName:'rating-app',
+       username : '',
+       password : '',
+       dialect: "postgres",
+       port : 5432 //
     },
 	app: {
 		title: 'SEAN - Development Environment'

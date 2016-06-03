@@ -5,8 +5,8 @@ module.exports = {
         dbName: 'sean-test',
         username : 'SeanDB',
         password : 'HU7XQQBNWq',
-        dialect: "postgres", // 'sqlite', 'postgres', 'mariadb','mysql'
-        port : 5432 //    5432 for postgres, 3306 for mysql and mariaDB ,
+        dialect: "postgres",
+        port : 5432
     },
 	port: 3001,
 	app: {

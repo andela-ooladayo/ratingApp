@@ -1,8 +1,5 @@
 'use strict';
 
-/**
- * Module dependencies.
- */
 var express = require('express'),
     http = require('http'),
     socketio = require('socket.io'),
@@ -18,12 +15,6 @@ var express = require('express'),
 	config = require('./config'),
 	consolidate = require('consolidate'),
 	path = require('path');
-
-//// initialize session store
-//var SequelizeStore = require('connect-sequelize')(session),
-//    modelName = 'Session',
-//    options = {};
-
 
 
 module.exports = function() {

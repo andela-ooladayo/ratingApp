@@ -1,22 +1,14 @@
 'use strict';
-
-/**
- * Module dependencies.
- */
 var _ = require('lodash'),
 	glob = require('glob');
 
-/**
- * Load app configurations
- */
+
 module.exports = _.extend(
 	require('./env/all'),
 	require('./env/' + process.env.NODE_ENV) || {}
 );
 
-/**
- * Get files by glob patterns
- */
+
 module.exports.getGlobbedFiles = function(globPatterns, removeRoot) {
 	// For context switching
 	var _this = this;
@@ -53,9 +45,6 @@ module.exports.getGlobbedFiles = function(globPatterns, removeRoot) {
 	return output;
 };
 
-/**
- * Get the modules JavaScript files
- */
 module.exports.getJavaScriptAssets = function(includeTests) {
 	var output = this.getGlobbedFiles(this.assets.lib.js.concat(this.assets.js), 'public/');
 
@@ -67,9 +56,7 @@ module.exports.getJavaScriptAssets = function(includeTests) {
 	return output;
 };
 
-/**
- * Get the modules CSS files
- */
+
 module.exports.getCSSAssets = function() {
 	var output = this.getGlobbedFiles(this.assets.lib.css.concat(this.assets.css), 'public/');
 	return output;
