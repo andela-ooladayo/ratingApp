@@ -1,8 +1,5 @@
 'use strict';
 
-/**
- * Module dependencies.
- */
 var _ = require('lodash'),
     errorHandler = require('../errors'),
     passport = require('passport'),
@@ -13,24 +10,20 @@ var _ = require('lodash'),
     async = require('async'),
     crypto = require('crypto');
 
-/**
- * Forgot for reset password (forgot POST)
- */
+
 exports.forgot = function(req, res, next) {
     async.waterfall([
-        // Generate random token
         function(done) {
             crypto.randomBytes(20, function(err, buffer) {
                 var token = buffer.toString('hex');
                 done(err, token);
             });
         },
-        // Lookup user by username
         function(token, done) {
-            if (req.body.username) {
+            if (req.body.email) {
 
                 db.User.find({where : {
-                    username: req.body.username }
+                    email: req.body.email }
                 }).done(function(err,user){
                     if (!user) {
                         return res.status(400).send({
@@ -41,8 +34,8 @@ exports.forgot = function(req, res, next) {
                             message: 'It seems like you signed up using your ' + user.provider + ' account'
                         });
                     } else {
-                        user.resetPasswordToken = token;
-                        user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+                        user.reset_password_token = token;
+                        user.reset_password_expires = Date.now() + 7200000; // 2 hour
 
                         user.save().done(function(err) {
                             done(err, token, user);
@@ -52,7 +45,7 @@ exports.forgot = function(req, res, next) {
 
             } else {
                 return res.status(400).send({
-                    message: 'Username field must not be blank'
+                    message: 'Email field must not be blank'
                 });
             }
         },
@@ -65,7 +58,7 @@ exports.forgot = function(req, res, next) {
                 done(err, emailHTML, user);
             });
         },
-        // If valid email, send reset email using service
+       
         function(emailHTML, user, done) {
             var smtpTransport = nodemailer.createTransport(config.mailer.options);
             var mailOptions = {
@@ -89,13 +82,11 @@ exports.forgot = function(req, res, next) {
     });
 };
 
-/**
- * Reset password GET from email token
- */
+
 exports.validateResetToken = function(req, res) {
     db.User.find({ where: {
-        resetPasswordToken: req.params.token,
-        resetPasswordExpires : {gt :Date.now()
+        reset_password_token: req.params.token,
+        reset_password_expires : {gt :Date.now()
         }}
     }).done(function(err,user) {
         if (!user) {
@@ -105,25 +96,22 @@ exports.validateResetToken = function(req, res) {
     });
 };
 
-/**
- * Reset password POST from email token
- */
+
 exports.reset = function(req, res, next) {
-    // Init Variables
     var passwordDetails = req.body;
 
     async.waterfall([
         function(done) {
             User.find({ where: {
-                resetPasswordToken: req.params.token,
-                resetPasswordExpires : {gt :Date.now()
+                reset_password_token: req.params.token,
+                reset_password_expires : {gt :Date.now()
                 }}
             }).done(function(err,user) {
                 if (!err && user) {
                     if (passwordDetails.newPassword === passwordDetails.verifyPassword) {
                         user.password = passwordDetails.newPassword;
-                        user.resetPasswordToken = undefined;
-                        user.resetPasswordExpires = undefined;
+                        user.reset_password_token = undefined;
+                        user.reset_password_expires = undefined;
 
                         user.save().done(function(err) {
                             if (err) {
@@ -135,7 +123,6 @@ exports.reset = function(req, res, next) {
                                     if (err) {
                                         res.status(400).send(err);
                                     } else {
-                                        // Return authenticated user
                                         res.jsonp({user: user, token: tokenService.issueToken(user)});
 
                                         done(err, user);
@@ -182,13 +169,9 @@ exports.reset = function(req, res, next) {
     });
 };
 
-/**
- * Change Password
- */
-exports.changePassword = function(req, res, next) {
-    // Init Variables
-    var passwordDetails = req.body;
 
+exports.changePassword = function(req, res, next) {
+    var passwordDetails = req.body;
 
     if (req.user) {
         if (passwordDetails.newPassword) {
