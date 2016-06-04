@@ -1,9 +1,5 @@
 'use strict';
 
-/**
- * Module dependencies.
- */
-
 var _ = require('lodash'),
     db = require('../../config/sequelize'),
     errorHandler = require('./errors');
