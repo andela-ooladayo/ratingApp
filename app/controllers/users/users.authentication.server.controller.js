@@ -4,6 +4,7 @@ var _ = require('lodash'),
     roleManager = require('../../../config/roleManager'),
     passport = require('passport'),
     tokenService = require('../../services/token'),
+    mailer = require('../email.server.controller'),
     db = require('../../../config/sequelize');
 
 
@@ -43,6 +44,13 @@ exports.signup = function(req, res) {
                 } else {
                     logger.debug('New User (local) : { id: ' + user.id + ' username: ' + user.username + ' }');
 
+                    var msg = {};
+                    msg.subject = "Account Creation";
+                    msg.from = "no-reply@onepercentlab.com";
+                    msg.to = user.email;
+                    msg.html = "<p> Thank you for registering with us. </p>" + "<p> Rating App Support Team</p>"
+                    mailer(msg);
+
                     res.jsonp({user: user, token: tokenService.issueToken(user)});
                 }
             });
@@ -52,10 +60,8 @@ exports.signup = function(req, res) {
 
 
 exports.signin = function(req, res, next) {
-    console.log("called heree")
     passport.authenticate('local', function(err, user, info) {
         if (err || !user) {
-            console.log(info, err, "2-2-3-3")
             res.status(400).send(info);
         } else {
             // Remove sensitive data before login
@@ -64,13 +70,11 @@ exports.signin = function(req, res, next) {
             user.reset_password_expires = undefined;
             user.reset_password_token = undefined;
 
-            console.log(user, "here-2-2-2");
             req.login(user, function(err) {
                 if (err) {
-                    console.log(err);
+                    logger.error(err);
                     res.status(400).send(err);
                 } else {
-                    console.log(user, "here")
                     res.jsonp({user: user, token: tokenService.issueToken(user)});
                 }
             });
@@ -140,7 +144,13 @@ exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
                             providerData: providerUserProfile.providerData
                         });
 
-        
+                        var msg = {};
+                        msg.subject = "Account Creation";
+                        msg.from = "no-reply@onepercentlab.com";
+                        msg.to = user.email;
+                        msg.html = "<p> Thank you for registering with us. </p>" + "<p> Rating App Support Team</p>"
+                        mailer(msg);
+                        
                         user.save().done(function(err) {
                             return done(err, user);
                         });
