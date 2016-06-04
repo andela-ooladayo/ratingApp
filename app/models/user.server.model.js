@@ -32,30 +32,30 @@ module.exports = function(sequelize, DataTypes) {
             updated: {
                 type: DataTypes.DATE
             },
-            firstName: {
+            firstname: {
                 type: DataTypes.STRING,
                 defaultValue: '',
                 validate: { isValid: validateLocalStrategyProperty}
             },
-            lastName: {
+            lastname: {
                 type: DataTypes.STRING,
                 defaultValue: '',
                 validate: { isValid: validateLocalStrategyProperty}
             },
-            displayName: {
+            displayname: {
+                type: DataTypes.STRING,
+                defaultValue: ''
+            },
+            phone_number: {
                 type: DataTypes.STRING,
                 defaultValue: ''
             },
             email: {
                 type: DataTypes.STRING,
+                unique: true,
                 defaultValue: '',
                 validate: { isEmail: { msg: 'Please fill a valid email address}' },
                     isValid: validateLocalStrategyProperty}
-            },
-            username: {
-                type: DataTypes.STRING,
-                unique: true,
-                allowNull: false
             },
             password: {
                 type: DataTypes.STRING,
@@ -81,10 +81,10 @@ module.exports = function(sequelize, DataTypes) {
             roleBitMask: {
                 type: DataTypes.INTEGER
             },
-            resetPasswordToken: {
+            reset_password_token: {
                 type: DataTypes.STRING
             },
-            resetPasswordExpires: {
+            reset_password_expires: {
                 type: DataTypes.DATE
             }
 
@@ -106,18 +106,18 @@ module.exports = function(sequelize, DataTypes) {
                 }
             },
             classMethods: {
-                findUniqueUsername : function(username, suffix, callback) {
+                findUniqueEmail : function(email, suffix, callback) {
                     var _this = this;
-                    var possibleUsername = username + (suffix || '');
+                    var possibleEmail = email + (suffix || '');
 
                     _this.find({
-                        username: possibleUsername
+                        email: possibleEmail
                     }).done(function (err, user) {
                         if (!err) {
                             if (!user) {
-                                callback(possibleUsername);
+                                callback(possibleEmail);
                             } else {
-                                return _this.findUniqueUsername(username, (suffix || 0) + 1, callback);
+                                return _this.findUniqueEmail(email, (suffix || 0) + 1, callback);
                             }
                         } else {
                             callback(null);

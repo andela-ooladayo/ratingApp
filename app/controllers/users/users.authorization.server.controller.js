@@ -1,16 +1,11 @@
 'use strict';
 
-/**
- * Module dependencies.
- */
 var _ = require('lodash'),
     tokenService = require('../../services/token'),
     roleManager = require('../../../config/roleManager'),
     db = require('../../../config/sequelize');
 
-/**
- * User middleware
- */
+
 exports.userByID = function(req, res, next, id) {
 
     db.User.find({where : { id: id }}).done(function(err,user){
@@ -21,9 +16,7 @@ exports.userByID = function(req, res, next, id) {
     });
 };
 
-/**
- * Require login routing middleware
- */
+
 exports.isAuthenticated = function(req, res, next) {
     var token;
 
@@ -43,7 +36,6 @@ exports.isAuthenticated = function(req, res, next) {
     } else if (req.param('token')) {
         token = req.param('token');
 
-        // We delete the token from query and body to not mess with blueprints
         delete req.query.token;
         delete req.body.token;
     } else {
@@ -61,9 +53,7 @@ exports.isAuthenticated = function(req, res, next) {
     });
 };
 
-/**
- * User authorizations routing middleware
- */
+
 exports.isAuthorized = function(accessLevel) {
     var _this = this;
 
