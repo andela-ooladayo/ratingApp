@@ -8,6 +8,12 @@ var _ = require('lodash'),
 exports.create = function(req, res) {
     var service = req.body;
 
+    delete req.body.no_of_rating_five;
+    delete req.body.no_of_rating_four;
+    delete req.body.no_of_rating_three;
+    delete req.body.no_of_rating_two;
+    delete req.body.no_of_rating_one;
+
     service.UserId = req.user.id;
 
     db.services.create(req.body).done(function(err, service) {
