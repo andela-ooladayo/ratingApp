@@ -13,7 +13,7 @@ module.exports = {
 	port: process.env.PORT || 3000,
     modelsDir : rootPath + '/app/models',
 	templateEngine: 'swig',
-	secret: 'SEAN - Need to be Changed',
+	secret: '$djfjsjssjsjjs',
 	//sessionCollection: 'sessions',
 	assets: {
 		lib: {

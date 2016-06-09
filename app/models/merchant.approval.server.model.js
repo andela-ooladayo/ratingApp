@@ -8,7 +8,6 @@ module.exports = function(sequelize, DataTypes) {
         },
         user_id: {
             type: DataTypes.INTEGER
-            //references: { model: "User", key: "id" }
         },
         note: {
             type: DataTypes.TEXT,

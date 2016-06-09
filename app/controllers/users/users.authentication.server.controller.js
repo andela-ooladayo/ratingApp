@@ -108,6 +108,7 @@ exports.oauthCallback = function(strategy) {
 
 
 exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
+    console.log("herehere")
     if (!req.user) {
         // Define a search query fields
         var searchMainProviderIdentifierField = 'providerData.' + providerUserProfile.providerIdentifierField;
