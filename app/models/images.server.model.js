@@ -1,18 +1,20 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-    var MerchantApproval = sequelize.define('merchant_wating_approval', {
+    var Images = sequelize.define('images', {
         created: {
             type: DataTypes.DATE,
             defaultValue: DataTypes.NOW
         },
-        user_id: {
+        service_id : {
             type: DataTypes.INTEGER
         },
-        note: {
+        url: {
             type: DataTypes.TEXT,
-            defaultValue: ''
+            defaultValue: '',
+            allowNull: false,
+            validate: { notEmpty: true}
         }
     });
-    return MerchantApproval;
+    return Images;
 };

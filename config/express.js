@@ -7,6 +7,7 @@ var express = require('express'),
 	session = require('express-session'),
     expressJwt = require('express-jwt'), //https://npmjs.org/package/express-jwt
 	compress = require('compression'),
+    cookieParser = require('cookie-parser'),
 	methodOverride = require('method-override'),
 	helmet = require('helmet'),
 	passport = require('passport'),
@@ -80,18 +81,18 @@ module.exports = function() {
 	app.enable('jsonp callback');
 
 	// CookieParser should be above session
-	//app.use(cookieParser());
+	app.use(cookieParser());
 
 	// Express SQL session storage
 
 
-	//app.use(session({
-	//	saveUninitialized: true,
-	//	resave: true,
-	//	secret: config.sessionSecret,
-     //   store: new SequelizeStore(db.sequelize, options, modelName),
-     //   proxy: false // if you do SSL outside of node.
-	//}));
+	app.use(session({
+		saveUninitialized: true,
+		resave: true,
+		secret: "config.sessionSecret",
+        //store: new SequelizeStore(db.sequelize, options, modelName),
+        proxy: false // if you do SSL outside of node.
+	}));
 
 	// use passport session
 	app.use(passport.initialize());
