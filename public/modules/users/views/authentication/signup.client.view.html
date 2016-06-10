@@ -13,24 +13,30 @@
 		<form name="userForm" data-ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
 			<fieldset>
 				<div class="form-group">
-					<label for="firstname">First Name</label>
+					<!-- <label for="firstname">First Name</label> -->
 					<input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstname" placeholder="First Name">
 				</div>
 				<div class="form-group">
-					<label for="lastname">Last Name</label>
+					<!-- <label for="lastname">Last Name</label> -->
 					<input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastname" placeholder="Last Name">
 				</div>
 				<div class="form-group">
-					<label for="email">Email</label>
+					<!-- <label for="email">Email</label> -->
+					<input type="tel" id="phone" name="phone" class="form-control" data-ng-model="credentials.phone" placeholder="Phone">
+				</div>
+				<div class="form-group">
+					<!-- <label for="email">Email</label> -->
 					<input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
 				</div>
 				<div class="form-group">
-					<label for="password">Password</label>
+					<!-- <label for="password">Password</label> -->
 					<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+					<p class="m-t-sm">Passwords must be at least 6 characters in length.</p>
 				</div>
-				<div class="text-center form-group">
-					<button type="submit" class="btn btn-large btn-primary">Sign up</button>&nbsp; or&nbsp;
-					<a href="/signin" class="show-signup">Sign in</a>
+				<div class="form-group">
+					<p>By signing up, you agree to Raytee’s <a href="">Terms of Service</a> and <a href="">Privacy Policy</a>.</p>
+					<button type="submit" class="btn btn-large btn-primary btn-lng">Sign up</button>
+					<p class="pull-right m-t-sm">Already on Raytee? <a href="/signin">Log in</a></p>
 				</div>
 			</fieldset>
 		</form>

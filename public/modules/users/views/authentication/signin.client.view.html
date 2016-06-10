@@ -13,20 +13,20 @@
 		<form data-ng-submit="signin()" class="signin form-horizontal" autocomplete="off">
 			<fieldset>
 				<div class="form-group">
-					<label for="email">Email</label>
-					<input type="text" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Username">
+					<!-- <label for="email">Email</label> -->
+					<input type="text" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
 				</div>
 				<div class="form-group">
-					<label for="password">Password</label>
+					<!-- <label for="password">Password</label> -->
 					<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
-					<div class="forgot-password">
+					<div class="forgot-password m-t-sm">
 						<a href="/password/forgot">Forgot your password?</a>
 					</div>
 				</div>
 				<div class=" form-group">
 					<p>By logging in, you agree to Raytee’s <a href="">Terms of Service</a> and <a href="">Privacy Policy</a>.</p>
 					<button type="submit" class="btn btn-primary btn-lng">Sign in</button>
-					<p class="pull-right">Don't have an account? <a href="/signup">Sign up</a></p>
+					<p class="pull-right m-t-sm">Don't have an account? <a href="/signup">Sign up</a></p>
 					<!-- <a href="/signup">Sign up</a> -->
 				</div>
 			</fieldset>
