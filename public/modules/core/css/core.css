@@ -1,5 +1,13 @@
+body {
+  font-family: 'Raleway', sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
 .content {
-	margin-top: 50px;
+	margin-top: 100px;
+  flex: 1 0 auto;
 }
 .undecorated-link:hover {
 	text-decoration: none;
@@ -12,4 +20,28 @@
 }
 .ng-valid.ng-dirty{
     border-color:#78FA89;
+}
+
+.navbar-inverse {
+  background-image: -webkit-linear-gradient(bottom, #9AC765 0%, #CDDC39 100%);
+  background-image: -o-linear-gradient(bottom, #9AC765 0%, #CDDC39 100%);
+  background-image: -ms-linear-gradient(bottom, #9AC765 0%, #CDDC39 100%);
+  background-image: -moz-linear-gradient(bottom, #9AC765 0%, #CDDC39 100%);
+  background-image: linear-gradient(bottom, #9AC765 0%, #CDDC39 100%);
+  background-color: #9AC765;
+  border-color: #9AC765;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+/*search bar*/
+.searchbar {
+  position: absolute;
+  left: 35%;
+}
+
+/*Margin helpers*/
+.m-t-sm {
+  margin-top: 5px;
 }
