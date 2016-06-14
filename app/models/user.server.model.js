@@ -129,9 +129,6 @@ module.exports = function(sequelize, DataTypes) {
                     });
                 }
             },
-            associate: function(models) {
-                User.hasMany(models.Article);
-            },
             hooks: {
                 beforeCreate: cryptPassword
             }
