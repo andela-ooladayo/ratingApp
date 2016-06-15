@@ -27,8 +27,8 @@ function requestToBeMerchant(req, res) {
 
         msg.subject = "Request to be a Merchant";
         msg.from = "no-reply@onepercentlab.com";
-        msg.to = "hello@onepercentlab.com";;
-        msg.html = "<p> This is a merchant approval request for " + user.firstname + " " + user.lastname + "</p>" + "<p> Rating App Support Team</p>"
+        msg.to = "hello@onepercentlab.com";
+        msg.html = "<p> This is a merchant approval request for " + user.firstname + " " + user.lastname + "</p>" + "<p> Rating App Support Team</p>";
         mailer(msg);
 
         return res.status(200).json({message : "Request for Merchant approval sent"});

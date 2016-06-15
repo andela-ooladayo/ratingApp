@@ -2,20 +2,28 @@
 
 var _ = require('lodash'),
     db = require('../../config/sequelize'),
-    errorHandler = require('./errors');
+    errorHandler = require('./errors'),
+    checkRequestBody = require('./request.body.checker');
 
 
 exports.create = function(req, res) {
     var images = req.body;
 
-    db.images.create(req.body).done(function(err, images){
-        if(err){
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        }
-        return res.jsonp(images);
-    });
+    var error = checkRequestBody(req.body, ['service_id', 'url']);
+
+    if(error) {
+        return res.status(400).json(error);
+    }
+    else {
+        db.images.create(req.body).done(function(err, images){
+            if(err){
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            }
+            return res.jsonp(images);
+        });
+    }
 };
 
 

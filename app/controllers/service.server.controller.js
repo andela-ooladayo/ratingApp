@@ -2,7 +2,8 @@
 
 var _ = require('lodash'),
     db = require('../../config/sequelize'),
-    errorHandler = require('./errors');
+    errorHandler = require('./errors'),
+    checkRequestBody = require('./request.body.checker');
 
 
 exports.create = function(req, res) {
@@ -16,14 +17,20 @@ exports.create = function(req, res) {
 
     service.UserId = req.user.id;
 
-    db.services.create(req.body).done(function(err, service) {
-        if(err){
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        }
-        return res.jsonp(service);
-    });
+    var error = checkRequestBody(req.body, ['merchant_id', 'business_name', 'business_description', 'business_email', 'business_phone_number', 'business_category_id', 'business_address_country', 'business_address_state', 'business_address_city', 'business_address_street', 'business_address']);
+    if(error) {
+        return res.status(400).json(error);
+    }
+    else {
+        db.services.create(req.body).done(function(err, service) {
+            if(err){
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            }
+            return res.jsonp(service);
+        });
+    }
 };
 
 

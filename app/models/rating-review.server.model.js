@@ -8,7 +8,6 @@ module.exports = function(sequelize, DataTypes) {
         },
         service_id: {
             type: DataTypes.INTEGER
-
         },
         value: {
             type: DataTypes.FLOAT
@@ -25,6 +24,11 @@ module.exports = function(sequelize, DataTypes) {
         },
         no_of_dislikes: {
             type: DataTypes.INTEGER
+        }
+    },
+    {
+        associate: function(models){
+            ReviewRatings.belongsTo(models.services);
         }
     });
     return ReviewRatings;
