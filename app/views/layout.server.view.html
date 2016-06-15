@@ -35,6 +35,10 @@
 	<link href='https://fonts.googleapis.com/css?family=Raleway:400,400italic,500,300,200,200italic,600,500italic,700,800,900' rel='stylesheet' type='text/css'>
 	<!-- Font Awesome -->
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-hQpvDQiCJaD2H465dQfA717v7lu5qHWtDbWNPvaTJ0ID5xnPUlVXnKzq7b8YUkbN" crossorigin="anonymous">
+	<!-- Materializecss -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+	<!-- Materialize Icons -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<!--Application CSS Files-->
 	{% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">
@@ -47,7 +51,7 @@
 </head>
 
 <body class="ng-cloak">
-	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
+	<header data-ng-include="'/modules/core/views/header.client.view.html'" class=""></header>
 	<section class="content">
 		<section class="container">
 			{% block content %}{% endblock %}
@@ -56,9 +60,23 @@
 	</section>
 	<footer data-ng-include="'/modules/core/views/footer.client.view.html'" class=""></footer>
 	<!--Application JavaScript Files-->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+
 	{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>
 	{% endfor %} 
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.1.8/angular-materialize.min.js"></script>
 
+	<script type="text/javascript">
+        $(function() {
+        		$(".dropdown-button").dropdown({
+        			hover: false
+        		});
+            $(".button-collapse").sideNav({
+                edge: 'right'
+            });
+        })
+    </script>
 	{% if process.env.NODE_ENV === 'development' %}
 	<!--Livereload script rendered -->
 	<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
