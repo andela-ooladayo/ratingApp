@@ -1,4 +1,4 @@
-<div class="container" data-ng-controller="HeaderController">
+<!-- <div class="navbar navbar-fixed-top white darken-1" data-ng-controller="HeaderController">
 	<div class="navbar-header">
 		<button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()">
 			<span class="sr-only">Toggle navigation</span>
@@ -9,16 +9,6 @@
 		<a href="/" class="navbar-brand">RAYTEE</a>
 	</div>
 	<nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
-		<div class="col-sm-3 col-md-3 searchbar">
-        <form class="navbar-form" role="search">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" name="q">
-            <div class="input-group-btn">
-                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-            </div>
-        </div>
-        </form>
-    </div>
 		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(user);">
 			<li data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(user);" ng-switch="item.menuItemType" ui-route="{{item.uiRoute}}" class="{{item.menuItemClass}}" ng-class="{active: ($uiRoute)}" dropdown="item.menuItemType === 'dropdown'">
 				<a ng-switch-when="dropdown" class="dropdown-toggle">
@@ -65,4 +55,31 @@
 			</li>
 		</ul>
 	</nav>
+</div>
+ -->
+<ul id="dropdown" class="dropdown-content">
+  <li><a href="/settings/accounts">Manage Social Account</a></li>
+  <li data-ng-show="user.provider === 'local'"><a href="/settings/password">Change Password</a></li>
+  <li class="divider"></li>
+  <li><a ng-click="signOut()">Signout</a></li>
+</ul>
+<div class="navbar-fixed" data-ng-controller="HeaderController">
+    <nav class="white darken-4">
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo sc-logo left"><span class="sc-text text-bold grey-text">RAYTEE</span></a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="fa fa-bars"></i></a>
+            <ul class="right m-r-md hide-on-med-and-down" data-ng-hide="isAuthenticated">
+                <li ui-sref="signup" ng-class="{active: $uiRoute}"><a class="waves-effect waves-light blue-text">Sign Up</a></li>
+                <li li ui-sref="signin" ng-class="{active: $uiRoute}"><a class="waves-effect waves-light blue-text">Log In</a></li>
+                <li><a class="dropdown-button blue-text" href="#!" data-activates="dropdown">Ayodeji<i class="material-icons right">arrow_drop_down</i></a></li>
+            </ul>
+            <ul class="right m-r-md hide-on-med-and-down" data-ng-show="isAuthenticated">
+            	<li><a class="dropdown-button" href="" data-activates="dropdown1"><span data-ng-bind="user.displayName"></span><i class="material-icons right">arrow_drop_down</i></a></li>
+            </ul>
+            
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="#/forum" class="waves-effect waves-light blue-text"><i class="fa fa-angle-double-left"></i> Return to Home</a></li>
+            </ul>
+        </div>
+    </nav>
 </div>
