@@ -35,6 +35,8 @@
 	<link href='https://fonts.googleapis.com/css?family=Raleway:400,400italic,500,300,200,200italic,600,500italic,700,800,900' rel='stylesheet' type='text/css'>
 	<!-- Font Awesome -->
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-hQpvDQiCJaD2H465dQfA717v7lu5qHWtDbWNPvaTJ0ID5xnPUlVXnKzq7b8YUkbN" crossorigin="anonymous">
+	<!-- Angular-Material -->
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
 	<!-- Materializecss -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
 	<!-- Materialize Icons -->
@@ -52,10 +54,10 @@
 
 <body class="ng-cloak">
 	<header data-ng-include="'/modules/core/views/header.client.view.html'" class=""></header>
-	<section class="content">
-		<section class="container">
+	<section class="content container grey lighten-4">
+		<!-- <section class=""> -->
 			{% block content %}{% endblock %}
-		</section>
+		<!-- </section> -->
         <toaster-container toaster-options="{'position-class': 'toast-top-left'}"></toaster-container>
 	</section>
 	<footer data-ng-include="'/modules/core/views/footer.client.view.html'" class=""></footer>
@@ -66,17 +68,13 @@
 	{% endfor %} 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.1.8/angular-materialize.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
 
-	<script type="text/javascript">
-        $(function() {
-        		$(".dropdown-button").dropdown({
-        			hover: false
-        		});
-            $(".button-collapse").sideNav({
-                edge: 'right'
-            });
-        })
-    </script>
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+
 	{% if process.env.NODE_ENV === 'development' %}
 	<!--Livereload script rendered -->
 	<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>

@@ -32,5 +32,19 @@ angular.module('core').controller('HeaderController', ['$scope','$rootScope','$h
             $location.path('/');
 
         };
+
+        $('.dropdown-button').dropdown({
+            belowOrigin: true,
+            alignment: 'left',
+            inDuration: 200,
+            outDuration: 150,
+            constrain_width: true,
+            hover: false,
+            gutter: 1
+        });
+
+        $(".button-collapse").sideNav({
+            edge: 'right'
+        });
 	}
 ]);
