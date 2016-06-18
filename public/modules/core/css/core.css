@@ -1,6 +1,5 @@
 body {
   font: 16px 'Raleway', Helvetica, Arial, sans-serif;
-  background: #f5f5f5;
   color: #4d4d4d;
   margin: 0 auto;
   line-height: 1.6em;
@@ -14,8 +13,8 @@ body {
 }
 
 .content {
-	margin-top: 100px;
-  flex: 1 0 auto;
+	/*margin-top: 100px;*/
+  flex: 1;
 }
 .undecorated-link:hover {
 	text-decoration: none;
@@ -52,6 +51,10 @@ body {
   margin-right: 150px;
 }
 
+a {
+  color: grey !important;
+}
+
 nav ul a {
   font-size: 14px;
 }
@@ -60,11 +63,9 @@ nav ul a:hover, .nav-wrapper a {
   text-decoration: none;
 }
 
-
-/*search bar*/
-.searchbar {
-  position: absolute;
-  left: 35%;
+.dropdown-content li>a, .dropdown-content li>span {
+  font-size: 12px;
+  padding: 7px 5px
 }
 
 /*Margin helpers*/
@@ -76,11 +77,21 @@ nav ul a:hover, .nav-wrapper a {
   margin-top: 15px;
 }
 
+/*Padding helpers*/
+.p-t-lg {
+  padding-top: 60px;
+}
+
 @media only screen and (max-width: 768px) {
   .nav-wrapper{
     margin-left: 30px;
     margin-right: 30px;
   }
+}
 
-  
+
+#top {
+  height: 400px;
+  background: url("http://placehold.it/1120x400") no-repeat;
+  background-size: 100%;
 }

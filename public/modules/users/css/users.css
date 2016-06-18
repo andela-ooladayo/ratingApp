@@ -15,6 +15,33 @@
 	position: absolute;
 }
 
+
+/*input*/
+input[type=text], input[type=password], input[type=email], input[type=tel] {
+  font-size: 14px;
+}
+
+.login_text {
+  margin-bottom: 40px;
+}
+
+.forgot-password a, p.policy, p.alt-login, .meta {
+  font-size: 12px;
+}
+
+.big-icon i {
+  font-size: 12em;
+  color: #F44336;
+}
+
+.undecorated-link i.fa-facebook-square {
+  color: #3b5998;
+}
+
+.undecorated-link i.fa-linkedin-square {
+  color: #4875B4;
+}
+
 .btn-lng {
   width: 100%;
 }

@@ -1,34 +1,35 @@
-<section class="row" data-ng-controller="AuthenticationController">
-
-	<h3 class="col-md-12 text-center">Login to Raytee</h3>
-	<div class="col-lg-6 col-md-6 col-sm-12">
-		<div class="col-sm-12">
-			<h4>Title</h4>
-			<p>lorfdkjf fknfdf  fnsdkzs kd dk kd dkbdka dfdfjb kdjn zldj lkjd zjd czldkadjh d adja dankj dlajdaljhd laj dalj dlajd aljd aljnd ajdadjk ljkfa akj flajkf aj faj ajf ajf ajf ajfh aidjbda  b dbaijd adibadjada fn knff a doianf fiv of jf  fap;faf afbnf vnaffjbdj fbdiiprobe reirbe arht aifabv aiefa aibarfiabaiuhfniabaibnai vbi ab</p>
-			<img src="">
+<section class="row p-t-lg" data-ng-controller="AuthenticationController">
+	<div class="col l6 m6 s6">
+		<div class="col s8 offset-s2">
+			<h3 class="text-center login_text red-text">Login to Raytee</h3>
+			<form data-ng-submit="signin()" class="signin" autocomplete="off">
+				<fieldset>
+					<div class="form-group">
+						<!-- <label for="email">Email</label> -->
+						<input type="text" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
+					</div>
+					<div class="form-group">
+						<!-- <label for="password">Password</label> -->
+						<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+						<div class="forgot-password m-t-sm">
+							<a href="/password/forgot">Forgot your password?</a>
+						</div>
+					</div>
+					<div class=" form-group">
+						<p class="policy">By logging in, you agree to Raytee’s <a href="">Terms of Service</a> and <a href="">Privacy Policy</a>.</p>
+						<button type="submit" class="btn btn-large btn-primary btn-lng">Log in</button>
+						<p class="alt-login pull-right m-t-sm">Don't have an account? <a href="/signup">Sign up</a></p>
+						<!-- <a href="/signup">Sign up</a> -->
+					</div>
+				</fieldset>
+			</form>
 		</div>
 	</div>
-	<div class="col-lg-6 col-md-6 col-sm-12">
-		<form data-ng-submit="signin()" class="signin form-horizontal" autocomplete="off">
-			<fieldset>
-				<div class="form-group">
-					<!-- <label for="email">Email</label> -->
-					<input type="text" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
-				</div>
-				<div class="form-group">
-					<!-- <label for="password">Password</label> -->
-					<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
-					<div class="forgot-password m-t-sm">
-						<a href="/password/forgot">Forgot your password?</a>
-					</div>
-				</div>
-				<div class=" form-group">
-					<p>By logging in, you agree to Raytee’s <a href="">Terms of Service</a> and <a href="">Privacy Policy</a>.</p>
-					<button type="submit" class="btn btn-primary btn-lng">Sign in</button>
-					<p class="pull-right m-t-sm">Don't have an account? <a href="/signup">Sign up</a></p>
-					<!-- <a href="/signup">Sign up</a> -->
-				</div>
-			</fieldset>
-		</form>
+	<div class="col l6 m6 s6 hide-on-small text-center">
+		<div class="col s8 offset-s2">
+			<h4 class="red-text">Why Raytee?</h4>
+			<p class="flow-text">Grow your business, find  plus get access to reviews of local businesses around you.</p>
+			<span class="big-icon"><i class="fa fa-ge"></i></span>
+		</div>
 	</div>
 </section>

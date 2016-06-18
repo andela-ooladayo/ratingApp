@@ -10,7 +10,7 @@ angular.module('users').config(['$stateProvider',
 			url: '/settings/profile',
 			templateUrl: 'modules/users/views/settings/edit-profile.client.view.html',
             data : {
-                access : access.user
+                access : access.anon
             }
 		}).
 		state('password', {

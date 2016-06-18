@@ -9,6 +9,7 @@ var _ = require('lodash'),
 
 
 exports.signup = function(req, res) {
+    console.log("req ========================================================= " + req)
 
     delete req.body.roleTitle;
     delete req.body.roleBitMask;
