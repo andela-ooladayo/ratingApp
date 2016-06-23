@@ -3,8 +3,8 @@
 module.exports = {
 	db: {
        dbName:'rating-app',
-       username : 'dejijaye',
-       password : 'password',
+       username : '',
+       password : '',
        dialect: "postgres",
        port : 5432 //
     },
