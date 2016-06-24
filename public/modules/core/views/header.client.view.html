@@ -57,11 +57,11 @@
 	</nav>
 </div>
  -->
-<ul id="menu" class="dropdown-content">
-  <li><a href="/settings/accounts">Manage Social Account</a></li>
-  <li><a href="/settings/password">Change Password</a></li>
-  <li class="divider"></li>
-  <li><a ng-click="signOut()">Signout</a></li>
+ <ul id="menu" class="dropdown-content" data-ng-controller="HeaderController">
+	  <li><a href="/settings/accounts">Manage Social Account</a></li>
+	  <li><a href="/settings/password">Change Password</a></li>
+	  <li class="divider"></li>
+	  <li><a ng-click="signOut()">Signout</a></li>
 </ul>
 <div class="navbar-fixed" data-ng-controller="HeaderController">
     <nav class="white darken-4">
