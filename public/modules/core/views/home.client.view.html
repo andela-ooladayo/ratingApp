@@ -1,6 +1,8 @@
 <section data-ng-controller="HomeController">
-	<div id="top" class="row">
-		<div class="">
+	<div id="top" class="row blue darken-5">
+		<div class="top-content text center">
+			<h2 class="white-text">Raytee is the best way to find great local businesses</h2>
+			<p class="white-text flow-text">People use Raytee to search for everything from the city's tastiest amala to the most renowned disc jockey. What will you uncover in your neighborhood?</p>
 			<form class="">
 				<div class="input-field">
 					<label for="search"></label>
@@ -13,57 +15,66 @@
 	<div class="container">
     <div class="row">
         <div class="col m8 s12">
-            <h3>See Reviews and Ratings </h3>
+            <h4 class="section-title red-text">See Reviews and Ratings: Location </h4>
             <!-- tabs -->
             <div class="tabbable tabs-left">
                 <ul class="nav nav-tabs">
-                    <li ng-class="{'active': view_tab == 'home'}"><a href="" ng-click="changeTab('home')" data-toggle="tab">Home</a></li>
-                    <li ng-class="{'active': view_tab == 'about'}"><a href="" ng-click="changeTab('about')" data-toggle="tab">About</a></li>
-                    <li ng-class="{'active': view_tab == 'services'}"><a href="" ng-click="changeTab('services')" data-toggle="tab">Services</a></li>
-                    <li ng-class="{'active': view_tab == 'contact'}"><a href="" ng-click="changeTab('contact')" data-toggle="tab">Contact</a></li>
-                    <li ng-class="{'active': view_tab == 'contact'}"><a href="" ng-click="changeTab('contact')" data-toggle="tab">Contact</a></li>
-                    <li ng-class="{'active': view_tab == 'contact'}"><a href="" ng-click="changeTab('contact')" data-toggle="tab">Contact</a></li>
-                    <li ng-class="{'active': view_tab == 'contact'}"><a href="" ng-click="changeTab('contact')" data-toggle="tab">Contact</a></li>
-                    <li ng-class="{'active': view_tab == 'contact'}"><a href="" ng-click="changeTab('contact')" data-toggle="tab">Contact</a></li>
-                    <li ng-class="{'active': view_tab == 'contact'}"><a href="" ng-click="changeTab('contact')" data-toggle="tab">Contact</a></li>
-                    <li ng-class="{'active': view_tab == 'contact'}"><a href="" ng-click="changeTab('contact')" data-toggle="tab">Contact</a></li>
+                    <li ng-class="{'active': view_tab == 'home'}"><a href="" ng-click="changeTab('home')" data-toggle="tab"><i class="fa fa-coffee red-text m-r-md"></i> Food & Beverages </a></li>
+                    <li ng-class="{'active': view_tab == 'about'}"><a href="" ng-click="changeTab('about')" data-toggle="tab"> <i class="fa fa-glass red-text m-r-md"></i> Nightlife & clubs</a></li>
+                    <li ng-class="{'active': view_tab == 'services'}"><a href="" ng-click="changeTab('services')" data-toggle="tab"><i class="fa fa-book red-text m-r-md"></i> Education </a></li>
+                    <li ng-class="{'active': view_tab == 'contact'}"><a href="" ng-click="changeTab('contact')" data-toggle="tab"><i class="fa fa-institution red-text m-r-md"></i>  Banks </a></li><!-- 
+                    <li ng-class="{'active': view_tab == 'education'}"><a href="" ng-click="changeTab('education')" data-toggle="tab">Education</a></li>
+                    <li ng-class="{'active': view_tab == 'ict'}"><a href="" ng-click="changeTab('ict')" data-toggle="tab">ICT</a></li>
+                    <li ng-class="{'active': view_tab == 'hotels'}"><a href="" ng-click="changeTab('hotels')" data-toggle="tab">Hotels</a></li>
+                    <li ng-class="{'active': view_tab == 'restaurants'}"><a href="" ng-click="changeTab('restaurants')" data-toggle="tab">Restaurants</a></li>
+                    <li ng-class="{'active': view_tab == 'banking'}"><a href="" ng-click="changeTab('banking')" data-toggle="tab">Banking & Finance</a></li>
+                    <li ng-class="{'active': view_tab == 'medicine'}"><a href="" ng-click="changeTab('medicine')" data-toggle="tab">Medicine & Health</a></li> -->
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane" ng-class="{'active': view_tab == 'home'}" id="home">
                         <div class="">
                         		<h4></h4>
                             <ul class="collection">
+                            	<!-- <li class="collection-item">Home</li> -->
 													    <li class="collection-item avatar">
-													      <i class="material-icons circle">folder</i>
-													      <span class="title">Title</span>
-													      <p>First Line <br>
-													         Second Line
-													      </p>
-													      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+													      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+													      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+													      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-full"></i> <span class="grey-text meta-text">127 reviews</span></p>
+													      <div class="review m-t-sm">
+													      	<a href=""><img src="http://placehold.it/30x30" class="avatar"></a>
+														      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes you'll be able to realise that much of it makes sense afterall.</p>
+													      </div>
+													      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 													    </li>
 													    <li class="collection-item avatar">
-													      <i class="material-icons circle">folder</i>
-													      <span class="title">Title</span>
-													      <p>First Line <br>
-													         Second Line
-													      </p>
-													      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+													      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+													      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+													      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <span class="grey-text meta-text">304 reviews</span></p>
+													      <div class="review m-t-sm">
+													      	<a href=""><img src="http://placehold.it/30x30" class="avatar"></a>
+														      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes you'll be able to realise that much of it makes sense afterall.</p>
+													      </div>
+													      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 													    </li>
 													    <li class="collection-item avatar">
-													      <i class="material-icons circle green">insert_chart</i>
-													      <span class="title">Title</span>
-													      <p>First Line <br>
-													         Second Line
-													      </p>
-													      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+													      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+													      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+													      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <span class="grey-text meta-text">304 reviews</span></p>
+													      <div class="review m-t-sm">
+													      	<a href=""><img src="http://placehold.it/30x30" class="avatar"></a>
+														      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes you'll be able to realise that much of it makes sense afterall.</p>
+													      </div>
+													      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 													    </li>
 													    <li class="collection-item avatar">
-													      <i class="material-icons circle red">play_arrow</i>
-													      <span class="title">Title</span>
-													      <p>First Line <br>
-													         Second Line
-													      </p>
-													      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+													      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+													      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+													      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <span class="grey-text meta-text">304 reviews</span></p>
+													      <div class="review m-t-sm">
+													      	<a href=""><img src="http://placehold.it/30x30" class="avatar"></a>
+														      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes you'll be able to realise that much of it makes sense afterall.</p>
+													      </div>
+													      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 													    </li>
 													  </ul>
                         </div>
@@ -71,37 +82,46 @@
                     <div class="tab-pane" ng-class="{'active': view_tab == 'about'}" id="about">
                         <div class="">
                             <ul class="collection">
+                            	<!-- <li class="collection-item">Home</li> -->
 													    <li class="collection-item avatar">
-													      <i class="material-icons circle">folder</i>
-													      <span class="title">Title</span>
-													      <p>First Line <br>
-													         Second Line
-													      </p>
-													      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+													      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+													      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+													      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-full"></i> <span class="grey-text meta-text">127 reviews</span></p>
+													      <div class="review m-t-sm">
+													      	<a href=""><img src="http://placehold.it/30x30" class="avatar"></a>
+														      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes you'll be able to realise that much of it makes sense afterall.</p>
+													      </div>
+													      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 													    </li>
 													    <li class="collection-item avatar">
-													      <i class="material-icons circle">folder</i>
-													      <span class="title">Title</span>
-													      <p>First Line <br>
-													         Second Line
-													      </p>
-													      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+													      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+													      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+													      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <span class="grey-text meta-text">304 reviews</span></p>
+													      <div class="review m-t-sm">
+													      	<a href=""><img src="http://placehold.it/30x30" class="avatar"></a>
+														      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes you'll be able to realise that much of it makes sense afterall.</p>
+													      </div>
+													      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 													    </li>
 													    <li class="collection-item avatar">
-													      <i class="material-icons circle green">insert_chart</i>
-													      <span class="title">Title</span>
-													      <p>First Line <br>
-													         Second Line
-													      </p>
-													      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+													      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+													      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+													      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <span class="grey-text meta-text">304 reviews</span></p>
+													      <div class="review m-t-sm">
+													      	<a href=""><img src="http://placehold.it/30x30" class="avatar"></a>
+														      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes you'll be able to realise that much of it makes sense afterall.</p>
+													      </div>
+													      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 													    </li>
 													    <li class="collection-item avatar">
-													      <i class="material-icons circle red">play_arrow</i>
-													      <span class="title">Title</span>
-													      <p>First Line <br>
-													         Second Line
-													      </p>
-													      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+													      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+													      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+													      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <span class="grey-text meta-text">304 reviews</span></p>
+													      <div class="review m-t-sm">
+													      	<a href=""><img src="http://placehold.it/30x30" class="avatar"></a>
+														      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes you'll be able to realise that much of it makes sense afterall.</p>
+													      </div>
+													      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 													    </li>
 													  </ul>
                         </div>
@@ -109,37 +129,46 @@
                     <div class="tab-pane" ng-class="{'active': view_tab == 'services'}" id="services">
                         <div class="">
                             <ul class="collection">
+                            	<!-- <li class="collection-item">Home</li> -->
 													    <li class="collection-item avatar">
-													      <i class="material-icons circle">folder</i>
-													      <span class="title">Title</span>
-													      <p>First Line <br>
-													         Second Line
-													      </p>
-													      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+													      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+													      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+													      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-full"></i> <span class="grey-text meta-text">127 reviews</span></p>
+													      <div class="review m-t-sm">
+													      	<a href=""><img src="http://placehold.it/30x30" class="avatar"></a>
+														      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes you'll be able to realise that much of it makes sense afterall.</p>
+													      </div>
+													      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 													    </li>
 													    <li class="collection-item avatar">
-													      <i class="material-icons circle">folder</i>
-													      <span class="title">Title</span>
-													      <p>First Line <br>
-													         Second Line
-													      </p>
-													      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+													      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+													      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+													      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <span class="grey-text meta-text">304 reviews</span></p>
+													      <div class="review m-t-sm">
+													      	<a href=""><img src="http://placehold.it/30x30" class="avatar"></a>
+														      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes you'll be able to realise that much of it makes sense afterall.</p>
+													      </div>
+													      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 													    </li>
 													    <li class="collection-item avatar">
-													      <i class="material-icons circle green">insert_chart</i>
-													      <span class="title">Title</span>
-													      <p>First Line <br>
-													         Second Line
-													      </p>
-													      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+													      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+													      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+													      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <span class="grey-text meta-text">304 reviews</span></p>
+													      <div class="review m-t-sm">
+													      	<a href=""><img src="http://placehold.it/30x30" class="avatar"></a>
+														      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes you'll be able to realise that much of it makes sense afterall.</p>
+													      </div>
+													      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 													    </li>
 													    <li class="collection-item avatar">
-													      <i class="material-icons circle red">play_arrow</i>
-													      <span class="title">Title</span>
-													      <p>First Line <br>
-													         Second Line
-													      </p>
-													      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+													      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+													      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+													      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <span class="grey-text meta-text">304 reviews</span></p>
+													      <div class="review m-t-sm">
+													      	<a href=""><img src="http://placehold.it/30x30" class="avatar"></a>
+														      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes you'll be able to realise that much of it makes sense afterall.</p>
+													      </div>
+													      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 													    </li>
 													  </ul>
                         </div>
@@ -147,37 +176,46 @@
                     <div class="tab-pane" ng-class="{'active': view_tab == 'contact'}" id="contact">
                         <div class="">
                             <ul class="collection">
+                            	<!-- <li class="collection-item">Home</li> -->
 													    <li class="collection-item avatar">
-													      <i class="material-icons circle">folder</i>
-													      <span class="title">Title</span>
-													      <p>First Line <br>
-													         Second Line
-													      </p>
-													      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+													      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+													      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+													      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-full"></i> <span class="grey-text meta-text">127 reviews</span></p>
+													      <div class="review m-t-sm">
+													      	<a href=""><img src="http://placehold.it/30x30" class="avatar"></a>
+														      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes you'll be able to realise that much of it makes sense afterall.</p>
+													      </div>
+													      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 													    </li>
 													    <li class="collection-item avatar">
-													      <i class="material-icons circle">folder</i>
-													      <span class="title">Title</span>
-													      <p>First Line <br>
-													         Second Line
-													      </p>
-													      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+													      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+													      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+													      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <span class="grey-text meta-text">304 reviews</span></p>
+													      <div class="review m-t-sm">
+													      	<a href=""><img src="http://placehold.it/30x30" class="avatar"></a>
+														      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes you'll be able to realise that much of it makes sense afterall.</p>
+													      </div>
+													      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 													    </li>
 													    <li class="collection-item avatar">
-													      <i class="material-icons circle green">insert_chart</i>
-													      <span class="title">Title</span>
-													      <p>First Line <br>
-													         Second Line
-													      </p>
-													      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+													      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+													      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+													      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <span class="grey-text meta-text">304 reviews</span></p>
+													      <div class="review m-t-sm">
+													      	<a href=""><img src="http://placehold.it/30x30" class="avatar"></a>
+														      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes you'll be able to realise that much of it makes sense afterall.</p>
+													      </div>
+													      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 													    </li>
 													    <li class="collection-item avatar">
-													      <i class="material-icons circle red">play_arrow</i>
-													      <span class="title">Title</span>
-													      <p>First Line <br>
-													         Second Line
-													      </p>
-													      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+													      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+													      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+													      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <span class="grey-text meta-text">304 reviews</span></p>
+													      <div class="review m-t-sm">
+													      	<a href=""><img src="http://placehold.it/30x30" class="avatar"></a>
+														      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes you'll be able to realise that much of it makes sense afterall.</p>
+													      </div>
+													      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 													    </li>
 													  </ul>
                         </div>
@@ -185,42 +223,62 @@
                 </div>
             </div>
             <!-- /tabs -->
-        	</div>
+        </div>
 	    	<div class="col m4 s12">
-	    		<h3>Popular reviews</h3>
+	    		<h4 class="section-title red-text">Top reviews</h4>
+	    		<ul class="collection m-b-lg">
+				    <li class="collection-item avatar">
+				      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+				      <p class="title m-b-md"><a href="" class="blue-text darken-4">User Name</a> wrote for <a href="" class="blue-text darken-4">Company	 Name</a></p>
+				      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-full"></i> <span class="grey-text meta-text">24/06/16</span></p>
+				      <div class="review m-t-sm">
+				      	<!-- <a href=""><img src="http://placehold.it/30x30" class="avatar"></a> -->
+					      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes...<a href="" class="blue-text darken-4">Read more</a>.</p>
+				      </div>
+				      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+				    </li>
+				    <li class="collection-item avatar">
+				      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+				      <p class="title m-b-md"><a href="" class="blue-text darken-4">User Name</a> wrote for <a href="" class="blue-text darken-4">Company	 Name</a></p>
+				      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-full"></i> <span class="grey-text meta-text">24/06/16</span></p>
+				      <div class="review m-t-sm">
+				      	<!-- <a href=""><img src="http://placehold.it/30x30" class="avatar"></a> -->
+					      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes...<a href="" class="blue-text darken-4">Read more</a>.</p>
+				      </div>
+				      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+				    </li>
+				    <li class="text-center"><a href="" class="meta-text blue-text darken-4">See more</a></li>
+				  </ul>
+				  <h4 class="section-title red-text">Top Rated</h4>
 	    		<ul class="collection">
 				    <li class="collection-item avatar">
-				      <i class="material-icons circle">folder</i>
-				      <span class="title">Title</span>
-				      <p>First Line <br>
-				         Second Line
-				      </p>
-				      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+				      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+				      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+				      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <span class="grey-text meta-text">1,127 reviews</span></p>
+				      <div class="review m-t-sm">
+					      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few...<a href="" class="blue-text darken-4">Read more</a>.</p>
+				      </div>
+				      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 				    </li>
 				    <li class="collection-item avatar">
-				      <i class="material-icons circle">folder</i>
-				      <span class="title">Title</span>
-				      <p>First Line <br>
-				         Second Line
-				      </p>
-				      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+				      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+				      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+				      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <span class="grey-text meta-text">1,127 reviews</span></p>
+				      <div class="review m-t-sm">
+					      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first ...<a href="" class="blue-text darken-4">Read more</a>.</p>
+				      </div>
+				      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 				    </li>
 				    <li class="collection-item avatar">
-				      <i class="material-icons circle green">insert_chart</i>
-				      <span class="title">Title</span>
-				      <p>First Line <br>
-				         Second Line
-				      </p>
-				      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+				      <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+				      <p class="title m-b-md"><a href="" class="blue-text darken-4">Company Name</a></p>
+				      <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> <span class="grey-text meta-text">1,127 reviews</span></p>
+				      <div class="review m-t-sm">
+					      <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first ...<a href="" class="blue-text darken-4">Read more</a>.</p>
+				      </div>
+				      <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
 				    </li>
-				    <li class="collection-item avatar">
-				      <i class="material-icons circle red">play_arrow</i>
-				      <span class="title">Title</span>
-				      <p>First Line <br>
-				         Second Line
-				      </p>
-				      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-				    </li>
+				    <li class="text-center"><a href="" class="meta-text blue-text darken-4">See more</a></li>
 				  </ul>
 	    	</div>
     	</div>

@@ -13,7 +13,7 @@ body {
 }
 
 .content {
-	/*margin-top: 100px;*/
+	padding: 0;
   flex: 1;
 }
 .undecorated-link:hover {
@@ -47,8 +47,8 @@ body {
 }
 
 .nav-wrapper {
-  margin-left: 150px;
-  margin-right: 150px;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 a {
@@ -73,13 +73,44 @@ nav ul a:hover, .nav-wrapper a {
   margin-top: 5px;
 }
 
+.m-b-sm {
+  margin-bottom: 5px;
+}
+
+.m-b-md {
+  margin-bottom: 10px !important;
+}
+
+.m-b-lg {
+  margin-bottom: 30px !important;
+}
+
 .m-t-md {
   margin-top: 15px;
+}
+
+.m-r-md {
+  margin-right: 10px;
 }
 
 /*Padding helpers*/
 .p-t-lg {
   padding-top: 60px;
+}
+
+/*Meta*/
+.meta-text {
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.section-title {
+  font-weight: 600;
+  letter-spacing: -2
 }
 
 @media only screen and (max-width: 768px) {
@@ -92,8 +123,38 @@ nav ul a:hover, .nav-wrapper a {
 
 #top {
   height: 400px;
-  background: url("http://placehold.it/1120x400") no-repeat;
-  background-size: 100%;
+  background: url(../img/bo_play_pattern.png) repeat;
+  width: 100%;
+  margin: 0 auto 70px auto;
+  /*background: url("http://placehold.it/1120x400") no-repeat;
+  background-size: 100%;*/
+}
+
+#top input[type=text] {
+  background-color: white;
+  width: 60%;
+  margin-top: 20px;
+  padding-left: 15px;
+  height: 40px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 2px;
+}
+
+#top input[type=submit] {
+  height: 40px;
+  width: 100px;
+  background: red;
+  color: white;
+  font-weight: 800;
+  border: 1px solid white;
+  border-radius: 2px;
+}
+
+
+.top-content {
+  width: 80%;
+  position: relative;
+  margin: 80px auto;
 }
 
 .tabs-left > .nav-tabs {
@@ -144,3 +205,31 @@ nav ul a:hover, .nav-wrapper a {
   border-color: #ddd transparent #ddd #ddd;
   *border-right-color: #ffffff;
 }
+
+.tab-pane .collection {
+  border-left: 0;
+}
+
+/*overiding materialize css*/
+.collection .collection-item.avatar .square {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  left: 15px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.collection .collection-item.avatar {
+  padding-top: 15px;
+  padding-left: 90px; 
+}
+
+.review > a .avatar {
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+
