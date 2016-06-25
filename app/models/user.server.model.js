@@ -66,6 +66,10 @@ module.exports = function(sequelize, DataTypes) {
                 type: DataTypes.STRING,
                 defaultValue: ''
             },
+            linkedin_id: {
+                type: DataTypes.STRING,
+                defaultValue: ''
+            },
             salt: {
                 type: DataTypes.BLOB('tiny')
             },
