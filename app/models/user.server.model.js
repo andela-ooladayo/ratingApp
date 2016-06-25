@@ -52,15 +52,19 @@ module.exports = function(sequelize, DataTypes) {
             },
             email: {
                 type: DataTypes.STRING,
-                unique: true,
-                defaultValue: '',
-                validate: { isEmail: { msg: 'Please fill a valid email address}' },
-                    isValid: validateLocalStrategyProperty}
+                //unique: true,
+                defaultValue: ''
+                //validate: { isEmail: { msg: 'Please fill a valid email address}' },
+                    //isValid: validateLocalStrategyProperty}
             },
             password: {
                 type: DataTypes.STRING,
                 default: '',
                 validate: { isValid: validateLocalStrategyPassword}
+            },
+            facebook_id: {
+                type: DataTypes.STRING,
+                defaultValue: ''
             },
             salt: {
                 type: DataTypes.BLOB('tiny')
