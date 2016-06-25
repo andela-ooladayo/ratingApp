@@ -42,7 +42,6 @@ angular.module('users').controller('AuthenticationController', ['$scope','$rootS
                        body.lastname = response.last_name;
                        body.facebook_id = response.id;
                        body.email = response.email;
-                       //body.name = response.name;
                        
                        $http.post('/auth/facebook', body).success(function(response) {
                             Storage.set('auth_token', response);
@@ -60,6 +59,37 @@ angular.module('users').controller('AuthenticationController', ['$scope','$rootS
                    Message.error('Fail to login through facebook');
                 } 
             }, {scope: 'public_profile,email'});
+        };
+
+
+
+        //IN.Event.on(IN, "auth", OnLinkedInAuth);
+
+        function OnLinkedInAuth() {
+            IN.API.Profile("me").result(ShowProfileData);
+        }
+
+        function ShowProfileData(profiles) {
+            var member = profiles.values[0];
+            var body = {};
+            body.linkedin_id = member.id;
+            body.firstname = member.firstName;
+            body.lastname = member.lastName;
+            $http.post('/auth/linkedin', body).success(function(response) {
+                Storage.set('auth_token', response);
+                $rootScope.$broadcast('Auth');
+                Message.success('Login','Welcome '+ response.user.displayname);
+                $location.path('/');
+            }).error(function(response) {
+                Message.error('Failed to login', response.message);
+            });
+        }
+
+        $scope.linkedinLogin = function() {
+            IN.User.authorize(function(response) {
+                OnLinkedInAuth();
+                console.log("login--in-linkedin")
+            });  
         };
 
 	}
