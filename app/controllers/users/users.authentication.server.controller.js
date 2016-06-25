@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 var _ = require('lodash'),
     errorHandler = require('../errors'),
     roleManager = require('../../../config/roleManager'),
@@ -9,8 +9,6 @@ var _ = require('lodash'),
 
 
 exports.signup = function(req, res) {
-    console.log("req ========================================================= " + req)
-
     delete req.body.roleTitle;
     delete req.body.roleBitMask;
 
@@ -108,105 +106,100 @@ exports.oauthCallback = function(strategy) {
 };
 
 
-exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
-    console.log("herehere")
-    if (!req.user) {
-        // Define a search query fields
-        var searchMainProviderIdentifierField = 'providerData.' + providerUserProfile.providerIdentifierField;
-        var searchAdditionalProviderIdentifierField = 'additionalProvidersData.' + providerUserProfile.provider + '.' + providerUserProfile.providerIdentifierField;
 
-        // Define main provider search query
-        var mainProviderSearchQuery = {};
-        mainProviderSearchQuery.provider = providerUserProfile.provider;
-        mainProviderSearchQuery[searchMainProviderIdentifierField] = providerUserProfile.providerData[providerUserProfile.providerIdentifierField];
 
-        // Define additional provider search query
-        var additionalProviderSearchQuery = {};
-        additionalProviderSearchQuery[searchAdditionalProviderIdentifierField] = providerUserProfile.providerData[providerUserProfile.providerIdentifierField];
+exports.processFacebook = function(req, res) {
+    var data = req.body;
+    var facebook_id = data.facebook_id.toString();
+    db.User.find({where :{facebook_id: facebook_id}}).done(function(err, rawUser) {
+        if (err) {
+            logger.error(err);
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        }
+        delete req.body.role_title;
+        delete req.body.role_bit_mask;
+        delete req.body.password;
+        delete req.body.salt;
 
-        // Define a search query to find existing user with current provider profile
-        var searchQuery = {
-            where: bd.or(mainProviderSearchQuery, additionalProviderSearchQuery)
-        };
+        var user = rawUser;
 
-        User.find(searchQuery).done(function(err, user) {
-            if (err) {
-                return done(err);
-            } else {
-                if (!user) {
-                    var possibleUsername = providerUserProfile.username || ((providerUserProfile.email) ? providerUserProfile.email.split('@')[0] : '');
-
-                    User.findUniqueUsername(possibleUsername, null, function(availableUsername) {
-                        user = new User({
-                            firstname: providerUserProfile.firstName,
-                            lastname: providerUserProfile.lastName,
-                            displayname: providerUserProfile.displayName,
-                            email: providerUserProfile.email,
-                            provider: providerUserProfile.provider,
-                            providerData: providerUserProfile.providerData
-                        });
-
-                        var msg = {};
-                        msg.subject = "Account Creation";
-                        msg.from = "no-reply@onepercentlab.com";
-                        msg.to = user.email;
-                        msg.html = "<p> Thank you for registering with us. </p>" + "<p> Rating App Support Team</p>"
-                        mailer(msg);
-                        
-                        user.save().done(function(err) {
-                            return done(err, user);
-                        });
+        if (user) {
+            
+            user = _.extend(user, req.body);
+            user.updated = Date.now();
+            user.save().done(function (err) {
+                if (err) {
+                    return res.status(400).send({
+                        message: errorHandler.getErrorMessage(err)
                     });
                 } else {
-                    return done(err, user);
+                    req.login(user, function (err) {
+                        if (err) {
+                            res.status(400).send(err);
+                        } else {
+                            delete user.role_title;
+                            delete user.role_bit_mask;
+                            delete user.password;
+                            delete user.salt;
+
+                            res.jsonp({user: user.dataValues, token: tokenService.issueToken(user.dataValues)});
+                        }
+                    });
                 }
-            }
-        });
-    } else {
-        var user = req.user;
-
-        if (user.provider !== providerUserProfile.provider && (!user.additionalProvidersData || !user.additionalProvidersData[providerUserProfile.provider])) {
-        
-            if (!user.additionalProvidersData) user.additionalProvidersData = {};
-            user.additionalProvidersData[providerUserProfile.provider] = providerUserProfile.providerData;
-
-            user.markModified('additionalProvidersData');
-
-            user.save().done(function(err) {
-                return done(err, user, '/settings/accounts');
             });
-        } else {
-            return done(new Error('User is already connected using this provider'), user);
         }
-    }
-};
 
+        else {
+            var dbObj = {};
+            dbObj.provider = 'facebook';
+            dbObj.roleBitMask = roleManager.userRoles.user.bitMask;
+            dbObj.roleTitle   = roleManager.userRoles.user.title;
+            dbObj.displayname = req.body.firstname + ' ' + req.body.lastname;
+            dbObj.firstname = data.firstname.toString();
+            dbObj.lastname = data.lastname.toString();
+            dbObj.email = data.email.toString();
+            dbObj.facebook_id = data.facebook_id.toString();
 
+            var user = db.User.build(dbObj);
 
-exports.removeOAuthProvider = function(req, res, next) {
-    var user = req.user;
-    var provider = req.param('provider');
+            user
+                .save()
+                .done(function(err, user) {
+                    if(err) {
+                        logger.error(err, "err");
+                        logger.error('Error :' +err);
+                        return res.status(400).send({
+                            message: errorHandler.getErrorMessage(err)
+                        });
+                    }
+                    else {
+                        user.dataValues.password = undefined;
+                        user.dataValues.salt = undefined;
+                        user.dataValues.reset_password_expires = undefined;
+                        user.dataValues.reset_password_token = undefined;
 
-    if (user && provider) {
-        if (user.additionalProvidersData[provider]) {
-            delete user.additionalProvidersData[provider];
+                        req.login(user.dataValues, function(err) {
+                            if (err) {
+                                logger.info(err, "err")
+                                res.status(400).send(err);
+                            } else {
+                                
+                                var msg = {};
+                                msg.subject = "Account Creation";
+                                msg.from = "no-reply@onepercentlab.com";
+                                msg.to = user.email;
+                                msg.html = "<p> Thank you for registering with us. </p>" + "<p> Rating App Support Team</p>"
+                                mailer(msg);
 
-            user.markModified('additionalProvidersData');
-        }
-        user.save().done(function(err,user){
-            if(err){
-                return res.status(400).send({
-                    message: errorHandler.getErrorMessage(err)
-                });
-            } else{
-                req.login(user, function(err) {
-                    if (err) {
-                        res.status(400).send(err);
-                    } else {
-                        res.jsonp({user: user, token: tokenService.issueToken(user)});
+                                res.jsonp({user: user.dataValues, token: tokenService.issueToken(user.dataValues)});
+                            }
+                        });
                     }
                 });
             }
-        });
-    }
+    });
 };
+
+

@@ -6,7 +6,7 @@ module.exports = function(app) {
 
 	app.route('/api/users/me').get(users.me);
 	app.route('/api/users').put(users.update);
-	app.route('/api/users/accounts').delete(users.removeOAuthProvider);
+	//xsapp.route('/api/users/accounts').delete(users.removeOAuthProvider);
 
 	app.route('/api/users/password').post(users.changePassword);
 	app.route('/auth/forgot').post(users.forgot);
@@ -15,12 +15,13 @@ module.exports = function(app) {
 
 	app.route('/auth/signup').post(users.signup);
 	app.route('/auth/signin').post(users.signin);
+    app.route('/auth/facebook').post(users.processFacebook);
 	app.route('/auth/signout').get(users.signout);
 
-	app.route('/auth/facebook').get(passport.authenticate('facebook', {
-		scope: ['email']
-	}));
-	app.route('/auth/facebook/callback').get(users.oauthCallback('facebook'));
+	// app.route('/auth/facebook').get(passport.authenticate('facebook', {
+	// 	scope: ['email']
+	// }));
+	// app.route('/auth/facebook/callback').get(users.oauthCallback('facebook'));
 
 	
 	app.route('/auth/linkedin').get(passport.authenticate('linkedin'));
