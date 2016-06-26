@@ -20,14 +20,14 @@ angular.module('review-ratings').config(['$stateProvider',
                     access : access.user
                 }
     }).
-    state('viewArticle', {
+    state('viewReviewRating', {
       url: '/review-ratings/:review-ratingId',
       templateUrl: 'modules/review-ratings/views/view-review-rating.client.view.html',
                 data : {
                     access : access.user
                 }
     }).
-    state('editArticle', {
+    state('editReviewRating', {
       url: '/review-ratings/:review-ratingId/edit',
       templateUrl: 'modules/review-ratings/views/edit-review-rating.client.view.html',
                 data : {
