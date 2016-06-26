@@ -68,7 +68,7 @@ module.exports = function() {
 		app.locals.cache = 'memory';
 	}
 
-    app.use('/api', expressJwt({secret: config.secret}));
+    //app.use('/api', expressJwt({secret: config.secret}));
 
     // Request body parsing middleware should be above methodOverride
 	app.use(bodyParser.urlencoded({
@@ -126,17 +126,17 @@ module.exports = function() {
 		if (!err) return next();
 
 		// Log it
-		console.error(err.stack);
+		logger.error(err);
 
 		// Error page
-		res.status(500).render('500', {
+		res.status(500).json({
 			error: err.stack
 		});
 	});
 
 	// Assume 404 since no middleware responded
 	app.use(function(req, res) {
-		res.status(404).render('404', {
+		res.status(404).json({
 			url: req.originalUrl,
 			error: 'Not Found'
 		});
