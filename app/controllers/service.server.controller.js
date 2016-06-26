@@ -3,21 +3,23 @@
 var _ = require('lodash'),
     db = require('../../config/sequelize'),
     errorHandler = require('./errors'),
+    searchEngine = require('./search.engine.server.controller'),
     checkRequestBody = require('./request.body.checker');
 
 
 exports.create = function(req, res) {
-    var service = req.body;
+    
+    var data = req.body;
 
-    delete req.body.no_of_rating_five;
-    delete req.body.no_of_rating_four;
-    delete req.body.no_of_rating_three;
-    delete req.body.no_of_rating_two;
-    delete req.body.no_of_rating_one;
+    delete data.no_of_rating_five;
+    delete data.no_of_rating_four;
+    delete data.no_of_rating_three;
+    delete data.no_of_rating_two;
+    delete data.no_of_rating_one;
 
-    service.UserId = req.user.id;
+    //data.UserId = req.user.id;
 
-    var error = checkRequestBody(req.body, ['merchant_id', 'business_name', 'business_description', 'business_email', 'business_phone_number', 'business_category_id', 'business_address_country', 'business_address_state', 'business_address_city', 'business_address_street', 'business_address']);
+    var error = checkRequestBody(data, ['merchant_id', 'business_name', 'business_description', 'business_email', 'business_phone_number', 'business_category_id', 'business_address_country', 'business_address_state', 'business_address_city', 'business_address_street', 'business_address']);
     if(error) {
         return res.status(400).json(error);
     }
@@ -28,7 +30,9 @@ exports.create = function(req, res) {
                     message: errorHandler.getErrorMessage(err)
                 });
             }
-            return res.jsonp(service);
+            res.jsonp(service);
+
+            searchEngine.create(service.dataValues, service.id);
         });
     }
 };
