@@ -9,6 +9,12 @@ module.exports = function(app) {
         .get(users.isAuthorized('user'), service.list)
         .post(users.isAuthenticated, users.isAuthorized('merchant'), service.create);
 
+    app.route('/api/service/search')
+        .get(users.isAuthenticated, users.isAuthorized('user'), service.searchAll);
+
+    app.route('/api/service/filter')
+        .get(users.isAuthenticated, users.isAuthorized('user'), service.filterBy);
+
     app.route('/api/service/:serviceId')
         .get(service.read)
         .put(users.isAuthenticated, users.isAuthorized('merchant'), service.isOwner, service.update)
