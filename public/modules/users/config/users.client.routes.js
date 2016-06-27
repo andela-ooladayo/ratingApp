@@ -68,13 +68,6 @@ angular.module('users').config(['$stateProvider',
                 data : {
                     access : access.anon
                 }
-		})
-    .state('merchant-request', {
-      url: '/settings/merchant-request',
-      templateUrl: 'modules/users/views/settings/merchant-request.client.view.html',
-                data : {
-                    access : access.user
-                }
-    });
+		});
 	}
 ]);

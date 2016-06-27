@@ -8,7 +8,9 @@
 	            <div class="row">
 	                <div class="col-md-12">
 	                    <div>
-	                        <img src="http://lorempixel.com/200/200/abstract/1/" alt="Texto Alternativo" class="img-circle img-thumbnail">
+	                    	<a href="">
+		                        <img src="http://placehold.it/200x200" alt="Texto Alternativo" class="img-circle img-thumbnail">
+	                    	</a>
 	                        <h2>{{user.displayname}}</h2>
 	                        <p>{{user.email}}</p>
 	                        <p ng-show="user.roleTitle === 'user'">Do you have a service that you want to put on the map? <a href="" ng-click="merchantRequest()">Send a merchant request</a></p>
@@ -20,7 +22,7 @@
 	            <div class="row">
 	                <div class="col-md-12">
 	                    <form role="form" name="userForm" data-ng-submit="updateUserProfile(userForm.$valid)" class="signin" autocomplete="off">
-	                        <h2>Edit your profile.<small>It's always easy</small></h2>
+	                        <h2>Edit your profile.<br><small>It's always easy</small></h2>
 	                        <hr class="colorgraph">
 	                        <div class="row">
 	                            <div class="col-xs-12 col-sm-6 col-md-6">
