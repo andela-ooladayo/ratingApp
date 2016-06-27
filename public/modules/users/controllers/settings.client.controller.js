@@ -78,7 +78,7 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
                 console.log(response);
                 Message.success('Request to be a merchant by '+ $scope.user.displayname + ' has been sent Successfully.');
 				// And redirect to the index page
-				$location.path('/');
+				// $location.path('/');
 			}).error(function(response) {
                 Message.error('Failed to send',response.message);
 			});
