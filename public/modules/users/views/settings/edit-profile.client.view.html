@@ -19,7 +19,7 @@
 	        <div class="col-md-8" id="rightPanel">
 	            <div class="row">
 	                <div class="col-md-12">
-	                    <form role="form" name="userForm" data-ng-submit="updateUserProfile(userForm.$valid)" class="signin form-horizontal" autocomplete="off">
+	                    <form role="form" name="userForm" data-ng-submit="updateUserProfile(userForm.$valid)" class="signin" autocomplete="off">
 	                        <h2>Edit your profile.<small>It's always easy</small></h2>
 	                        <hr class="colorgraph">
 	                        <div class="row">
@@ -43,15 +43,17 @@
 	                        </div>
 	                        <div class="row">
 	                        	<div class="col-xs-12">
-	                        		<div class="form-group">
-										<button type="submit" class="btn btn-large btn-primary">Save Profile</button>
-									</div>
-									<div data-ng-show="success" class="text-center text-success">
-										<strong>Profile Saved Successfully</strong>
-									</div>
-									<div data-ng-show="error" class="text-center text-danger">
-										<strong data-ng-bind="error"></strong>
-									</div>
+	                        		<div class="pull-right">
+		                        		<div class="form-group">
+											<button type="submit" class="btn btn-large btn-primary m-b-md" style="float: right; margin-right: 10px;">Save Profile</button>
+										</div>
+										<div data-ng-show="success" class="text-success">
+											<strong>Profile Saved Successfully</strong>
+										</div>
+										<div data-ng-show="error" class="text-danger">
+											<strong data-ng-bind="error"></strong>
+										</div>
+	                        		</div>
 	                        	</div>
 	                        </div>
 	                    </form>
