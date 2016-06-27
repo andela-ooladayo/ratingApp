@@ -17,6 +17,7 @@ function requestToBeMerchant(req, res) {
     var requestApproval = {};
 
     requestApproval.user_id = req.user.id;
+    var msg = {};
 
     db.merchant_wating_approval.create(requestApproval).done(function(err) {
         if(err){
@@ -28,7 +29,7 @@ function requestToBeMerchant(req, res) {
         msg.subject = "Request to be a Merchant";
         msg.from = "no-reply@onepercentlab.com";
         msg.to = "hello@onepercentlab.com";
-        msg.html = "<p> This is a merchant approval request for " + user.firstname + " " + user.lastname + "</p>" + "<p> Rating App Support Team</p>";
+        msg.html = "<p> This is a merchant approval request for " + req.user.firstname + " " + req.user.lastname + "</p>" + "<p> Rating App Support Team</p>";
         mailer(msg);
 
         return res.status(200).json({message : "Request for Merchant approval sent"});

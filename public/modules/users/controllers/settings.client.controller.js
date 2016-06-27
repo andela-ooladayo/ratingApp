@@ -72,5 +72,16 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
                 Message.error('Failed to change password',response.message);
 			});
 		};
+
+		$scope.merchantRequest = function() {
+			$http.post('/api/merchant/request', $scope.user).success(function(response) {
+                console.log(response);
+                Message.success('Request to be a merchant by '+ $scope.user.displayname + ' has been sent Successfully.');
+				// And redirect to the index page
+				// $location.path('/');
+			}).error(function(response) {
+                Message.error('Failed to send',response.message);
+			});
+		}
 	}
 ]);

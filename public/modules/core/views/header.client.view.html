@@ -63,6 +63,12 @@
 	  <li class="divider"></li>
 	  <li><a ng-click="signOut()">Signout</a></li>
 </ul>
+<ul id="mobile_menu" class="dropdown-content" data-ng-controller="HeaderController">
+	  <li><a href="/settings/accounts">Manage Social Account</a></li>
+	  <li><a href="/settings/password">Change Password</a></li>
+	  <li class="divider"></li>
+	  <li><a ng-click="signOut()">Signout</a></li>
+</ul>
 <div class="navbar-fixed" data-ng-controller="HeaderController">
     <nav class="white darken-4">
         <div class="nav-wrapper">
@@ -80,7 +86,7 @@
             		<li ng-class="{active: $uiRoute}"><a class="waves-effect waves-light blue-text">Explore</a></li>
                 <li ui-sref="signup" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Sign Up</a></li>
                 <li li ui-sref="signin" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Log In</a></li>
-                <li data-ng-show="isAuthenticated"><a class="dropdown-button blue-text" href="#!" data-activates="menu"><span data-ng-bind="user.displayname"></span><i class="material-icons right">arrow_drop_down</i></a></li>
+                <li data-ng-show="isAuthenticated"><a class="dropdown-button blue-text" href="#!" data-activates="mobile_menu"><span data-ng-bind="user.displayname"></span><i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
             <!-- Testcase -->
             <!-- <ul class="right m-r-md hide-on-med-and-down" data-ng-show="isAuthenticated">
@@ -92,7 +98,7 @@
             		<li ui-sref="signup" ng-class="{active: $uiRoute}"><a class="waves-effect waves-light blue-text">Explore</a></li>
                 <li ui-sref="signup" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Sign Up</a></li>
                 <li li ui-sref="signin" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Log In</a></li>
-                <li data-ng-show="isAuthenticated"><a class="dropdown-button blue-text" href="#!" data-activates="dropdown"><span data-ng-bind="user.displayName"></span><i class="material-icons right">arrow_drop_down</i></a></li>
+                <li data-ng-show="isAuthenticated"><a class="dropdown-button blue-text" href="#!" data-activates="menu"><span data-ng-bind="user.displayname"></span><i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
         </div>
     </nav>
