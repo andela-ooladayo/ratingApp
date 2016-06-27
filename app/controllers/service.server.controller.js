@@ -56,6 +56,8 @@ exports.update = function(req, res) {
             });
         } else {
             res.jsonp(service);
+
+            searchEngine.update(service, service.id);
         }
     });
 };
@@ -71,8 +73,52 @@ exports.delete = function(req, res) {
             });
         } else {
             res.jsonp(service);
+
+            searchEngine.delete(service.id);
         }
     });
+};
+
+
+exports.searchAll = function(req, res) {
+    var query = req.query.q;
+    if(!query) {
+        return res.status(400).json({message: "q parameter is missing in the query"});
+    }
+    else {
+        searchEngine.search(query, function(err, result) {
+            if(err) {
+                return res.status(400).json({message: "Unknown Error"});
+            }
+            else {
+                return res.status(200).json(result.hits.hits);
+            }
+        });
+    }
+};
+
+
+exports.filterBy = function(req, res) {
+    var query = req.query.q;
+    var by = req.query.filter_by;
+
+    if(!query) {
+        return res.status(400).json({message: "q parameter is missing in the query"});
+    }
+    else if(!by) {
+        return res.status(400).json({message: "filter_by parameter is missing in the query"});
+    }
+    else {
+        var queryString = by + ":" + query;
+        searchEngine.filter(queryString, function(err, result) {
+            if(err) {
+                return res.status(400).json({message: "Unknown Error"});
+            }
+            else {
+                return res.status(200).json(result.hits.hits);
+            }
+        });
+    }
 };
 
 
