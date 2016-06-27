@@ -10,7 +10,7 @@ angular.module('users').config(['$stateProvider',
 			url: '/settings/profile',
 			templateUrl: 'modules/users/views/settings/edit-profile.client.view.html',
             data : {
-                access : access.anon
+                access : access.user
             }
 		}).
 		state('password', {
@@ -68,6 +68,13 @@ angular.module('users').config(['$stateProvider',
                 data : {
                     access : access.anon
                 }
-		});
+		})
+    .state('merchant-request', {
+      url: '/settings/merchant-request',
+      templateUrl: 'modules/users/views/settings/merchant-request.client.view.html',
+                data : {
+                    access : access.user
+                }
+    });
 	}
 ]);
