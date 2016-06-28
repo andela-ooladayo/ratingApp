@@ -22,11 +22,32 @@ angular.module('users').config(['$stateProvider',
 		}).
 		state('accounts', {
 			url: '/settings/accounts',
-			templateUrl: 'modules/users/views/settings/social-accounts.client.view.html',
+			templateUrl: 'modules/users/views/settings/accounts.client.view.html',
                 data : {
                     access : access.user
                 }
 		}).
+        state('accounts.dashboard', {
+            url: '/settings/accounts.dashboard',
+            templateUrl: 'modules/users/views/settings/dashboard.client.view.html',
+                data : {
+                    access : access.user
+                }
+        }).
+        state('accounts.service', {
+            url: '/settings/accounts.service',
+            templateUrl: 'modules/users/views/settings/dashboard.client.view.html',
+                data : {
+                    access : access.user
+                }
+        }).
+        state('accounts.profile', {
+            url: '/settings/accounts.profile',
+            templateUrl: 'modules/users/views/settings/edit-profile.client.view.html',
+                data : {
+                    access : access.user
+                }
+        }).
 		state('signup', {
 			url: '/signup',
 			templateUrl: 'modules/users/views/authentication/signup.client.view.html',

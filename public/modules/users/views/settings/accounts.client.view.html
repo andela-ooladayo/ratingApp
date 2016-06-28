@@ -1,0 +1,79 @@
+<section class="row" data-ng-controller="SettingsController">
+	<div class="wrapper">
+	    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">
+
+	    <!--
+
+	        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+	        Tip 2: you can also add an image using data-image tag
+
+	    -->
+
+	    	<div class="sidebar-wrapper">
+
+	            <ul class="nav">
+	                <li class="active">
+	                    <a ui-sref=".dashboard">
+	                        <i class="pe-7s-graph"></i>
+	                        <p>Dashboard</p>
+	                    </a>
+	                </li>
+	                <li class="active">
+	                    <a ui-sref=".profile">
+	                        <i class="pe-7s-graph"></i>
+	                        <p>Edit Profile</p>
+	                    </a>
+	                </li>
+	                <li>
+	                    <a ui-sref=".service">
+	                        <i class="pe-7s-user"></i>
+	                        <p>Service</p>
+	                    </a>
+	                </li>
+	            </ul>
+	    	</div>
+	    </div>
+
+	    <div class="main-panel">
+	        <div class="content">
+	            <div class="container-fluid">
+	            	<div ui-view></div>
+	            </div>
+	        </div>
+
+
+	        <!-- <footer class="footer">
+	            <div class="container-fluid">
+	                <nav class="pull-left">
+	                    <ul>
+	                        <li>
+	                            <a href="#">
+	                                Home
+	                            </a>
+	                        </li>
+	                        <li>
+	                            <a href="#">
+	                                Company
+	                            </a>
+	                        </li>
+	                        <li>
+	                            <a href="#">
+	                                Portfolio
+	                            </a>
+	                        </li>
+	                        <li>
+	                            <a href="#">
+	                               Blog
+	                            </a>
+	                        </li>
+	                    </ul>
+	                </nav>
+	                <p class="copyright pull-right">
+	                    &copy; 2016 <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+	                </p>
+	            </div>
+	        </footer> -->
+
+	    </div>
+	</div>
+</section>

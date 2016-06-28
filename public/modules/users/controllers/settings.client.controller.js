@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('SettingsController', ['$scope', '$rootScope', '$http', '$location', 'Users', 'Authentication','User','Message','Storage',
-	function($scope, $rootScope, $http, $location, Users, Authentication,User,Message,Storage) {
+angular.module('users').controller('SettingsController', ['$scope', '$rootScope', '$state', '$http', '$location', 'Users', 'Authentication','User','Message','Storage',
+	function($scope, $rootScope, $state, $http, $location, Users, Authentication,User,Message,Storage) {
 		$scope.user = User.get();
 
 		// If user is not signed in then redirect back home
@@ -83,5 +83,7 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
                 Message.error('Failed to send',response.message);
 			});
 		}
+
+		// $state.transitionTo('accounts.dashboard');
 	}
 ]);
