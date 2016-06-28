@@ -15,6 +15,12 @@ module.exports = function(app) {
     app.route('/api/service/filter')
         .get(users.isAuthenticated, users.isAuthorized('user'), service.filterBy);
 
+    app.route('/api/service/top-rated')
+        .get(service.topRated);
+
+    app.route('/api/service/top-reviews')
+        .get(service.topReviews);
+
     app.route('/api/service/:serviceId')
         .get(service.read)
         .put(users.isAuthenticated, users.isAuthorized('merchant'), service.isOwner, service.update)

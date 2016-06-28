@@ -3,6 +3,8 @@
 var _ = require('lodash'),
     db = require('../../config/sequelize'),
     errorHandler = require('./errors'),
+    pg = require('pg'),
+    connectionString = process.env.DATABASE_URL || "postgres://raytee:nifemi00@localhost/rating-app",
     searchEngine = require('./search.engine.server.controller'),
     checkRequestBody = require('./request.body.checker');
 
@@ -135,6 +137,76 @@ exports.list = function(req, res) {
 };
 
 
+
+exports.topRated = function(req, res) {
+    var number = req.query.num || 5;
+    pg.connect(connectionString, function(err, client, drop) {
+        if(err) {
+            logger.error(err);
+            return res.status(500).json({message: "server error"});
+        }
+        else {
+            var sql = "SELECT * FROM (SELECT id, business_name, business_description, business_address_city, business_address, business_address_country FROM services ORDER BY ((no_of_rating_five * 5) + (no_of_rating_four * 4) + (no_of_rating_three * 3) + (no_of_rating_two * 2) + (no_of_rating_one * 1)) DESC) AS services LIMIT ($1)";
+            client.query(sql, [number], function(err, result) {
+                if(err) {
+                    drop();
+                    logger.error(err, "Error");
+                    return res.status(500).json({message: "server error"});
+                }
+
+                var finalList = [];
+
+                if(result && result.rows) {
+                    _.forEach(result.rows, function(value, key) {
+                        var nSql = "SELECT * FROM review_ratings ORDER BY value WHERE service_id=($1) LIMIT 2";
+                        client.query(nSql, [value.id], function(err, rst) {
+                            if(!err && rst && rst.rows) {
+                                value.reviews = rst.rows;
+                                finalList.push(value);
+                            }
+                            else {
+                                value.reviews = [];
+                                finalList.push(value);
+                            }
+
+                            if(result.rows.length == key + 1) {
+                                drop();
+                                return res.status(200).json({data: finalList});
+                            } 
+                        });
+                    });
+                }
+            });
+        }
+    });
+};
+
+
+exports.topReviews = function(req, res) {
+    var number = req.query.num || 5;
+    pg.connect(connectionString, function(err, client, drop) {
+        if(err) {
+            logger.error(err);
+            return res.status(500).json({message: "server error"});
+        }
+        else {
+            var sql = 'SELECT * FROM (SELECT review_ratings.id, review_ratings.created, review_ratings.value, review_ratings.review, review_ratings.no_of_likes, review_ratings.no_of_dislikes, review_ratings.user_id, review_ratings.service_id, services.business_name, "Users".firstname, "Users".lastname FROM review_ratings LEFT JOIN "Users" ON "Users".id=review_ratings.user_id LEFT JOIN services ON services.id=review_ratings.service_id ORDER BY no_of_likes DESC) AS review_ratings LIMIT ($1)';
+            client.query(sql, [number], function(err, result) {
+                if(err) {
+                    drop();
+                    logger.error(err, "Error");
+                    return res.status(500).json({message: "server error"});
+                }
+                else {
+                    return res.status(200).json({data : result.rows})
+                }
+
+            });
+        }
+    });
+};
+
+
 exports.serviceByID = function(req, res, next, id) {
     db.services.find({where: { id: id }, include: [ { model: db.User, attributes: ['displayname', 'firstname', 'lastname', 'phone_number'] } ] }).done(function(err, service) {
         if (err) return next(err);
@@ -153,3 +225,4 @@ exports.isOwner = function(req, res, next) {
     }
     next();
 };
+
