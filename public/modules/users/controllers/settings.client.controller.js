@@ -4,18 +4,6 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 	function($scope, $rootScope, $state, $http, $location, $timeout, Users, Authentication, User, Message, Storage, Merchant) {
 		$scope.user = User.get();
 
-		$scope.findMerchantList = function() {
-			var users = [];
-			Merchant.query(function(response) {
-				for(var i = 0; i < response.length; i++) {
-					var user = User.get({id: response[i].user_id});
-					users.push(user);					
-				}
-				$scope.waitingList = users;
-			});
-			
-		};
-		
 		// If user is not signed in then redirect back home
 		if (!$scope.user) $location.path('/');
 
@@ -95,6 +83,13 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
                 Message.error('Failed to send',response.message);
 			});
 		}
+
+		$scope.findMerchantList = function() {
+			Merchant.query(function(response) {
+				$scope.waitingList = angular.fromJson(response);
+			});
+			
+		};
 
 		// $state.transitionTo('accounts.dashboard');
 	}

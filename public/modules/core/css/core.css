@@ -150,7 +150,7 @@ nav ul a:hover, .nav-wrapper a {
   height: 400px;
   background: url(../img/bo_play_pattern.png) repeat;
   width: 100%;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 0 auto;
   /*background: url("http://placehold.it/1120x400") no-repeat;
   background-size: 100%;*/
 }
@@ -175,11 +175,14 @@ nav ul a:hover, .nav-wrapper a {
   border-radius: 2px;
 }
 
+#how {
+  padding: 40px 40px 70px;
+}
 
 .top-content {
   width: 80%;
   position: relative;
-  margin: 80px auto;
+  margin: 120px auto;
 }
 
 .tabs-left > .nav-tabs {
