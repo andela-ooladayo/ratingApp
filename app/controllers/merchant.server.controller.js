@@ -107,10 +107,11 @@ function waitingList(req, res) {
             _.forEach(waitingRequests, function (waitingRequest, key) {
                 db.User.find({where: { id: waitingRequest.user_id } }).done(function(err, user) {
                     if(user) {
-                        waitingRequest.firstname = user.firstname || "";
-                        waitingRequest.lastname = user.lastname || "";
-                        waitingRequest.phone_number = user.phone_number || "";
-                        waitingRequest.email = user.email || "";
+                        
+                        waitingRequest.dataValues.firstname = user.firstname || "";
+                        waitingRequest.dataValues.lastname = user.lastname || "";
+                        waitingRequest.dataValues.phone_number = user.phone_number || "";
+                        waitingRequest.dataValues.email = user.email || "";
 
                         completeWaitingList.push(waitingRequest);
                     }
@@ -119,7 +120,7 @@ function waitingList(req, res) {
                     }
 
                     if((key + 1) == waitingRequestlen) {
-                         return res.status(200).jsonp(completeWaitingList);
+                         return res.status(200).json(completeWaitingList);
                     }
                 })
             });
