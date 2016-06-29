@@ -70,6 +70,9 @@ module.exports = function(sequelize, DataTypes) {
                 type: DataTypes.STRING,
                 defaultValue: ''
             },
+            image_url: {
+                type: DataTypes.TEXT
+            },
             salt: {
                 type: DataTypes.BLOB('tiny')
             },
