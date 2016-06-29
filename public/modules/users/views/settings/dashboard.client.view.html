@@ -51,5 +51,8 @@
     </div>
     <h1>Hi, I'm the dashboard</h1>
     <a href="" ng-click="findMerchantList()">Find Merchant List</a>
-    <p>{{waitingList}}</p>
+    <ul>
+        <li ng-repeat="wait in waitingList">{{wait.firstname}} {{wait.lastname}} <a href="">Approve</a></li>
+    </ul>
+    <!-- <p>{{waitingList}}</p> -->
 </div>

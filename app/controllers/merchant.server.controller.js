@@ -114,9 +114,9 @@ function waitingList(req, res) {
 
                         completeWaitingList.push(waitingRequest);
                     }
-                    else {
-                        completeWaitingList.push(waitingRequest);
-                    }
+                    // else {
+                    //     completeWaitingList.push(waitingRequest);
+                    // }
 
                     if((key + 1) == waitingRequestlen) {
                          return res.status(200).json(completeWaitingList);

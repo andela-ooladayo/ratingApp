@@ -1,12 +1,21 @@
 'use strict';
 
-angular.module('users').controller('SettingsController', ['$scope', '$rootScope', '$state', '$http', '$location', 'Users', 'Authentication','User','Message','Storage', 'Merchant',
-	function($scope, $rootScope, $state, $http, $location, Users, Authentication, User, Message, Storage, Merchant) {
+angular.module('users').controller('SettingsController', ['$scope', '$rootScope', '$state', '$http', '$location', '$timeout', 'Users', 'Authentication','User','Message','Storage', 'Merchant',
+	function($scope, $rootScope, $state, $http, $location, $timeout, Users, Authentication, User, Message, Storage, Merchant) {
 		$scope.user = User.get();
+
 		$scope.findMerchantList = function() {
-			console.log("clicked");
-			$scope.waitingList = Merchant.query();
+			var users = [];
+			Merchant.query(function(response) {
+				for(var i = 0; i < response.length; i++) {
+					var user = User.get({id: response[i].user_id});
+					users.push(user);					
+				}
+				$scope.waitingList = users;
+			});
+			
 		};
+		
 		// If user is not signed in then redirect back home
 		if (!$scope.user) $location.path('/');
 
