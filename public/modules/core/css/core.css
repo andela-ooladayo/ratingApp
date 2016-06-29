@@ -73,6 +73,10 @@ nav ul a:hover, .nav-wrapper a {
 }
 
 /*Margin helpers*/
+.m-n {
+  margin: 0 !important;
+}
+
 .m-t-sm {
   margin-top: 5px;
 }
@@ -86,11 +90,15 @@ nav ul a:hover, .nav-wrapper a {
 }
 
 .m-b-lg {
-  margin-bottom: 30px !important;
+  margin-bottom: 25px !important;
 }
 
 .m-t-md {
-  margin-top: 15px;
+  margin-top: 15px !important;
+}
+
+.m-t-lg {
+  margin-top: 25px !important;
 }
 
 .m-r-md {
@@ -253,6 +261,22 @@ nav ul a:hover, .nav-wrapper a {
   padding-top: 15px;
   padding-left: 90px; 
 }
+
+.collection .collection-item.service-avatar .square-mid {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  left: 15px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.collection .collection-item.service-avatar {
+  padding-top: 15px;
+  padding-left: 150px; 
+}
+
 
 .review > a .avatar {
   float: left;

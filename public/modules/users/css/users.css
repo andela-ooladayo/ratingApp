@@ -100,7 +100,7 @@ button.close {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   /*font-family: "Roboto","Helvetica Neue",Arial,sans-serif;*/
-  font-weight: 400;
+  /*font-weight: 400;*/
 }
 
 /*h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
@@ -438,6 +438,11 @@ body > .navbar-collapse:before {
   -webkit-transition-timing-function: linear,linear;
   transition-timing-function: linear,linear;
   -webkit-overflow-scrolling: touch;
+}
+
+.sec-content {
+    margin-top: 15px;
+    border-left: 1px solid rgba(0,0,0,0.2);
 }
 
 
