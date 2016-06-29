@@ -37,12 +37,12 @@ angular.module('users').controller('AuthenticationController', ['$scope','$rootS
                 if (response.status === 'connected') {
                     FB.api('/me', {fields: "last_name, first_name, id, email, gender, link, locale, name, picture"}, function(response) {
                        var body = {};
-                       console.log(response);
                        body.firstname = response.first_name;
                        body.lastname = response.last_name;
                        body.facebook_id = response.id;
                        body.email = response.email;
-                       
+                       body.image_url = response.picture.data.url;
+           
                        $http.post('/auth/facebook', body).success(function(response) {
                             Storage.set('auth_token', response);
                             $rootScope.$broadcast('Auth');
@@ -75,6 +75,7 @@ angular.module('users').controller('AuthenticationController', ['$scope','$rootS
             body.linkedin_id = member.id;
             body.firstname = member.firstName;
             body.lastname = member.lastName;
+            body.image_url = member.pictureUrl;
             $http.post('/auth/linkedin', body).success(function(response) {
                 Storage.set('auth_token', response);
                 $rootScope.$broadcast('Auth');

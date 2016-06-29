@@ -161,6 +161,7 @@ exports.processFacebook = function(req, res) {
             dbObj.lastname = data.lastname.toString();
             dbObj.email = data.email.toString();
             dbObj.facebook_id = data.facebook_id.toString();
+            dbObj.image_url = data.image_url.toString();
 
             var user = db.User.build(dbObj);
 
@@ -255,6 +256,7 @@ exports.processLinkedin = function(req, res) {
             dbObj.firstname = data.firstname.toString();
             dbObj.lastname = data.lastname.toString();
             dbObj.linkedin_id = data.linkedin_id.toString();
+            dbObj.image_url = data.image_url.toString();
 
             var user = db.User.build(dbObj);
 

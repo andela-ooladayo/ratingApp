@@ -71,7 +71,7 @@ module.exports = function(sequelize, DataTypes) {
                 defaultValue: ''
             },
             image_url: {
-                type: DataTypes.TEXT
+                type: DataTypes.STRING
             },
             salt: {
                 type: DataTypes.BLOB('tiny')
