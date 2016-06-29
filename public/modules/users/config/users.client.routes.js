@@ -6,13 +6,6 @@ angular.module('users').config(['$stateProvider',
 		// Users state routing
         var access = roleManager.accessLevels;
 		$stateProvider.
-		state('profile', {
-			url: '/settings/profile',
-			templateUrl: 'modules/users/views/settings/edit-profile.client.view.html',
-            data : {
-                access : access.user
-            }
-		}).
 		state('password', {
 			url: '/settings/password',
 			templateUrl: 'modules/users/views/settings/change-password.client.view.html',
@@ -28,21 +21,21 @@ angular.module('users').config(['$stateProvider',
                 }
 		}).
         state('accounts.dashboard', {
-            url: '/settings/accounts.dashboard',
+            url: '/dashboard',
             templateUrl: 'modules/users/views/settings/dashboard.client.view.html',
                 data : {
                     access : access.user
                 }
         }).
         state('accounts.service', {
-            url: '/settings/accounts.service',
-            templateUrl: 'modules/users/views/settings/dashboard.client.view.html',
+            url: '/service',
+            templateUrl: 'modules/users/views/settings/service.client.view.html',
                 data : {
                     access : access.user
                 }
         }).
         state('accounts.profile', {
-            url: '/settings/accounts.profile',
+            url: '/profile',
             templateUrl: 'modules/users/views/settings/edit-profile.client.view.html',
                 data : {
                     access : access.user
