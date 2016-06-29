@@ -119,7 +119,7 @@ function waitingList(req, res) {
                     }
 
                     if((key + 1) == waitingRequestlen) {
-                         return res.status.json(completeWaitingList);
+                         return res.status(200).json(completeWaitingList);
                     }
                 })
             });
