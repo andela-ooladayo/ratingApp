@@ -9,10 +9,10 @@ module.exports = function(app) {
 
 
     app.route('/api/merchant/waiting_list')
-        .get(users.isAuthenticated, users.isAuthorized('admin'), merchant.waitingList);
+        .get(users.isAuthenticated, merchant.waitingList);
 
 
     app.route('/api/merchant/approve')
-        .post(users.isAuthenticated, users.isAuthorized('admin'), merchant.approvalToBeMerchant);
+        .post(users.isAuthenticated, merchant.approvalToBeMerchant);
 
 };
