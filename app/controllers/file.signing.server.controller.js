@@ -1,6 +1,6 @@
 var aws = require('aws-sdk'),
-    AWS_ACCESS_KEY = "AKIAJ44ILJTRX3ZCAEAA",
-    AWS_SECRET_KEY = "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",
+    AWS_ACCESS_KEY = "key",
+    AWS_SECRET_KEY = "secret",
     S3_BUCKET = "raytee";
 
 
