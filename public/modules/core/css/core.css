@@ -1,7 +1,7 @@
 :root {
   --green1: #8bc53e;
   --green2: #00a99d;
-  --red1: ;
+  --red1: #ec1e79;
 }
 
 body {
@@ -67,6 +67,7 @@ a {
 
 nav ul a {
   font-size: 14px;
+  font-weight: 600;
 }
 
 nav ul a:hover, .nav-wrapper a {

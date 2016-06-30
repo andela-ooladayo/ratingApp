@@ -58,7 +58,7 @@
 </div>
  -->
 <ul id="menu" class="dropdown-content" data-ng-controller="HeaderController">
-    <li><a href="/settings/accounts/dashboar">Manage Account</a></li>
+    <li><a href="/settings/accounts/dashboard">Manage Account</a></li>
     <li><a href="/settings/password">Change Password</a></li>
     <li class="divider"></li>
     <li><a ng-click="signOut()">Signout</a></li>
@@ -91,12 +91,11 @@
                         </div>
                     </form>
                 </li>
-        		<li ng-class="{active: $uiRoute}"><a class="waves-effect waves-light  ">Write a Review</a></li>
-        		<li ng-class="{active: $uiRoute}" ng-show="isAuthenticated"><a class="waves-effect waves-light  " ui-sref="listServices">Explore</a></li>
-                <li ui-sref="signup" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light  ">Sign Up</a></li>
-                <li li ui-sref="signin" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light  ">Log In</a></li>
+        		<li ng-class="{active: $uiRoute}" ng-show="isAuthenticated"><a class="waves-effect waves-light blue-text" ui-sref="listServices">Explore</a></li>
+                <li ui-sref="signup" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Sign Up</a></li>
+                <li li ui-sref="signin" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Log In</a></li>
                 <li data-ng-show="isAuthenticated">
-                    <a class="dropdown-button  " href="#!" data-activates="mobile_menu">
+                    <a class="dropdown-button blue-text" href="#!" data-activates="menu">
                         <img src="{{user.image_url}}" class="profile-image img-circle" style="width: 35px; height: 35px;">
                         <span data-ng-bind="user.displayname"></span><i class="material-icons right">arrow_drop_down</i>
                     </a>
@@ -111,18 +110,18 @@
                 <li>
                     <form>
                         <div class="">
-                            <input id="search" type="text" class="searchbar" required style="width: 200px;">
+                            <input id="search" type="text" required style="width: 200px;">
                             <!-- <label for="search"><i class="material-icons">search</i></label>
                             <i class="material-icons black">close</i> -->
                         </div>
                     </form>
                 </li>
-                <li ui-sref="signup" ng-class="{active: $uiRoute}"><a class="waves-effect waves-light  ">Write a Review</a></li>
-            		<li ui-sref="signup" ng-class="{active: $uiRoute}"><a class="waves-effect waves-light  ">Explore</a></li>
-                <li ui-sref="signup" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light  ">Sign Up</a></li>
-                <li li ui-sref="signin" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light  ">Log In</a></li>
+                <li ui-sref="signup" ng-class="{active: $uiRoute}"><a class="waves-effect waves-light blue-text">Write a Review</a></li>
+            		<li ui-sref="signup" ng-class="{active: $uiRoute}"><a class="waves-effect waves-light blue-text">Explore</a></li>
+                <li ui-sref="signup" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Sign Up</a></li>
+                <li li ui-sref="signin" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Log In</a></li>
                 <li data-ng-show="isAuthenticated">
-                    <a class="dropdown-button  " href="#!" data-activates="mobile_menu">
+                    <a class="dropdown-button blue-text" href="#!" data-activates="mobile_menu">
                         <img src="{{user.image_url}}" class="profile-image img-circle" style="width: 35px; height: 35px;">
                         <span data-ng-bind="user.displayname"></span><i class="material-icons right">arrow_drop_down</i>
                     </a>
