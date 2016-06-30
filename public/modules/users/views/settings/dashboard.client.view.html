@@ -49,10 +49,40 @@
             </div>
         </div>
     </div>
-    <h1>Hi, I'm the dashboard</h1>
-    <a href="" ng-click="findMerchantList()">Find Merchant List</a>
-    <ul>
-        <li ng-repeat="wait in waitingList">{{wait}} <a href="">Approve</a></li>
-    </ul>
+    <!-- <h1>Hi, I'm the dashboard</h1> -->
+    <div class="col-md-8 col-sm-12 col-xs-12">
+        <p><a href="" ng-click="findMerchantList()">Find Merchant List</a></p>
+
+        <div class="panel panel-default" ng-show="waitingList">
+            <div class="panel-heading">
+                Merchant List
+            </div> 
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>S No.</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email ID.</th>
+                                <th>Confirm request</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="wait in waitingList">
+                                <td>{{wait.id}}</td>
+                                <td>{{wait.firstname}}</td>
+                                <td>{{wait.lastname}}</td>
+                                <td>{{wait.email}}</td>
+                                <td><a ng-href="">Approve</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
     <!-- <p>{{waitingList}}</p> -->
 </div>

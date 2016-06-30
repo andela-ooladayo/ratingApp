@@ -91,6 +91,9 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 			
 		};
 
-		// $state.transitionTo('accounts.dashboard');
+		angular.element('.profile-pic').click(function() {
+			angular.element('#my_file').click();
+		});
+
 	}
 ]);
