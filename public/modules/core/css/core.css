@@ -1,3 +1,9 @@
+:root {
+  --green1: #8bc53e;
+  --green2: #00a99d;
+  --red1: ;
+}
+
 body {
   font: 14px 'Raleway', Helvetica, Arial, sans-serif;
   /*color: #4d4d4d;*/
@@ -46,8 +52,8 @@ body {
   box-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }*/
 
-.nav-wrapper i {
-  color: #2196F3;
+.nav-wrapper i, .nav-wrapper a {
+  color: var(--green2) !important;
 }
 
 .nav-wrapper {
@@ -176,7 +182,7 @@ nav ul a:hover, .nav-wrapper a {
 #top input[type=submit] {
   height: 50px;
   width: 200px;
-  background: red;
+  background: var(--green1);
   color: white;
   font-weight: 800;
   border: 1px solid white;

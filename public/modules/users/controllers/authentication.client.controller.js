@@ -36,6 +36,7 @@ angular.module('users').controller('AuthenticationController', ['$scope','$rootS
             FB.login(function(response) {
                 if (response.status === 'connected') {
                     FB.api('/me', {fields: "last_name, first_name, id, email, gender, link, locale, name, picture"}, function(response) {
+                        console.log(response);
                        var body = {};
                        body.firstname = response.first_name;
                        body.lastname = response.last_name;

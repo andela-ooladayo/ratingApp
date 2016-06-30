@@ -1,7 +1,7 @@
-<section data-ng-controller="ArticlesController" data-ng-init="find()">
+<section class="row" data-ng-controller="ServicesController" >
     <div>
-        <div class="col-md-8">
-            <h4 class="section-title red-text">All Services<span><a href="" class="pull-right blue-text meta-text">create-new</a></span></h4>
+        <div class="col m7 offset-m1">
+            <h4 class="section-title red-text">All Services<span ng-show="user.roleTitle=='user'"><a href="" ui-sref="createService" class="pull-right blue-text meta-text">create-new</a></span></h4>
             <ul class="collection">
                 <li class="collection-item service-avatar">
                     <div class="row">
