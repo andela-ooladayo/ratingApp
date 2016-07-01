@@ -2,7 +2,8 @@
 var passport = require('passport');
 
 module.exports = function(app) {
-	var users = require('../../app/controllers/users');
+	var users = require('../../app/controllers/users'),
+        fileSigning = require('../../app/controllers/file.signing.server.controller');
 
 	app.route('/api/users/me').get(users.me);
 	app.route('/api/users').put(users.update);
@@ -18,6 +19,9 @@ module.exports = function(app) {
     app.route('/auth/facebook').post(users.processFacebook);
     app.route('/auth/linkedin').post(users.processLinkedin);
 	app.route('/auth/signout').get(users.signout);
+
+    app.route('/api/sign_s3')
+        .get(fileSigning.sign);
 
 	// app.route('/auth/facebook').get(passport.authenticate('facebook', {
 	// 	scope: ['email']

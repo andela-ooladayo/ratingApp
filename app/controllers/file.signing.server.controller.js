@@ -10,7 +10,7 @@ exports.sign = function(req, res) {
     var s3_params = {
         Bucket: S3_BUCKET,
         Key: req.query.file_name,
-        Expires: 200,
+        Expires: 20000,
         ContentType: req.query.file_type,
         ACL: 'public-read'
     };
@@ -24,7 +24,7 @@ exports.sign = function(req, res) {
                 signed_request: data,
                 url: 'https://' + S3_BUCKET + '.s3.amazonaws.com/' + req.query.file_name
             };
-            console.log(return_data, "return_data");
+            logger.info(return_data, "return_data");
             res.write(JSON.stringify(return_data));
             res.end();
         }
