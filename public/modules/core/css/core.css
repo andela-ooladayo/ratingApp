@@ -29,6 +29,16 @@ body {
   margin-right: 0 !important;
   margin-left: 0 !important;
 }
+
+.page {
+  padding-top: 20px;
+}
+
+hr {
+  border-top: 1px solid #d8d8d8;
+  margin-top: 10px;
+}
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
 	display: none !important;
 }

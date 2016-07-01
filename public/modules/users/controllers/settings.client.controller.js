@@ -95,5 +95,51 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 			angular.element('#my_file').click();
 		});
 
+		// $('#my_file').on('change', function() {
+		// 	var file = {};
+		// 	file.name = $('#my_file')[0].files[0]['name'];
+		// 	file.type = $('#my_file')[0].files[0]['type'];
+		// 	console.log(file);
+		//     if (file == null) {
+		//         return alert('No file selected.');
+		//     }
+		//     getSignedRequest(file);
+
+		// });
+
+		// function getSignedRequest(file) {
+		// 	// console.log(file.name);
+
+		//     var xhr = new XMLHttpRequest();
+		//     xhr.open('GET', '/api/sign_s3?file_name='+file.name+'&file_type='+file.type, true);
+		//     xhr.onreadystatechange = function(){
+		//         if (xhr.readyState === 4) {
+		//             if (xhr.status === 200) {
+		//                 var response = JSON.parse(xhr.responseText);
+		//                 uploadFile(file, response.signedRequest, response.url);
+		//             } else {
+		//                 alert('Could not get signed URL.');
+		//             }
+		//         }
+		//     };
+		//     xhr.send();
+		// }
+
+		// function uploadFile(file, signedRequest, url) {
+		//     var xhr = new XMLHttpRequest();
+		//     xhr.open('PUT', signedRequest);
+		//     xhr.onreadystatechange = function() {
+		//         if (xhr.readyState === 4) {
+		//             if (xhr.status === 200) {
+		//                 $('.profile-pic').attr('src', url);
+		//                 $('#avatar-url').val(url);
+		//             } else {
+		//                 alert('Could not upload file.');
+		//             }
+		//         }
+		//     };
+		//     xhr.send(file);
+		// }
+
 	}
 ]);

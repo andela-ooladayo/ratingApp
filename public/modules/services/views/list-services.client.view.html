@@ -1,7 +1,14 @@
-<section class="row" data-ng-controller="ServicesController" >
+<section class="row page" data-ng-controller="ServicesController" >
     <div>
         <div class="col m7 offset-m1">
-            <h4 class="section-title red-text">All Services<span ng-show="user.roleTitle=='user'"><a href="" ui-sref="createService" class="pull-right blue-text meta-text">create-new</a></span></h4>
+            <h3 class="section-title red-text">All Services
+                    <a href="" data-activates="filter"class="dropdown-button pull-right blue-text meta-text">Filter</a>
+            </h3>
+            <ul id="filter" class="dropdown-content">
+                <li><a href="">Recent</a></li>
+                <li><a href="">Top Rated</a></li>
+            </ul>
+            <hr>
             <ul class="collection">
                 <li class="collection-item service-avatar">
                     <div class="row">
@@ -27,7 +34,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+
                 </li>
                 <li class="collection-item service-avatar">
                    <div class="row">
@@ -53,7 +60,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+
                 </li>
                 <li class="collection-item service-avatar">
                     <div class="row">
@@ -79,7 +86,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+
                 </li>
                 <li class="collection-item service-avatar">
                     <div class="row">
@@ -105,13 +112,13 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+
                 </li>
                 <li class="text-center"><a href="" class="meta-text blue-text darken-4">Create new</a></li>
             </ul>
         </div>
     </div>
-    <div class="alert alert-warning text-center" data-ng-if="articles.$resolved && !articles.length">
+   <!--  <div class="alert alert-warning text-center" data-ng-if="articles.$resolved && !articles.length">
         No articles yet, why don't you <a href="/articles/create">create one</a>?
-    </div>
+    </div> -->
 </section>

@@ -1,10 +1,11 @@
 var aws = require('aws-sdk'),
-    AWS_ACCESS_KEY = "key",
-    AWS_SECRET_KEY = "secret",
+    AWS_ACCESS_KEY = "AKIAJONQBCYOVLAZR32Q",
+    AWS_SECRET_KEY = "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",
     S3_BUCKET = "raytee";
 
 
 exports.sign = function(req, res) {
+    console.log(req)
     aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
     var s3 = new aws.S3();
     var s3_params = {

@@ -73,25 +73,16 @@
     <nav class="white darken-4">
         <div class="nav-wrapper">
             <a href="/" class="brand-logo sc-logo left"><img src="/modules/core/img/raytee3.png" class="" style="width:150px;"></a>
-		        <!-- <form>
-				    <div class="">
-				        <input id="search" type="text" required style="position: absolute; left: 25%; top: 10px; width: 400px;">
-				        <label for="search"><i class="material-icons">search</i></label>
-				        <i class="material-icons black">close</i>
-				    </div>
-				</form> -->
             <a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="fa fa-bars"></i></a>
             <ul class="right m-r-md hide-on-med-and-down" >
                 <li>
                     <form>
                         <div class="">
                             <input id="search" type="text" required style="width: 200px;">
-                            <!-- <label for="search"><i class="material-icons">search</i></label>
-                            <i class="material-icons black">close</i> -->
                         </div>
                     </form>
                 </li>
-        		<li ng-class="{active: $uiRoute}" ng-show="isAuthenticated"><a class="waves-effect waves-light blue-text" ui-sref="listServices">Explore</a></li>
+        		<li ui-sref="listServices" ng-class="{active: $uiRoute}" ng-show="isAuthenticated"><a class="waves-effect waves-light blue-text">Explore</a></li>
                 <li ui-sref="signup" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Sign Up</a></li>
                 <li li ui-sref="signin" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Log In</a></li>
                 <li data-ng-show="isAuthenticated">
@@ -101,11 +92,6 @@
                     </a>
                 </li>
             </ul>
-            <!-- Testcase -->
-            <!-- <ul class="right m-r-md hide-on-med-and-down" data-ng-show="isAuthenticated">
-            	<li><a class="dropdown-button" href="" data-activates="menu"><span data-ng-bind="user.displayName"></span><i class="material-icons right">arrow_drop_down</i></a></li>
-            </ul> -->
-            
             <ul class="side-nav" id="mobile-demo">
                 <li>
                     <form>
