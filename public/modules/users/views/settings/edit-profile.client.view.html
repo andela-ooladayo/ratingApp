@@ -7,8 +7,8 @@
 	                <div class="col-md-12">
 	                    <div>
 	                    	<!-- <a href=""> -->
-		                        <img src="http://placehold.it/200x200" alt="Texto Alternativo" class="profile-pic img-responsive img-thumbnail">
-		                        <input type="hidden" id="avatar-url" name="avatar-url" value="/images/default.png">
+		                        <img ng-src="{{user.image_url !== null ? user.image_url : 'http://placehold.it/200x200'}}" alt="Profile Picture" class="profile-pic img-responsive img-thumbnail" style="width: 200px; height: 200px;">
+		                        <!-- <input type="hidden" id="avatar-url" name="avatar-url" value="/images/default.png"> -->
 		                        <input type="file" id="my_file" style="display: none;" />
 	                    	<!-- </a> -->
 	                        <h2>{{user.displayname}}</h2>

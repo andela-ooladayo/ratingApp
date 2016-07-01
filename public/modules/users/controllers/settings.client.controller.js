@@ -4,6 +4,7 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 	function($scope, $rootScope, $state, $http, $location, $timeout, Users, Authentication, User, Message, Storage, Merchant) {
 		$scope.user = User.get();
 
+		console.log($scope.user);
 		// If user is not signed in then redirect back home
 		if (!$scope.user) $location.path('/');
 
@@ -91,15 +92,17 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 			
 		};
 
+		$scope.approveMerchant = function() {
+			console.log("approved");
+		}
+
 		angular.element('.profile-pic').click(function() {
 			angular.element('#my_file').click();
 		});
 
 		$('#my_file').on('change', function() {
-			var file = {};
-			file.name = $('#my_file')[0].files[0]['name'];
-			file.type = $('#my_file')[0].files[0]['type'];
-			console.log(file);
+			var files = document.getElementById('my_file').files;
+			var file = files[0];
 		    if (file == null) {
 		        return alert('No file selected.');
 		    }
@@ -108,9 +111,14 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 		});
 
 		function getSignedRequest(file) {
-			// console.log(file.name);
+			var xhr;
+		    if (window.ActiveXObject) {
+		        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+		    }
+		    else{
+			    xhr = new XMLHttpRequest();	
+		    }
 
-		    var xhr = new XMLHttpRequest();
 		    xhr.open('GET', '/api/sign_s3?file_name='+file.name+'&file_type='+file.type, true);
 		    xhr.onreadystatechange = function(){
 		        if (xhr.readyState === 4) {
@@ -133,7 +141,9 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 		        if (xhr.readyState === 4) {
 		            if (xhr.status === 200) {
 		                $('.profile-pic').attr('src', url);
-		                $('#avatar-url').val(url);
+		                $scope.user.image_url = url;
+		                $scope.updateUserProfile(true);
+		                alert('finished');
 		            } else {
 		                alert('Could not upload file.');
 		            }

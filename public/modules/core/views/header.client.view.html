@@ -87,7 +87,7 @@
                 <li li ui-sref="signin" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Log In</a></li>
                 <li data-ng-show="isAuthenticated">
                     <a class="dropdown-button blue-text" href="#!" data-activates="menu">
-                        <img src="{{user.image_url}}" class="profile-image img-circle" style="width: 35px; height: 35px;">
+                        <img src="{{user.image_url !== null ? user.image_url : 'http://placehold.it/200x200'}}" class="profile-image img-circle" style="width: 35px; height: 35px;">
                         <span data-ng-bind="user.displayname"></span><i class="material-icons right">arrow_drop_down</i>
                     </a>
                 </li>
@@ -108,7 +108,7 @@
                 <li li ui-sref="signin" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Log In</a></li>
                 <li data-ng-show="isAuthenticated">
                     <a class="dropdown-button blue-text" href="#!" data-activates="mobile_menu">
-                        <img src="{{user.image_url}}" class="profile-image img-circle" style="width: 35px; height: 35px;">
+                        <img src="{{user.image_url !== null ? user.image_url : 'http://placehold.it/200x200'}}" class="profile-image img-circle" style="width: 35px; height: 35px;">
                         <span data-ng-bind="user.displayname"></span><i class="material-icons right">arrow_drop_down</i>
                     </a>
                 </li>
