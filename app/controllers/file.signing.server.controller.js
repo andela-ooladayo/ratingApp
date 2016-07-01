@@ -1,16 +1,17 @@
 var aws = require('aws-sdk'),
-    AWS_ACCESS_KEY = "key",
-    AWS_SECRET_KEY = "secret",
+    AWS_ACCESS_KEY = "",
+    AWS_SECRET_KEY = "",
     S3_BUCKET = "raytee";
 
 
 exports.sign = function(req, res) {
     aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
+    aws.config.update({region: 'us-east-1'});
     var s3 = new aws.S3();
     var s3_params = {
         Bucket: S3_BUCKET,
         Key: req.query.file_name,
-        Expires: 20000,
+        Expires: 60000,
         ContentType: req.query.file_type,
         ACL: 'public-read'
     };
@@ -24,7 +25,6 @@ exports.sign = function(req, res) {
                 signed_request: data,
                 url: 'https://' + S3_BUCKET + '.s3.amazonaws.com/' + req.query.file_name
             };
-            logger.info(return_data, "return_data");
             res.write(JSON.stringify(return_data));
             res.end();
         }

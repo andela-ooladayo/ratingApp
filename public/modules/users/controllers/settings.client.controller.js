@@ -139,6 +139,8 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 		            }
 		        }
 		    };
+            xhr.setRequestHeader('Content-Type', file.type);
+            xhr.setRequestHeader('x-amz-acl', 'public-read');
 		    xhr.send(file);
 		}
 
