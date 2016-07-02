@@ -59,7 +59,7 @@ function deleteRecordES(id) {
     });
 };
 
-
+// "from" : 0, "size" : 10,
 function searchRecordES(queryValue, callback) {
     esClient.search({
         index: 'raytee',

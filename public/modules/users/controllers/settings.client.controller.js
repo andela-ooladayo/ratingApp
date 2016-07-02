@@ -119,6 +119,8 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 			    xhr = new XMLHttpRequest();	
 		    }
 
+            var token = angular.fromJson(Storage.get('auth_token')).token;
+
 		    xhr.open('GET', '/api/sign_s3?file_name='+file.name+'&file_type='+file.type, true);
 		    xhr.onreadystatechange = function(){
 		        if (xhr.readyState === 4) {
@@ -131,6 +133,8 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 		            }
 		        }
 		    };
+
+            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
 		    xhr.send();
 		}
 

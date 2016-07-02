@@ -68,7 +68,7 @@ module.exports = function() {
 		app.locals.cache = 'memory';
 	}
 
-    //app.use('/api', expressJwt({secret: config.secret}));
+    app.use('/api', expressJwt({secret: config.secret}));
 
     // Request body parsing middleware should be above methodOverride
 	app.use(bodyParser.urlencoded({
