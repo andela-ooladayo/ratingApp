@@ -12,9 +12,7 @@ angular.module('users').config(['$httpProvider',
 
                         if (Storage.get('auth_token')) {
                             token = angular.fromJson(Storage.get('auth_token')).token;
-                            console.log(token, "inside");
                         }
-                        console.log(token, "outside");
                         // Yeah we have a token
                         if (token) {
                             if (!config.data) {
@@ -29,7 +27,6 @@ angular.module('users').config(['$httpProvider',
                             config.data.token = token;
                             config.headers.Authorization = 'Bearer ' + token;
                         }
-                        console.log(config, "config-config")
                         return config;
                         
                     },
