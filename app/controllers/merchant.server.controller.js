@@ -38,7 +38,7 @@ function requestToBeMerchant(req, res) {
 
 
 function approvalToBeMerchant(req, res) {
-    db.User.find({where: { id: req.body.userId } }).done(function(err, user) {
+    db.User.find({where: { id: req.body.user_id } }).done(function(err, user) {
         if (err) {
             return res.status(400).json({
                 message: errorHandler.getErrorMessage(err)
@@ -49,7 +49,6 @@ function approvalToBeMerchant(req, res) {
                 message: errorHandler.getErrorMessage(new Error('Failed to load user ' + id))
             });
         }
-
         var newBody = {};
         newBody.roleTitle = roleManager.userRoles.merchant.title;
         newBody.roleBitMask = roleManager.userRoles.merchant.bitMask;
@@ -69,13 +68,14 @@ function approvalToBeMerchant(req, res) {
                     }
                 }).done(function(err) {
                     if (err) {
+                        console.log(err);
                         return res.status(400).send({
                             message: errorHandler.getErrorMessage(err)
                         });
                     } else {
                         msg.subject = "Congratulations!!!";
                         msg.from = "no-reply@onepercentlab.com";
-                        msg.to = user.email;
+                        msg.to = "hello@onepercentlab.com";
                         msg.html = "<p> You are now a merchant. List your businesses now.  " + "<p> Rating App Support Team</p>"
                         mailer(msg);
 

@@ -50,7 +50,7 @@
         </div>
     </div>
     <!-- <h1>Hi, I'm the dashboard</h1> -->
-    <div class="col-md-8 col-sm-12 col-xs-12">
+    <div class="col-md-12 col-sm-12 col-xs-12">
         <p><a href="" ng-click="findMerchantList()">Find Merchant List</a></p>
 
         <div class="panel panel-default" ng-show="waitingList">
@@ -75,7 +75,7 @@
                                 <td>{{wait.firstname}}</td>
                                 <td>{{wait.lastname}}</td>
                                 <td>{{wait.email}}</td>
-                                <td><button ng-click="approveMerchant()">Approve</button></td>
+                                <td><button ng-click="approveMerchant(wait)">Approve</button></td>
                             </tr>
                         </tbody>
                     </table>

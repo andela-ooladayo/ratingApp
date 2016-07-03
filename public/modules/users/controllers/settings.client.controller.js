@@ -92,8 +92,15 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 			
 		};
 
-		$scope.approveMerchant = function() {
-			console.log("approved");
+		$scope.approveMerchant = function(req) {
+			// console.log("approved");
+			$http.post('/api/merchant/approve', req).success(function(response) {
+				console.log(response);
+
+			}).error(function(response) {
+				console.log(response);
+                Message.error('Failed to send',response.message);
+			});
 		}
 
 		angular.element('.profile-pic').click(function() {
