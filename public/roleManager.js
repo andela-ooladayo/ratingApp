@@ -1,43 +1,19 @@
-/**
- * Created by Jean-Baptiste Blanc on 25/09/2014. fork from Frederik Nakstad
- */
 (function(exports){
 
     var config = {
 
-        /* List all the roles you wish to use in the app
-         * You have a max of 31 before the bit shift pushes the accompanying integer out of
-         * the memory footprint for an integer
-         */
-        roles :[
-            'public',
-            'user',
-            'admin'],
+        roles :['public', 'user', 'merchant', 'admin'],
 
-        /*
-         Build out all the access levels you want referencing the roles listed above
-         You can use the "*" symbol to represent access to all roles.
-
-         The left-hand side specifies the name of the access level, and the right-hand side
-         specifies what user roles have access to that access level. E.g. users with user role
-         'user' and 'admin' have access to the access level 'user'.
-         */
         accessLevels : {
-            'anon':  ['public','user','admin'],
-            'user' : ['user','admin'],
+            'anon': ['public','user', 'merchant', 'admin'],
+            'user' : ['user', 'merchant', 'admin'],
+            'merchant' : ['merchant', 'admin'],
             'admin': ['admin']
         }
-
     };
 
     exports.userRoles = buildRoles(config.roles);
     exports.accessLevels = buildAccessLevels(config.accessLevels, exports.userRoles);
-
-    /*
-     Method to build a distinct bit mask for each role
-     It starts off with "1" and shifts the bit to the left for each element in the
-     roles array parameter
-     */
 
     function buildRoles(roles){
 
@@ -55,10 +31,7 @@
         return userRoles;
     }
 
-    /*
-     This method builds access level bit masks based on the accessLevelDeclaration parameter which must
-     contain an array for each access level containing the allowed user roles.
-     */
+
     function buildAccessLevels(accessLevelDeclarations, userRoles){
 
         var accessLevels = {};
