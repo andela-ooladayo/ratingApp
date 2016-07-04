@@ -20,8 +20,7 @@ module.exports = function(app) {
     app.route('/auth/linkedin').post(users.processLinkedin);
 	app.route('/auth/signout').get(users.signout);
 
-    app.route('/api/sign_s3')
-        .get(fileSigning.sign);
+    app.route('/api/sign_s3').get(fileSigning.sign);
 
 	// app.route('/auth/facebook').get(passport.authenticate('facebook', {
 	// 	scope: ['email']

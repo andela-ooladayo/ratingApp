@@ -61,11 +61,9 @@ function approvalToBeMerchant(req, res) {
                     message: errorHandler.getErrorMessage(err)
                 });
             } else {
-
-                db.merchant_wating_approval.destroy({
-                    where: {
+                logger.info(user.id, "AAA-AAA-AAA")
+                db.merchant_wating_approval.findAndDelete({
                       user_id: user.id
-                    }
                 }).done(function(err) {
                     if (err) {
                         console.log(err);
