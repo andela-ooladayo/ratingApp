@@ -61,30 +61,31 @@ function approvalToBeMerchant(req, res) {
                     message: errorHandler.getErrorMessage(err)
                 });
             } else {
-                logger.info(user.id, "AAA-AAA-AAA")
-                db.merchant_wating_approval.findAndDelete({
-                      user_id: user.id
-                }).done(function(err) {
-                    if (err) {
-                        console.log(err);
-                        return res.status(400).send({
-                            message: errorHandler.getErrorMessage(err)
-                        });
-                    } else {
-                        msg.subject = "Congratulations!!!";
-                        msg.from = "no-reply@onepercentlab.com";
-                        msg.to = "hello@onepercentlab.com";
-                        msg.html = "<p> You are now a merchant. List your businesses now.  " + "<p> Rating App Support Team</p>"
-                        mailer(msg);
+                
+                db.merchant_wating_approval.find({where: { user_id: user.id } }).done(function(err, merchantWaiting) {
+                    merchantWaiting.destroy().done(function(err) {
+                        if (err) {
+                            console.log(err);
+                            return res.status(400).send({
+                                message: errorHandler.getErrorMessage(err)
+                            });
+                        } else {
+                            var msg = {};
+                            msg.subject = "Congratulations!!!";
+                            msg.from = "no-reply@onepercentlab.com";
+                            msg.to = "hello@onepercentlab.com";
+                            msg.html = "<p> You are now a merchant. List your businesses now.  " + "<p> Rating App Support Team</p>"
+                            mailer(msg);
 
-                        req.login(user, function (err) {
-                            if (err) {
-                                res.status(400).json(err);
-                            } else {
-                                res.status(200).json({message : user.firstname + " given merchant access"});
-                            }
-                        });
-                    }
+                            req.login(user, function (err) {
+                                if (err) {
+                                    res.status(400).json(err);
+                                } else {
+                                    res.status(200).json({message : user.firstname + " given merchant access"});
+                                }
+                            });
+                        }
+                    }); 
                 });
             }
         });
