@@ -10,28 +10,28 @@ angular.module('services').config(['$stateProvider',
             url: '/services',
             templateUrl: 'modules/services/views/list-services.client.view.html',
                 data : {
-                    access : access.user
+                    access : access.anon
                 }
         }).
         state('createService', {
             url: '/services/create',
             templateUrl: 'modules/services/views/create-service.client.view.html',
                 data : {
-                    access : access.user
+                    access : access.merchant
                 }
         }).
         state('viewService', {
             url: '/services/:serviceId',
             templateUrl: 'modules/services/views/view-service.client.view.html',
                 data : {
-                    access : access.user
+                    access : access.merchant
                 }
         }).
         state('editService', {
             url: '/services/:serviceId/edit',
             templateUrl: 'modules/services/views/edit-service.client.view.html',
                 data : {
-                    access : access.user
+                    access : access.merchant
                 }
         });
     }
