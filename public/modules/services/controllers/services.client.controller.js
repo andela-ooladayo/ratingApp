@@ -6,6 +6,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
 
         $scope.create = function() {
             var service = new Services({
+                merchant_id: $scope.user.id,
                 business_name: this.business_name,
                 business_description: this.business_description,
                 business_website: this.business_website,
