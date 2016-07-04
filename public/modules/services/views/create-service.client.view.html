@@ -1,7 +1,7 @@
 <section class="row page" data-ng-controller="ServicesController">
     <div class="col m6 offset-m3 s12 sheet">
         <div class="page-header">
-            <h1 class="text-center">New Service</h1>
+            <h1 class="text-center green-text darken-4">New Service</h1>
         </div>
         <form name="serviceForm" class="form-horizontal" data-ng-submit="create()" novalidate>
             <fieldset>
@@ -32,6 +32,11 @@
                 </div>
                 <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
                     <div class="controls">
+                        <input name="business_phone_number" type="tel" data-ng-model="business_phone_number" id="business_phone_number" class="form-control" placeholder="Phone number" required>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
+                    <div class="controls">
                         <input name="business_address" type="text" data-ng-model="business_address" id="business_address" class="form-control" placeholder="Address" required>
                     </div>
                 </div>
@@ -48,6 +53,11 @@
                 <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
                     <div class="controls">
                         <input name="business_address_state" type="text" data-ng-model="business_address_state" id="business_address_state" class="form-control" placeholder="State" required>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
+                    <div class="controls">
+                        <input name="business_address_country" type="text" data-ng-model="business_address_country" id="business_address_country" class="form-control" placeholder="Country" required>
                     </div>
                 </div>
                 <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">

@@ -24,7 +24,7 @@ angular.module('services').config(['$stateProvider',
             url: '/services/:serviceId',
             templateUrl: 'modules/services/views/view-service.client.view.html',
                 data : {
-                    access : access.merchant
+                    access : access.anon
                 }
         }).
         state('editService', {

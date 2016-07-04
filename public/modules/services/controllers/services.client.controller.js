@@ -6,8 +6,17 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
 
         $scope.create = function() {
             var service = new Services({
-                title: this.title,
-                content: this.content
+                business_name: this.business_name,
+                business_description: this.business_description,
+                business_website: this.business_website,
+                business_email: this.business_email,
+                business_phone_number: this.business_phone_number,
+                business_address: this.business_address,
+                business_address_street: this.business_address_street,
+                business_address_city: this.business_address_city,
+                business_address_state: this.business_address_state,
+                business_address_country: this.business_address_country,
+                business_category_id: this.business_category_id
             });
             service.$save(function(response) {
                 Message.success('Service','Service successfully created');
