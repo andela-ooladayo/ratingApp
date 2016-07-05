@@ -15,11 +15,11 @@ module.exports = function() {
 	// Deserialize sessions
 	passport.deserializeUser(function(id, done) {
 		db.User.find({where :{id: id}})
-            .success(function(user){
+            .then(function(user) {
                 delete user.salt;
                 delete user.password;
                 done(null,user);
-            }).error(function(err){
+            }, function(err) {
                 done(err,null);
             });
 	});

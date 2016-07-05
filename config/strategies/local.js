@@ -1,6 +1,7 @@
 'use strict';
 
 var passport = require('passport'),
+    crypto = require('crypto'),
 	LocalStrategy = require('passport-local').Strategy,
     db = require('../sequelize');
 
@@ -11,24 +12,26 @@ module.exports = function() {
 			passwordField: 'password'
 		},
 		function(email, password, done) {
-			db.User.find({where :{email: email}}).done(function(err,user){
-                if (err) {
-                    return done(err);
-                }
+            db.User.find({where :{email: email}}).then(function(user) {
                 if (!user) {
                     return done(null, false, {
-                        message: 'Unknown User'
+                        message: 'Unknown user'
                     });
+                } 
+                else {
+                    var hashedPassword = crypto.pbkdf2Sync(password, user.salt, 10000, 64).toString('base64');
+                    if (hashedPassword !== user.password) {
+                        return done(null, false, {
+                            message: 'Invalid password or email'
+                        });
+                    }
+                    else {
+                       return done(null, user); 
+                    }
                 }
-                if (!user.authenticate(password)) {
-                    return done(null, false, {
-                        message: 'Invalid password or email'
-                    });
-                }
-
-                return done(null, user);
+            }, function (err) { 
+                return done(err);
             });
-
 		}
 	));
 };

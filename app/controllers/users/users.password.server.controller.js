@@ -24,7 +24,7 @@ exports.forgot = function(req, res, next) {
 
                 db.User.find({where : {
                     email: req.body.email }
-                }).done(function(err,user){
+                }).then(function(user) {
                     if (!user) {
                         return res.status(400).send({
                             message: 'No account with that username has been found'
@@ -37,10 +37,14 @@ exports.forgot = function(req, res, next) {
                         user.reset_password_token = token;
                         user.reset_password_expires = Date.now() + 7200000; // 2 hour
 
-                        user.save().done(function(err) {
+                        user.save().then(function() {
+                            done(null, token, user);
+                        }, function(err) {
                             done(err, token, user);
                         });
                     }
+                }, function(err) {
+                    done(err, token, null);
                 });
 
             } else {
@@ -88,11 +92,13 @@ exports.validateResetToken = function(req, res) {
         reset_password_token: req.params.token,
         reset_password_expires : {gt :Date.now()
         }}
-    }).done(function(err,user) {
+    }).then(function(user) {
         if (!user) {
             return res.redirect('/password/reset/invalid');
         }
         res.redirect('/password/reset/' + req.params.token);
+    }, function(err) {
+        return res.redirect('/password/reset/invalid');
     });
 };
 
@@ -106,8 +112,8 @@ exports.reset = function(req, res, next) {
                 reset_password_token: req.params.token,
                 reset_password_expires : {gt :Date.now()
                 }}
-            }).done(function(err,user) {
-                if (!err && user) {
+            }).then(function(user) {
+                if (user) {
                     if (passwordDetails.newPassword === passwordDetails.verifyPassword) {
                         user.password = passwordDetails.newPassword;
                         user.reset_password_token = undefined;
@@ -140,6 +146,10 @@ exports.reset = function(req, res, next) {
                         message: 'Password reset token is invalid or has expired.'
                     });
                 }
+            }, function(err) {
+                return res.status(400).send({
+                    message: 'Password reset token is invalid or has expired.'
+                });
             });
         },
         function(user, done) {
@@ -175,45 +185,48 @@ exports.changePassword = function(req, res, next) {
 
     if (req.user) {
         if (passwordDetails.newPassword) {
-            db.User.find({ where : { id :req.user.id}})
-                .done(function(err,user) {
-                    if (!err && user) {
-                        if (user.authenticate(passwordDetails.currentPassword)) {
-                            if (passwordDetails.newPassword === passwordDetails.verifyPassword) {
-                                user.password = user.hashPassword(passwordDetails.newPassword);
-                                user.save().done(function(err) {
-                                    if (err) {
-                                        return res.status(400).send({
-                                            message: errorHandler.getErrorMessage(err)
-                                        });
-                                    } else {
-                                        req.login(user, function(err) {
-                                            if (err) {
-                                                res.status(400).send(err);
-                                            } else {
-                                                res.send({
-                                                    message: 'Password changed successfully'
-                                                });
-                                            }
-                                        });
-                                    }
-                                });
-                            } else {
-                                res.status(400).send({
-                                    message: 'Passwords do not match'
-                                });
-                            }
+            db.User.find({ where : { id :req.user.id}}).then(function(user) {
+                if (user) {
+                    if (user.authenticate(passwordDetails.currentPassword)) {
+                        if (passwordDetails.newPassword === passwordDetails.verifyPassword) {
+                            user.password = user.hashPassword(passwordDetails.newPassword);
+                            user.save().done(function(err) {
+                                if (err) {
+                                    return res.status(400).send({
+                                        message: errorHandler.getErrorMessage(err)
+                                    });
+                                } else {
+                                    req.login(user, function(err) {
+                                        if (err) {
+                                            res.status(400).send(err);
+                                        } else {
+                                            res.send({
+                                                message: 'Password changed successfully'
+                                            });
+                                        }
+                                    });
+                                }
+                            });
                         } else {
                             res.status(400).send({
-                                message: 'Current password is incorrect'
+                                message: 'Passwords do not match'
                             });
                         }
                     } else {
                         res.status(400).send({
-                            message: 'User is not found'
+                            message: 'Current password is incorrect'
                         });
                     }
+                } else {
+                    res.status(400).send({
+                        message: 'User is not found'
+                    });
+                }
+            }, function (err) {
+                res.status(400).send({
+                    message: 'Unknown Error'
                 });
+            });
         } else {
             res.status(400).send({
                 message: 'Please provide a new password'

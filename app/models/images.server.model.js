@@ -7,7 +7,8 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: DataTypes.NOW
         },
         service_id : {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            references: { model: "services", key: "id" }
         },
         url: {
             type: DataTypes.TEXT,

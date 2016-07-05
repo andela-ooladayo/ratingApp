@@ -7,13 +7,15 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: DataTypes.NOW
         },
         service_id: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            references: { model: "services", key: "id" }
         },
         value: {
             type: DataTypes.FLOAT
         },
         user_id: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            references: { model: "Users", key: "id" }
         },
         review: {
             type: DataTypes.TEXT,
@@ -24,11 +26,6 @@ module.exports = function(sequelize, DataTypes) {
         },
         no_of_dislikes: {
             type: DataTypes.INTEGER
-        }
-    },
-    {
-        associate: function(models){
-            ReviewRatings.belongsTo(models.services);
         }
     });
     return ReviewRatings;

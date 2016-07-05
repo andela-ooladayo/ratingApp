@@ -20,37 +20,34 @@ exports.create = function(req, res) {
         return res.status(400).json(error);
     }
     else {
-        db.review_ratings.create(reviewRating).done(function(err, reviewRating) {
-            if(err){
-                return res.status(400).send({
-                    message: errorHandler.getErrorMessage(err)
-                });
-            } 
-            else {
-                pg.connect(connectionString, function(err, client, drop) {
-                    if(parseInt(reviewRating.value) == 1) {
-                        queryPar = "no_of_rating_one";
-                    }
-                    else if(parseInt(reviewRating.value) == 2) {
-                        queryPar = "no_of_rating_two";
-                    }
-                    else if(parseInt(reviewRating.value) == 3) {
-                        queryPar = "no_of_rating_three";
-                    }
-                    else if(parseInt(reviewRating.value) == 4) {
-                        queryPar = "no_of_rating_four";
-                    }
-                    else if(parseInt(reviewRating.value) == 5) {
-                        queryPar = "no_of_rating_five";
-                    }
-                    var sql = "UPDATE services SET " + queryPar + " = " + queryPar + "+ 1 WHERE id=($1)";
+        db.review_ratings.create(reviewRating).then(function(err, reviewRating) {
+            pg.connect(connectionString, function(err, client, drop) {
+                if(parseInt(reviewRating.value) == 1) {
+                    queryPar = "no_of_rating_one";
+                }
+                else if(parseInt(reviewRating.value) == 2) {
+                    queryPar = "no_of_rating_two";
+                }
+                else if(parseInt(reviewRating.value) == 3) {
+                    queryPar = "no_of_rating_three";
+                }
+                else if(parseInt(reviewRating.value) == 4) {
+                    queryPar = "no_of_rating_four";
+                }
+                else if(parseInt(reviewRating.value) == 5) {
+                    queryPar = "no_of_rating_five";
+                }
+                var sql = "UPDATE services SET " + queryPar + " = " + queryPar + "+ 1 WHERE id=($1)";
 
-                    client.query(sql, [reviewRating.service_id], function (err, result) {
-                        drop();
-                        return res.staus(200).json({message: "sucessful"});
-                    });
+                client.query(sql, [reviewRating.service_id], function (err, result) {
+                    drop();
+                    return res.staus(200).json({message: "sucessful"});
                 });
-            }
+            });
+        }, function(err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
         });
     }
 };
@@ -65,12 +62,7 @@ exports.likeReview = function(req, res) {
         return res.status(400).json(error);
     }
     else {
-        db.like_dislikes.find({where: { review_id: likeReviewBody.review_id, user_id: likeReviewBody.user_id, type_l: 'like' }}).done(function(err, like) {
-            if (err) {
-                console.log(err);
-                return res.status(400).json({message: "Unknown error"});
-            }
-            
+        db.like_dislikes.find({where: { review_id: likeReviewBody.review_id, user_id: likeReviewBody.user_id, type_l: 'like' }}).then(function(like) {            
             if(like) {
                 return res.status(200).json({message: "You've like this review before"});
             }
@@ -85,11 +77,14 @@ exports.likeReview = function(req, res) {
                             return res.status(400).json({message: "Unknown error"});
                         }
                         else {
-                            return res.status(200).json({message: "successful"});
+                            return res.status(200).json({message: "Successful"});
                         }
                     })
                 });
             }
+        }, function(err) {
+            console.log(err);
+            return res.status(400).json({message: "Unknown error"});
         });
     }
 };
@@ -103,12 +98,8 @@ exports.disLikeReview = function(req, res) {
         return res.status(400).json(error);
     }
     else {
-        db.like_dislikes.find({where: { review_id: disLikeReviewBody.review_id, user_id: disLikeReviewBody.user_id, type_l: 'dislike' }}).done(function(err, dislike) {
-            if (err) {
-                console.log(err);
-                return res.status(400).json({message: "Unknown error"});
-            }
-            
+        db.like_dislikes.find({where: { review_id: disLikeReviewBody.review_id, user_id: disLikeReviewBody.user_id, type_l: 'dislike' }}).then(function(dislike) {
+
             if(dislike) {
                 return res.status(200).json({message: "You've dislike this review before"});
             }
@@ -128,6 +119,9 @@ exports.disLikeReview = function(req, res) {
                     });
                 });
             }
+        }, function(err) {
+            logger.info(err);
+            return res.status(400).json({message: "Unknown error"});
         });
     }
 };
@@ -135,9 +129,9 @@ exports.disLikeReview = function(req, res) {
 
 function addLikeToRecord(data, type) {
     data.type_l = type;
-    db.like_dislikes.create(data).done(function(err, l) {
-        if(err) {
-            logger.error("adding to like-dislike table failed", err);
-        }
+    db.like_dislikes.create(data).then(function(l) {
+        logger.info("addLikeToRecord");
+    }, function(err) {
+        logger.error("adding to like-dislike table failed", err);
     });
 }

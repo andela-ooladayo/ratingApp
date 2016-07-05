@@ -16,12 +16,7 @@ exports.update = function(req, res) {
         });
     }
     else{
-        db.User.find({where: { id: req.user.id } }).done(function(err, user) {
-            if (err) {
-                return res.status(400).send({
-                    message: errorHandler.getErrorMessage(err)
-                });
-            }
+        db.User.find({where: { id: req.user.id } }).then(function(user) {
             if (!user) {
                 return res.status(400).send({
                     message: errorHandler.getErrorMessage(new Error('Failed to load user ' + id))
@@ -37,20 +32,22 @@ exports.update = function(req, res) {
             user = _.extend(user, req.body);
             user.updated = Date.now();
             user.displayname = user.firstname + ' ' + user.lastname;
-            user.save().done(function (err) {
-                if (err) {
-                    return res.status(400).send({
-                        message: errorHandler.getErrorMessage(err)
-                    });
-                } else {
-                    req.login(user, function (err) {
-                        if (err) {
-                            res.status(400).send(err);
-                        } else {
-                            res.jsonp({user: user, token: tokenService.issueToken(user)});
-                        }
-                    });
-                }
+            user.save().then(function () {
+                req.login(user, function (err) {
+                    if (err) {
+                        res.status(400).send(err);
+                    } else {
+                        res.jsonp({user: user, token: tokenService.issueToken(user)});
+                    }
+                });
+            }, function(err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            });
+        }, function() {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
             });
         });
     }

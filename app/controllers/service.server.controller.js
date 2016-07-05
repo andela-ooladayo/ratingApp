@@ -26,15 +26,13 @@ exports.create = function(req, res) {
         return res.status(400).json(error);
     }
     else {
-        db.services.create(req.body).done(function(err, service) {
-            if(err){
-                return res.status(400).send({
-                    message: errorHandler.getErrorMessage(err)
-                });
-            }
+        db.services.create(req.body).then(function(service) {
             res.jsonp(service);
-
             searchEngine.create(service.dataValues, service.id);
+        }, function(err) {
+            return res.status(400).json({
+                message: errorHandler.getErrorMessage(err)
+            });
         });
     }
 };
@@ -46,21 +44,16 @@ exports.read = function(req, res) {
 
 
 exports.update = function(req, res) {
-
     var service = req.service;
-
     service = _.extend(service, req.body);
 
-    service.save().done(function(err) {
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        } else {
-            res.jsonp(service);
-
-            searchEngine.update(service, service.id);
-        }
+    service.save().then(function() {
+        res.jsonp(service);
+        searchEngine.update(service, service.id);
+    }, function(err) {
+        return res.status(400).json({
+            message: errorHandler.getErrorMessage(err)
+        });
     });
 };
 
@@ -68,16 +61,13 @@ exports.update = function(req, res) {
 exports.delete = function(req, res) {
     var service = req.service;
 
-    service.destroy().done(function(err) {
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        } else {
-            res.jsonp(service);
-
-            searchEngine.delete(service.id);
-        }
+    service.destroy().then(function() {
+        res.jsonp(service);
+        searchEngine.delete(service.id);
+    }, function(err) {
+        return res.status(400).json({
+            message: errorHandler.getErrorMessage(err)
+        });
     });
 };
 
@@ -125,14 +115,12 @@ exports.filterBy = function(req, res) {
 
 
 exports.list = function(req, res) {
-    db.services.findAll({ include: [{ model: db.User, attributes: ['displayname', 'firstname', 'lastname', 'phone_number'] }], order: 'created' }).done(function(err, services) {
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        } else {
-            res.jsonp(services);
-        }
+    db.services.findAll({ include: [{ model: db.User, attributes: ['displayname', 'firstname', 'lastname', 'phone_number'] }], order: 'created' }).then(function(services) {
+        res.jsonp(services);
+    }, function(err) {
+        return res.status(400).json({
+            message: errorHandler.getErrorMessage(err)
+        });
     });
 };
 
@@ -208,18 +196,19 @@ exports.topReviews = function(req, res) {
 
 
 exports.serviceByID = function(req, res, next, id) {
-    db.services.find({where: { id: id }, include: [ { model: db.User, attributes: ['displayname', 'firstname', 'lastname', 'phone_number'] } ] }).done(function(err, service) {
-        if (err) return next(err);
+    db.services.find({where: { id: id }, include: [ { model: db.User, attributes: ['displayname', 'firstname', 'lastname', 'phone_number'] } ] }).then(function(service) {
         if (!service) return next(new Error('Failed to load service ' + id));
         req.service = service;
         next();
+    }, function(err) {
+        return next(err);
     });
 };
 
 
 exports.isOwner = function(req, res, next) {
     if (req.service.user.id !== req.user.id) {
-        return res.status(403).send({
+        return res.status(403).json({
             message: 'User is not authorized'
         });
     }

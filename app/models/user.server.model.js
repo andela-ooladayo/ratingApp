@@ -14,14 +14,6 @@ var validateLocalStrategyPassword = function(password) {
     }
 };
 
-var cryptPassword =function(user, fn) {
-    if (user.password && user.password.length > 6) {
-        user.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
-        user.password = user.hashPassword(user.password);
-    }
-    fn(null, user);
-};
-
 module.exports = function(sequelize, DataTypes) {
 
     var User = sequelize.define('User', {
@@ -101,21 +93,6 @@ module.exports = function(sequelize, DataTypes) {
 
         },
         {
-            instanceMethods: {
-                makeSalt: function() {
-                    new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
-                },
-                authenticate: function(password){
-                    return this.password === this.hashPassword(password);
-                },
-                hashPassword: function(password) {
-                    if (this.salt && password) {
-                        return crypto.pbkdf2Sync(password, this.salt, 10000, 64).toString('base64');
-                    } else {
-                        return password;
-                    }
-                }
-            },
             classMethods: {
                 findUniqueEmail : function(email, suffix, callback) {
                     var _this = this;
@@ -123,21 +100,16 @@ module.exports = function(sequelize, DataTypes) {
 
                     _this.find({
                         email: possibleEmail
-                    }).done(function (err, user) {
-                        if (!err) {
-                            if (!user) {
-                                callback(possibleEmail);
-                            } else {
-                                return _this.findUniqueEmail(email, (suffix || 0) + 1, callback);
-                            }
+                    }).then(function (user) {
+                        if (!user) {
+                            callback(possibleEmail);
                         } else {
-                            callback(null);
+                            return _this.findUniqueEmail(email, (suffix || 0) + 1, callback);
                         }
+                    }, function() {
+                        callback(null);
                     });
                 }
-            },
-            hooks: {
-                beforeCreate: cryptPassword
             }
         });
     return User;

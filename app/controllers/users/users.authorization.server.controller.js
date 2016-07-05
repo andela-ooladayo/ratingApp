@@ -8,11 +8,12 @@ var _ = require('lodash'),
 
 exports.userByID = function(req, res, next, id) {
 
-    db.User.find({where : { id: id }}).done(function(err,user){
-        if (err) return next(err);
+    db.User.find({where : { id: id }}).then(function(user){
         if (!user) return next(new Error('Failed to load User ' + id));
         req.profile = user;
         next();
+    }, function(err) {
+        return next(err);
     });
 };
 

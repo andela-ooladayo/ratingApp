@@ -7,7 +7,8 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: DataTypes.NOW
         },
         merchant_id: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            references: { model: "Users", key: "id" }
         },
         business_name: {
             type: DataTypes.STRING,
@@ -81,11 +82,6 @@ module.exports = function(sequelize, DataTypes) {
         no_of_rating_one : {
             type: DataTypes.BIGINT,
             defaultValue: 0
-        }
-    },
-    {
-        associate: function(models) {
-            services.belongsTo(models.User);
         }
     });
     return services;
