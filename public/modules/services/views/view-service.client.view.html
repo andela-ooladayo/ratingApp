@@ -27,20 +27,18 @@
             <div class="col m6 s12">
                 <img src="http://placehold.it/200x200" class="img img-thumbnail" style="float: left; margin: 20px;">
                 <h1 data-ng-bind="service.business_name"></h1>
-                <div ng-init="rating"></div>
+                <div ng-init="rating - 1"></div>
                 <div class="star-rating" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)" readonly="isReadonly"></div>
                 <span class="meta-text">1004 Reviews</span>
                 <p ng-bind="service.business_description"></p>
-                <uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
-                <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
             </div>
             <div class="col m6 s12">
                 <!-- <a href="" class="btn green darken-2 white-text m-t-lg"><i class="fa fa-star"></i> Write Review</a> -->
                 <div class="list-group list-group-horizontal m-t-lg">
-                    <a href="#" class="list-group-item">Write a Review</a>
-                    <a href="#" class="list-group-item">Add Photo</a>
-                    <a href="#" class="list-group-item">Share</a>
-                    <a href="#" class="list-group-item">Bookmark</a>
+                    <a href="#" ui-sref="createReview" class="list-group-item"><i class="fa fa-star"></i> Write a Review</a>
+                    <a href="#" class="list-group-item"><i class="fa fa-camera"></i> Add Photo</a>
+                    <a href="#" data-ng-show="user.id == service.merchant_id" class="list-group-item"><i class="fa fa-edit"></i> Edit</a>
+                    <a href="#" data-ng-show="user.id == service.merchant_id" class="list-group-item"><i class="fa fa-remove"></i> Delete</a>
                 </div>
             </div>
         </div>
@@ -58,18 +56,18 @@
                                 </div>
                                 <div class="col s8">
                                     <div ng-init="rating"></div>
-                                    <div class="star-rating" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)" readonly="isReadonly"></div>
+                                    <div class="star-rating" star-rating rating-value="3" data-max="5" on-rating-selected="rateFunction(rating)" readonly="isReadonly"></div>
                                     <span class="meta-text">08/07/2016</span>
                                     <div class="review m-t-sm">
                                         <!-- <a href=""><img src="http://placehold.it/30x30" class="avatar"></a> -->
                                         <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes.</p>
                                     </div>
                                     <p class="m-t-md">
-                                        <img src="http://placehold.it/300x300">
+                                        <img src="http://placehold.it/300x300" class="img img-responsive">
                                     </p>
-                                    <p class="m-t-md">Was this review helpful?
-                                        <a href=""><span><i class="fa fa-thumbs-o-up"></i></span></a> 
-                                        <a href=""><span><i class="fa fa-thumbs-o-down"></i></span></a>
+                                    <p class="m-t-md">What do you think of this review?
+                                        <a href=""><span><i class="fa fa-thumbs-o-up"></i>Like</span></a> 
+                                        <a href=""><span><i class="fa fa-thumbs-o-down"></i>Dislike</span></a>
                                     </p>
                                 </div>
                             </div>
@@ -91,11 +89,11 @@
                                         <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes.</p>
                                     </div>
                                     <p class="m-t-md">
-                                        <img src="http://placehold.it/300x300">
+                                        <img src="http://placehold.it/300x300" class="img img-responsive">
                                     </p>
-                                    <p class="m-t-md">Was this review helpful?
-                                        <a href=""><span><i class="fa fa-thumbs-o-up"></i></span></a> 
-                                        <a href=""><span><i class="fa fa-thumbs-o-down"></i></span></a>
+                                    <p class="m-t-md">What do you think of this review?
+                                        <a href=""><span><i class="fa fa-thumbs-o-up"></i>Like</span></a> 
+                                        <a href=""><span><i class="fa fa-thumbs-o-down"></i>Dislike</span></a>
                                     </p>
                                 </div>
                             </div>
@@ -117,11 +115,11 @@
                                         <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes.</p>
                                     </div>
                                     <p class="m-t-md">
-                                        <img src="http://placehold.it/300x300">
+                                        <img src="http://placehold.it/300x300" class="img img-responsive">
                                     </p>
-                                    <p class="m-t-md">Was this review helpful?
-                                        <a href=""><span><i class="fa fa-thumbs-o-up"></i></span></a> 
-                                        <a href=""><span><i class="fa fa-thumbs-o-down"></i></span></a>
+                                    <p class="m-t-md">What do you think of this review?
+                                        <a href=""><span><i class="fa fa-thumbs-o-up"></i>Like</span></a> 
+                                        <a href=""><span><i class="fa fa-thumbs-o-down"></i>Dislike</span></a>
                                     </p>
                                 </div>
                             </div>

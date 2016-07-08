@@ -4,28 +4,12 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
     function($scope, $stateParams, $location,User, Authentication,Message, Services) {
         $scope.user = User.get();
 
-        $scope.rating = 1;
-        // $scope.isReadonly = true;
+        $scope.rating = 5;
         $scope.rateFunction = function(rating) {
             // alert('Rating selected - ' + rating);
         };
 
-        $scope.rate = 7;
-        $scope.max = 10;
         $scope.isReadonly = false;
-
-        $scope.hoveringOver = function(value) {
-            $scope.overStar = value;
-            $scope.percent = 100 * (value / $scope.max);
-        };
-
-        // $scope.ratingStates = [
-        //     {stateOn: 'glyphicon-ok-sign', stateOff: 'glyphicon-ok-circle'},
-        //     {stateOn: 'glyphicon-star', stateOff: 'glyphicon-star-empty'},
-        //     {stateOn: 'glyphicon-heart', stateOff: 'glyphicon-ban-circle'},
-        //     {stateOn: 'glyphicon-heart'},
-        //     {stateOff: 'glyphicon-off'}
-        // ];
 
         $scope.create = function() {
             var service = new Services({
