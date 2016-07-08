@@ -326,6 +326,34 @@ nav ul a:hover, .nav-wrapper a {
   border: 1px solid rgba(0,0,0,0.1);
 }
 
+.star-rating {
+  display: inline-block;
+}
+
+.rating{
+  color: #a9a9a9;
+  margin: 0;
+  padding: 0;
+}
+
+ul.rating {
+  display: inline-block;
+}
+
+.rating li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 1px;
+  font-size: 2em;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.rating .filled {
+  color: red;
+}
+
 /*footer*/
 footer.page-footer {
   margin-top: 0;

@@ -4,6 +4,29 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
     function($scope, $stateParams, $location,User, Authentication,Message, Services) {
         $scope.user = User.get();
 
+        $scope.rating = 4;
+        // $scope.isReadonly = true;
+        $scope.rateFunction = function(rating) {
+            // alert('Rating selected - ' + rating);
+        };
+
+        $scope.rate = 7;
+        $scope.max = 10;
+        $scope.isReadonly = false;
+
+        $scope.hoveringOver = function(value) {
+            $scope.overStar = value;
+            $scope.percent = 100 * (value / $scope.max);
+        };
+
+        // $scope.ratingStates = [
+        //     {stateOn: 'glyphicon-ok-sign', stateOff: 'glyphicon-ok-circle'},
+        //     {stateOn: 'glyphicon-star', stateOff: 'glyphicon-star-empty'},
+        //     {stateOn: 'glyphicon-heart', stateOff: 'glyphicon-ban-circle'},
+        //     {stateOn: 'glyphicon-heart'},
+        //     {stateOff: 'glyphicon-off'}
+        // ];
+
         $scope.create = function() {
             var service = new Services({
                 merchant_id: $scope.user.id,
@@ -76,5 +99,52 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
             hover: false,
             gutter: 1
         });
+
     }
-]);
+])
+.directive('starRating',
+    function() {
+        return {
+            restrict : 'A',
+            template : '<ul class="rating">'
+                     + '    <li ng-repeat="star in stars" ng-class="star" ng-click="toggle($index)">'
+                     + '\u2605'
+                     + '</li>'
+                     + '</ul>',
+            scope : {
+                ratingValue : '=',
+                max : '=',
+                onRatingSelected : '&',
+                readonly: '=?'
+            },
+            link : function(scope, elem, attrs) {
+                var updateStars = function() {
+                    scope.stars = [];
+                    for ( var i = 0; i < scope.max; i++) {
+                        scope.stars.push({
+                            filled : i < scope.ratingValue
+                        });
+                    }
+                };
+                
+                scope.toggle = function(index) {
+                    if (scope.readonly == undefined || scope.readonly === false) {
+
+                        scope.ratingValue = index + 1;
+                        scope.onRatingSelected({
+                            rating : index + 1
+                        });
+                    }
+                };
+                
+                scope.$watch('ratingValue',
+                    function(oldVal, newVal) {
+                        if (newVal) {
+                            updateStars();
+                        }
+                    }
+                );
+            }
+        };
+    }
+);

@@ -5,7 +5,7 @@ var users = require('../../app/controllers/users'),
 
 module.exports = function(app) {
     app.route('/api/images')
-        .post(users.isAuthenticated, users.isAuthorized('merchant'), images.create);
+        .post(users.isAuthenticated, users.isAuthorized('user'), images.create);
 
     app.route('/api/images/:imageId')
         .get(images.read)

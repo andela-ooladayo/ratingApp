@@ -1,8 +1,8 @@
-<section data-ng-controller="ServicesController" data-ng-init="findOne()">
+<!-- <section data-ng-controller="ServicesController" data-ng-init="findOne()">
     <div class="page-header">
         <h1 data-ng-bind="service.business_name"></h1>
     </div>
-    <div class="pull-right" data-ng-show="user.id == service.user.id">
+    <div class="pull-right" data-ng-show="user.id == service.merchant_id">
         <a class="btn btn-primary" href="/services/{{service.id}}/edit">
             <i class="glyphicon glyphicon-edit"></i>
         </a>
@@ -15,8 +15,36 @@
             Posted on
             <span data-ng-bind="service.created | date:'mediumDate'"></span>
             by
-            <span data-ng-bind="service.user.displayname"></span>
+            <span data-ng-bind="service.merchant_id"></span>
         </em>
     </small>
     <p class="lead" data-ng-bind="service.business_description"></p>
+    <p class="lead" data-ng-bind="service.business_address_city"></p>
+</section> -->
+<section data-ng-controller="ServicesController" data-ng-init="findOne()">
+    <section id="business_detail">
+        <div class="row">
+            <div class="col m6 s12">
+                <img src="http://placehold.it/200x200" class="img img-thumbnail" style="float: left; margin: 20px;">
+                <h1 data-ng-bind="service.business_name"></h1>
+                <div ng-init="rating"></div>
+                <div class="star-rating" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)" readonly="isReadonly"></div>
+                <span class="meta-text">1004 Reviews</span>
+                <p ng-bind="service.business_description"></p>
+                <uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
+                <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+            </div>
+            <div class="col m6 s12">
+                <a href="" class="btn blue white-text m-t-lg"><i class="fa fa-star"></i> Write Review</a>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <h2>Recommended Reviews</h2>
+                <div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
 </section>
