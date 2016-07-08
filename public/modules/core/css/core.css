@@ -326,6 +326,7 @@ nav ul a:hover, .nav-wrapper a {
   border: 1px solid rgba(0,0,0,0.1);
 }
 
+/*Star Ratings*/
 .star-rating {
   display: inline-block;
 }
@@ -352,6 +353,29 @@ ul.rating {
 
 .rating .filled {
   color: red;
+}
+
+
+/*button group*/
+.list-group {
+  box-shadow: none !important;
+}
+
+.list-group-horizontal .list-group-item {
+    display: inline-block;
+}
+.list-group-horizontal .list-group-item {
+  margin-bottom: 0;
+  margin-left:-4px;
+  margin-right: 0;
+}
+.list-group-horizontal .list-group-item:first-child {
+  border-top-right-radius:0;
+  border-bottom-left-radius:4px;
+}
+.list-group-horizontal .list-group-item:last-child {
+  border-top-right-radius:4px;
+  border-bottom-left-radius:0;
 }
 
 /*footer*/

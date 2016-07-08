@@ -4,7 +4,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
     function($scope, $stateParams, $location,User, Authentication,Message, Services) {
         $scope.user = User.get();
 
-        $scope.rating = 4;
+        $scope.rating = 1;
         // $scope.isReadonly = true;
         $scope.rateFunction = function(rating) {
             // alert('Rating selected - ' + rating);
