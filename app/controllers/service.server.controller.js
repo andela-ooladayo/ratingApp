@@ -19,17 +19,18 @@ exports.create = function(req, res) {
     delete data.no_of_rating_two;
     delete data.no_of_rating_one;
 
-    //data.UserId = req.user.id;
+    data.UserId = req.user.id;
 
     var error = checkRequestBody(data, ['merchant_id', 'business_name', 'business_description', 'business_email', 'business_phone_number', 'business_category_id', 'business_address_country', 'business_address_state', 'business_address_city', 'business_address_street', 'business_address']);
     if(error) {
         return res.status(400).json(error);
     }
     else {
-        db.services.create(req.body).then(function(service) {
+        db.services.create(data).then(function(service) {
             res.jsonp(service);
             searchEngine.create(service.dataValues, service.id);
         }, function(err) {
+            logger.error(err, "here")
             return res.status(400).json({
                 message: errorHandler.getErrorMessage(err)
             });

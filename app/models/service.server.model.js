@@ -83,6 +83,11 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.BIGINT,
             defaultValue: 0
         }
+    },
+    {
+        associate: function(models){
+            services.belongsTo(models.User);
+        }
     });
     return services;
 };
