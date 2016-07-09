@@ -40,7 +40,13 @@ exports.create = function(req, res) {
 
 
 exports.read = function(req, res) {
-    res.jsonp(req.service);
+    var service = req.service;
+    db.images.findAll({where: {service_id : service.id} }).then(function (images) {
+        service.dataValues.images = images;
+        return res.status(200).json(service);
+    }, function(err) {
+        logger.error(err, " error while retrieving images");
+    });
 };
 
 
