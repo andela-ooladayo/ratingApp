@@ -5,7 +5,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
         $scope.user = User.get();
 
         $scope.categories = [
-          {"Agriculture & Agro-Allied"},
+          "Agriculture & Agro-Allied",
           "Banking & Finance (banks)",
           "Business Services",
           "ICT",
