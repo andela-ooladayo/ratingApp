@@ -26,11 +26,16 @@
         <div class="row green lighten-5" style="border-bottom: 1px solid rgba(0,0,0,0.1);">
             <div class="col m6 s12">
                 <img src="http://placehold.it/200x200" class="img img-thumbnail" style="float: left; margin: 20px;">
-                <h1 data-ng-bind="service.business_name"></h1>
+                <h1>Iya Kan Amala</h1>
                 <div ng-init="rating - 1"></div>
                 <div class="star-rating" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)" readonly="isReadonly"></div>
                 <span class="meta-text">1004 Reviews</span>
-                <p ng-bind="service.business_description"></p>
+                <p>We sell the best amala money can buy.</p>
+                <div class="m-t-sm">
+                    <p class="meta-text"><a href=""><i class="fa fa-home">: </i>Business address</a></p>
+                    <p class="meta-text"><a href=""><i class="fa fa-phone">: </i>+1234567890</a></p>
+                    <p class="meta-text"><a href=""><i class="fa fa-envelope">: </i>email@example.com</a></p>
+                </div>
             </div>
             <div class="col m6 s12">
                 <!-- <a href="" class="btn green darken-2 white-text m-t-lg"><i class="fa fa-star"></i> Write Review</a> -->
@@ -43,8 +48,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col m7 offset-m1 s12">
-                <h2>Recommended Reviews</h2>
+            <div class="col m6 offset-m1 s12">
+                <h3>Recommended Reviews</h3>
                 <div class="col m12">
                     <ul class="collection m-b-lg">
                         <li class="collection-item avatar">
@@ -127,6 +132,42 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+            <div class="col m3 offset-m1 s12">
+                <h3 class="section-title red-text">People also reviewed</h3>
+                <!-- <hr> -->
+                <ul class="collection m-b-lg">
+                    <li class="collection-item avatar">
+                        <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+                        <p class="m-b-md"><a href="" class="blue-text darken-4">User Name</a> wrote for <a href="" class="text-sm_bold blue-text darken-4">Company   Name</a></p>
+                        <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-full"></i> <span class="grey-text meta-text">24/06/16</span></p>
+                        <div class="review m-t-sm">
+                            <!-- <a href=""><img src="http://placehold.it/30x30" class="avatar"></a> -->
+                            <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes...<a href="" class="blue-text darken-4">Read more</a>.</p>
+                        </div>
+                        <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+                    </li>
+                    <li class="collection-item avatar">
+                        <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+                        <p class="m-b-md"><a href="" class="blue-text darken-4">User Name</a> wrote for <a href="" class="text-sm_bold blue-text darken-4">Company   Name</a></p>
+                        <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-full"></i> <span class="grey-text meta-text">24/06/16</span></p>
+                        <div class="review m-t-sm">
+                            <!-- <a href=""><img src="http://placehold.it/30x30" class="avatar"></a> -->
+                            <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes...<a href="" class="blue-text darken-4">Read more</a>.</p>
+                        </div>
+                        <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+                    </li>
+                    <li class="collection-item avatar">
+                        <a href=""><img src="http://placehold.it/60x60" class="square"></a>
+                        <p class="m-b-md"><a href="" class="blue-text darken-4">User Name</a> wrote for <a href="" class="text-sm_bold blue-text darken-4">Company   Name</a></p>
+                        <p class="red-text"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-full"></i> <span class="grey-text meta-text">24/06/16</span></p>
+                        <div class="review m-t-sm">
+                            <!-- <a href=""><img src="http://placehold.it/30x30" class="avatar"></a> -->
+                            <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes...<a href="" class="blue-text darken-4">Read more</a>.</p>
+                        </div>
+                        <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+                    </li>
+                </ul>
             </div>
         </div>
     </section>

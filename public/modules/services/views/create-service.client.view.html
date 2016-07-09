@@ -20,7 +20,13 @@
                 </div>
                 <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
                     <div class="controls">
-                        <input name="business_category_id" type="text" data-ng-model="business_category_id" id="title" class="form-control" placeholder="Category" required>
+                        <select class="browser-default">
+                            <option value="" disabled selected>Category</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                        <!-- <input name="business_category_id" type="text" data-ng-model="business_category_id" id="title" class="form-control" placeholder="Category" required> -->
                     </div>
                 </div>
                 <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">

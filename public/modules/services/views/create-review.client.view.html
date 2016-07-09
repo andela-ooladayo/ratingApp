@@ -30,7 +30,7 @@
                             <div class="star-rating" star-rating rating-value="3" data-max="5" on-rating-selected="rateFunction(rating)" readonly="false"></div>
                             <span class="">Select a rating</span>
                             <div class="review m-t-lg">
-                                <form name="reviewForm" class="form-horizontal" data-ng-submit="create()" novalidate>
+                                <form name="reviewForm" class="form-horizontal" data-ng-submit="createReview()" novalidate>
                                     <div class="form-group" ng-class="{ 'has-error': reviewForm.title.$dirty && reviewForm.title.$invalid }">
                                         <div class="controls">
                                             <textarea name="business_description" data-ng-model="business_description" id="business_description" class="form-control" cols="30" rows="10" placeholder="Your review helps other learn about great local businesses"></textarea>

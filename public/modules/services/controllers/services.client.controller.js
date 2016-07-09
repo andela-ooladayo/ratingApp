@@ -4,6 +4,35 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
     function($scope, $stateParams, $location,User, Authentication,Message, Services) {
         $scope.user = User.get();
 
+        $scope.categories = [
+          {"Agriculture & Agro-Allied"},
+          "Banking & Finance (banks)",
+          "Business Services",
+          "ICT",
+          "Educational",
+          "Events & Entertainment",
+          "Nightlife and clubs",
+          "Fashion & Style",
+          "Food & Beverages",
+          "Maintenance Services",
+          "Manufacturing & Production",
+          "Medicine & Health",
+          "Pharmaceutical companies",
+          "Newspapers & Media",
+          "Oil & Gas",
+          "People & Society",
+          "Professional Services",
+          "Construction/Real Estate",
+          "Religious Organisations",
+          "Telecommunications",
+          "Travel & Tourism",
+          "Hotels",
+          "Restaurants",
+          "Industrial Goods",
+          "Consumer Goods",
+          "Services",
+          "Utilities",
+        ];
         $scope.rating = 5;
         $scope.rateFunction = function(rating) {
             // alert('Rating selected - ' + rating);
