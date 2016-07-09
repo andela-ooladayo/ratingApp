@@ -30,11 +30,12 @@
                 <div ng-init="rating - 1"></div>
                 <div class="star-rating" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)" readonly="isReadonly"></div>
                 <span class="meta-text">1004 Reviews</span>
+                <p data-ng-bind="categories[service.business_category_id]"></p>
                 <p data-ng-bind="service.business_description">We sell the best amala money can buy.</p>
                 <div class="m-t-sm">
-                    <p class="meta-text"><a href=""><i class="fa fa-home">: </i>Business address</a></p>
-                    <p class="meta-text"><a href=""><i class="fa fa-phone">: </i>+1234567890</a></p>
-                    <p class="meta-text"><a href=""><i class="fa fa-envelope">: </i>email@example.com</a></p>
+                    <p class="meta-text"><a href="" data-ng-bind="service.business_address"><i class="fa fa-home">: </i>Business address</a></p>
+                    <p class="meta-text"><a href="" data-ng-bind="service.business_phone_number"><i class="fa fa-phone">: </i>+1234567890</a></p>
+                    <p class="meta-text"><a href="" data-ng-bind="service.business_email"><i class="fa fa-envelope">: </i>email@example.com</a></p>
                 </div>
             </div>
             <div class="col m6 s12">
