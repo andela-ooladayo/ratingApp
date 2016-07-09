@@ -26,11 +26,11 @@
         <div class="row green lighten-5" style="border-bottom: 1px solid rgba(0,0,0,0.1);">
             <div class="col m6 s12">
                 <img src="http://placehold.it/200x200" class="img img-thumbnail" style="float: left; margin: 20px;">
-                <h1>Iya Kan Amala</h1>
+                <h1 data-ng-bind="service.business_name"></h1>
                 <div ng-init="rating - 1"></div>
                 <div class="star-rating" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)" readonly="isReadonly"></div>
                 <span class="meta-text">1004 Reviews</span>
-                <p>We sell the best amala money can buy.</p>
+                <p data-ng-bind="service.business_description">We sell the best amala money can buy.</p>
                 <div class="m-t-sm">
                     <p class="meta-text"><a href=""><i class="fa fa-home">: </i>Business address</a></p>
                     <p class="meta-text"><a href=""><i class="fa fa-phone">: </i>+1234567890</a></p>

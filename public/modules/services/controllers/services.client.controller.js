@@ -95,6 +95,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
 
         $scope.find = function() {
             $scope.services = Services.query();
+            console.log($scope.services);
         };
 
         $scope.findOne = function() {

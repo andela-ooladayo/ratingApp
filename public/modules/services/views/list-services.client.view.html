@@ -2,7 +2,8 @@
     <li><a href="">Recent</a></li>
     <li><a href="">Top Rated</a></li>
 </ul>
-<section class="row page" data-ng-controller="ServicesController" data-ng-init="">
+<section class="row page" data-ng-controller="ServicesController" data-ng-init="find()">
+    {{services}}
     <div>
         <div class="col m6 offset-m1">
             <h3 class="section-title red-text">All Services
