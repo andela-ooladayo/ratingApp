@@ -41,12 +41,15 @@
             <div class="col m6 s12">
                 <!-- <a href="" class="btn green darken-2 white-text m-t-lg"><i class="fa fa-star"></i> Write Review</a> -->
                 <div class="list-group list-group-horizontal m-t-lg">
-                    <a href="#" ui-sref="createReview" class="list-group-item"><i class="fa fa-star"></i> Write a Review</a>
+                    <a href="#" ui-sref=".createReview" class="list-group-item"><i class="fa fa-star"></i> Write a Review</a>
                     <a href="#" class="list-group-item"><i class="fa fa-camera"></i> Add Photo</a>
                     <a href="/services/{{service.id}}/edit" data-ng-show="user.id == service.merchant_id" class="list-group-item"><i class="fa fa-edit"></i> Edit</a>
                     <a href="#" data-ng-show="user.id == service.merchant_id" class="list-group-item" data-ng-click="remove();"><i class="fa fa-remove"></i> Delete</a>
                 </div>
             </div>
+        </div>
+        <div class="container-fluid">
+            <div ui-view></div>
         </div>
         <div class="row">
             <div class="col m6 offset-m1 s12">

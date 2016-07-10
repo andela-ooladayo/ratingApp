@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('services').controller('ServicesController', ['$scope', '$stateParams', '$location','User', 'Authentication','Message', 'Storage', 'Services', 'Images',
-    function($scope, $stateParams, $location,User, Authentication, Message, Storage, Services, Images) {
+angular.module('services').controller('ServicesController', ['$scope', '$stateParams', '$location','User', 'Authentication','Message', 'Storage', 'Services', 'Images', 'Reviews',
+    function($scope, $stateParams, $location,User, Authentication, Message, Storage, Services, Images, Reviews) {
         $scope.user = User.get();
         var image_url = '';
 
@@ -178,6 +178,21 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                 serviceId: $stateParams.serviceId
             });
         };
+
+        $scope.createReview = function() {
+            var review = new Reviews({
+                service_id: service.id,
+                value: $scope.rating,
+                review: $scope.review,
+                user_id: $scope.user.id
+            });
+
+            review.$save(function(response) {
+                $location.path('services/' + service.id);
+            }, function(errorResponse) {
+                Message.error('Review',errorResponse.data.message);
+            });
+        }
 
         $('.dropdown-button').dropdown({
             belowOrigin: true,

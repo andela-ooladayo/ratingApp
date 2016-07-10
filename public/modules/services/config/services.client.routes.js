@@ -34,8 +34,8 @@ angular.module('services').config(['$stateProvider',
                     access : access.merchant
                 }
         }).
-        state('createReview', {
-            url: '/create-review',
+        state('viewService.createReview', {
+            url: '/create-review/',
             templateUrl: 'modules/services/views/create-review.client.view.html',
                 data : {
                     access : access.user
