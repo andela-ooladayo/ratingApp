@@ -1,8 +1,9 @@
 'use strict';
 
-angular.module('services').controller('ServicesController', ['$scope', '$stateParams', '$location','User', 'Authentication','Message', 'Services',
-    function($scope, $stateParams, $location,User, Authentication,Message, Services) {
+angular.module('services').controller('ServicesController', ['$scope', '$stateParams', '$location','User', 'Authentication','Message', 'Storage', 'Services', 'Images',
+    function($scope, $stateParams, $location,User, Authentication, Message, Storage, Services, Images) {
         $scope.user = User.get();
+        var image_url = '';
 
         $scope.categories = [
           "Agriculture & Agro-Allied",
@@ -33,6 +34,61 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
           "Services",
           "Utilities",
         ];
+
+        function getSignedRequest(file) {
+            var xhr;
+            if (window.ActiveXObject) {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            else{
+                xhr = new XMLHttpRequest(); 
+            }
+
+            var token = angular.fromJson(Storage.get('auth_token')).token;
+
+            xhr.open('GET', '/api/sign_s3?file_name='+Date.now()+file.name+'&file_type='+file.type, true);
+            xhr.onreadystatechange = function(){
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        console.log(response, "response");
+                        image_url = response.url;
+                        uploadFile(file, response.signed_request, response.url);
+                    } else {
+                        alert('Could not get signed URL.');
+                    }
+                }
+            };
+
+            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+            xhr.send();
+        }
+
+        function uploadFile(file, signedRequest, url) {
+            var xhr;
+            if (window.ActiveXObject) {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            else{
+                xhr = new XMLHttpRequest(); 
+            }
+            xhr.open('PUT', signedRequest);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        // image_url = url;
+                        alert('finished');
+                    } else {
+                        alert('Could not upload file.');
+                    }
+                }
+            };
+            xhr.setRequestHeader('Content-Type', file.type);
+            xhr.setRequestHeader('x-amz-acl', 'public-read');
+            xhr.send(file);
+        }
+
+
         $scope.rating = 5;
         $scope.rateFunction = function(rating) {
             // alert('Rating selected - ' + rating);
@@ -41,6 +97,12 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
         $scope.isReadonly = false;
 
         $scope.create = function() {
+            var files = document.getElementById('service_img').files;
+            var file = files[0];
+            if (file == null) {
+                return alert('No file selected.');
+            }
+            getSignedRequest(file);
             var service = new Services({
                 merchant_id: $scope.user.id,
                 business_name: this.business_name,
@@ -55,7 +117,20 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                 business_address_country: this.business_address_country,
                 business_category_id: this.business_category_id
             });
+
             service.$save(function(response) {
+
+                var image = new Images({
+                    service_id: response.id,
+                    url: image_url
+                });
+
+                image.$save(function(response) {
+                    console.log(response);
+                    Message.success('Image','Image successfully uploaded');
+                }, function(err) {
+                    Message.error('Image', err.data.message);
+                });
                 Message.success('Service','Service successfully created');
                 $location.path('services/' + response.id);
 
