@@ -1,6 +1,6 @@
 var aws = require('aws-sdk'),
-    AWS_ACCESS_KEY = "",
-    AWS_SECRET_KEY = "",
+    AWS_ACCESS_KEY = process.env.AWS_ACCESS_ID,
+    AWS_SECRET_KEY = process.env.AWS_ACCESS_SECRET_KEY,
     S3_BUCKET = "raytee";
 
 
