@@ -30,7 +30,6 @@ exports.create = function(req, res) {
             res.jsonp(service);
             searchEngine.create(service.dataValues, service.id);
         }, function(err) {
-            logger.error(err, "here")
             return res.status(400).json({
                 message: errorHandler.getErrorMessage(err)
             });
@@ -67,7 +66,6 @@ exports.update = function(req, res) {
 
 exports.delete = function(req, res) {
     var service = req.service;
-
     db.images.find({where: { service_id: service.id } }).then(function(images) {
         if(images) {
            images.destroy().then(function() {
@@ -81,11 +79,19 @@ exports.delete = function(req, res) {
                 }); 
            });
         }
+        else {
+           service.destroy().then(function() {
+                res.jsonp(service);
+                searchEngine.delete(service.id);
+            }, function(err) {
+                return res.status(400).json({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            });
+        }
     }, function(err) {
         return next(err);
     });
-
-    
 };
 
 

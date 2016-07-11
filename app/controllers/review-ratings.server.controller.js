@@ -53,6 +53,55 @@ exports.create = function(req, res) {
 };
 
 
+exports.read = function(req, res) {
+    var review = req.review;
+    return res.status(200).json(review);
+}
+
+
+exports.update = function(req, res) {
+    var review = req.review;
+    review = _.extend(review, req.body);
+
+    review.save().then(function() {
+        res.jsonp(review);
+    }, function(err) {
+        return res.status(400).json({
+            message: errorHandler.getErrorMessage(err)
+        });
+    });
+};
+
+
+exports.delete = function(req, res) {
+    var review = req.review;
+    db.like_dislikes.find({where: { review_id: review.id } }).then(function(like_dislike) {
+        if(like_dislike) {
+           like_dislike.destroy().then(function() {
+                review.destroy().then(function() {
+                    res.jsonp(review);
+                }, function(err) {
+                    return res.status(400).json({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                }); 
+           });
+        }
+        else {
+            review.destroy().then(function() {
+                res.jsonp(review);
+            }, function(err) {
+                return res.status(400).json({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            }); 
+        }
+    }, function(err) {
+        return next(err);
+    });
+};
+
+
 exports.likeReview = function(req, res) {
     var likeReviewBody = req.body;
     likeReviewBody.user_id = req.user.id;
@@ -135,3 +184,15 @@ function addLikeToRecord(data, type) {
         logger.error("adding to like-dislike table failed", err);
     });
 }
+
+
+exports.reviewByID = function(req, res, next, id) {
+    db.review_ratings.find({where: { id: id } }).then(function(review) {
+        if (!review) return next(new Error('Failed to load review ' + id));
+        req.review = review;
+        next();
+    }, function(err) {
+        return next(err);
+    });
+};
+
