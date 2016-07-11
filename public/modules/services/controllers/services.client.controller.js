@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('services').controller('ServicesController', ['$scope', '$stateParams', '$location','User', 'Authentication','Message', 'Storage', 'Services', 'Images', 'Reviews',
-    function($scope, $stateParams, $location,User, Authentication, Message, Storage, Services, Images, Reviews) {
+angular.module('services').controller('ServicesController', ['$scope', '$stateParams', '$location','User', 'Authentication','Message', 'Storage', 'Services', 'Images',
+    function($scope, $stateParams, $location,User, Authentication, Message, Storage, Services, Images) {
         $scope.user = User.get();
         var image_url = '';
 

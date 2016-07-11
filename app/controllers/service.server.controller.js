@@ -214,7 +214,7 @@ exports.serviceByID = function(req, res, next, id) {
 
 
 exports.isOwner = function(req, res, next) {
-    if (req.service.user.id !== req.user.id) {
+    if (req.service.UserId !== req.user.id) {
         return res.status(403).json({
             message: 'User is not authorized'
         });
