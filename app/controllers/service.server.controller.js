@@ -68,14 +68,24 @@ exports.update = function(req, res) {
 exports.delete = function(req, res) {
     var service = req.service;
 
-    service.destroy().then(function() {
-        res.jsonp(service);
-        searchEngine.delete(service.id);
+    db.images.find({where: { service_id: service.id } }).then(function(images) {
+        if(images) {
+           images.destroy().then(function() {
+               service.destroy().then(function() {
+                    res.jsonp(service);
+                    searchEngine.delete(service.id);
+                }, function(err) {
+                    return res.status(400).json({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                }); 
+           });
+        }
     }, function(err) {
-        return res.status(400).json({
-            message: errorHandler.getErrorMessage(err)
-        });
+        return next(err);
     });
+
+    
 };
 
 
