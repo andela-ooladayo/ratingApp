@@ -20,7 +20,7 @@ exports.create = function(req, res) {
         return res.status(400).json(error);
     }
     else {
-        db.review_ratings.create(reviewRating).then(function(err, reviewRating) {
+        db.review_ratings.create(reviewRating).then(function(review) {
             pg.connect(connectionString, function(err, client, drop) {
                 if(parseInt(reviewRating.value) == 1) {
                     queryPar = "no_of_rating_one";
