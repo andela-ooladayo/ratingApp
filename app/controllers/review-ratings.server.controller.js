@@ -41,7 +41,7 @@ exports.create = function(req, res) {
 
                 client.query(sql, [reviewRating.service_id], function (err, result) {
                     drop();
-                    return res.staus(200).json({message: "sucessful"});
+                    return res.status(200).json({message: "sucessful"});
                 });
             });
         }, function(err) {
