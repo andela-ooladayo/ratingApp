@@ -184,12 +184,13 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
             var review = new Reviews({
                 service_id: $scope.service.id,
                 value: $scope.rating,
-                review: $scope.review,
+                review: this.review,
                 user_id: $scope.user.id
             });
             console.log(review);
             review.$save(function(response) {
-                $location.path('services/' + service.id);
+                Message.success('Review','successfully added review');
+                $location.path('services/' + $scope.service.id);
             }, function(errorResponse) {
                 Message.error('Review',errorResponse.data.message);
             });
