@@ -29,7 +29,7 @@
                 <h1 data-ng-bind="service.business_name"></h1>
                 <div ng-init="rating - 1"></div>
                 <div class="star-rating" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)" readonly="isReadonly"></div>
-                <span class="meta-text">1004 Reviews</span>
+                <span class="meta-text">{{service.reviews.length}} Reviews</span>
                 <p data-ng-bind="categories[service.business_category_id]"></p>
                 <p data-ng-bind="service.business_description">We sell the best amala money can buy.</p>
                 <div class="m-t-sm">
@@ -55,24 +55,24 @@
                 <h3>Recommended Reviews</h3>
                 <div class="col m12">
                     <ul class="collection m-b-lg">
-                        <li class="collection-item avatar">
+                        <li ng-repeat="review in reviews | orderBy: '-created' | limitTo:10" class="collection-item avatar">
                             <div class="row">
                                 <div class="col s4">
                                     <a href=""><img src="{{user.image_url}}" class="square"></a>
-                                    <p class="m-b-md"><a href="" class="blue-text darken-4">{{user.displayname}}</a></p>
+                                    <p class="m-b-md"><a href="" class="blue-text darken-4">{{review.user_id}}</a></p>
                                     <p class="red-text"><i class="fa fa-star"></i> <span class="grey-text meta-text">6 Reviews</span></p>
                                 </div>
                                 <div class="col s8">
                                     <div ng-init="rating"></div>
                                     <div class="star-rating" star-rating rating-value="3" data-max="5" on-rating-selected="rateFunction(rating)" readonly="isReadonly"></div>
-                                    <span class="meta-text">08/07/2016</span>
+                                    <span class="meta-text">{{review.created | date:'mediumDate'}}</span>
                                     <div class="review m-t-sm">
                                         <!-- <a href=""><img src="http://placehold.it/30x30" class="avatar"></a> -->
-                                        <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes.</p>
+                                        <p class="meta-text" ng-bind="review.review"></p>
                                     </div>
-                                    <p class="m-t-md">
+                                    <!-- <p class="m-t-md">
                                         <img src="http://placehold.it/300x300" class="img img-responsive">
-                                    </p>
+                                    </p> -->
                                     <p class="m-t-md">What do you think of this review?
                                         <a href=""><span><i class="fa fa-thumbs-o-up"></i>Like</span></a> 
                                         <a href=""><span><i class="fa fa-thumbs-o-down"></i>Dislike</span></a>
@@ -81,58 +81,7 @@
                             </div>
                             <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
                         </li>
-                        <li class="collection-item avatar">
-                            <div class="row">
-                                <div class="col s4">
-                                    <a href=""><img src="http://placehold.it/60x60" class="square"></a>
-                                    <p class="m-b-md"><a href="" class="blue-text darken-4">Some Other</a></p>
-                                    <p class="red-text"><i class="fa fa-star"></i> <span class="grey-text meta-text">36 Reviews</span></p>
-                                </div>
-                                <div class="col s8">
-                                    <div ng-init="rating"></div>
-                                    <div class="star-rating" star-rating rating-value="5" data-max="5" on-rating-selected="rateFunction(rating)" readonly="isReadonly"></div>
-                                    <span class="meta-text">08/07/2016</span>
-                                    <div class="review m-t-sm">
-                                        <!-- <a href=""><img src="http://placehold.it/30x30" class="avatar"></a> -->
-                                        <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes.</p>
-                                    </div>
-                                    <p class="m-t-md">
-                                        <img src="http://placehold.it/300x300" class="img img-responsive">
-                                    </p>
-                                    <p class="m-t-md">What do you think of this review?
-                                        <a href=""><span><i class="fa fa-thumbs-o-up"></i>Like</span></a> 
-                                        <a href=""><span><i class="fa fa-thumbs-o-down"></i>Dislike</span></a>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
-                        </li>
-                        <li class="collection-item avatar">
-                            <div class="row">
-                                <div class="col s4">
-                                    <a href=""><img src="http://placehold.it/60x60" class="square"></a>
-                                    <p class="m-b-md"><a href="" class="blue-text darken-4">Another Person</a></p>
-                                    <p class="red-text"><i class="fa fa-star"></i> <span class="grey-text meta-text">44 Reviews</span></p>
-                                </div>
-                                <div class="col s8">
-                                    <div ng-init="rating"></div>
-                                    <div class="star-rating" star-rating rating-value="4" data-max="5" on-rating-selected="rateFunction(rating)" readonly="isReadonly"></div>
-                                    <span class="meta-text">08/07/2016</span>
-                                    <div class="review m-t-sm">
-                                        <!-- <a href=""><img src="http://placehold.it/30x30" class="avatar"></a> -->
-                                        <p class="meta-text">First Line comes with a stint of sadness but if you can get past through the first few minutes.</p>
-                                    </div>
-                                    <p class="m-t-md">
-                                        <img src="http://placehold.it/300x300" class="img img-responsive">
-                                    </p>
-                                    <p class="m-t-md">What do you think of this review?
-                                        <a href=""><span><i class="fa fa-thumbs-o-up"></i>Like</span></a> 
-                                        <a href=""><span><i class="fa fa-thumbs-o-down"></i>Dislike</span></a>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
-                        </li>
+                        
                     </ul>
                 </div>
             </div>

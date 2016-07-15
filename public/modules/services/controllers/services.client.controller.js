@@ -179,10 +179,11 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                     service = Services.get({
                         serviceId: service.id
                     }, function() {
+                        console.log($scope.serviceArray);
                         $scope.serviceArray.push(service);
                     });
 
-                })
+                });
 
             });
         };
@@ -190,7 +191,13 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
         $scope.findOne = function() {
             $scope.service = Services.get({
                 serviceId: $stateParams.serviceId
+            }, function() {
+                $scope.reviews = $scope.service.reviews;
+                $scope.reviews.forEach(function(review) {
+                    
+                })
             });
+            console.log($scope.service);
         };
 
         $scope.createReview = function() {
