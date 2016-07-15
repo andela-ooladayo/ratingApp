@@ -42,7 +42,11 @@ exports.read = function(req, res) {
     var service = req.service;
     db.images.findAll({where: {service_id : service.id} }).then(function (images) {
         service.dataValues.images = images;
-        return res.status(200).json(service);
+
+        db.review_ratings.findAll({where: {service_id : service.id}, limit: 50 }).then(function (reviews) { 
+            service.dataValues.reviews = reviews;
+            return res.status(200).json(service);
+        }):
     }, function(err) {
         logger.error(err, " error while retrieving images");
     });
