@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
                     <div class="controls">
-                        <select class="browser-default" data-ng-model="service.business_category_id" data-ng-options="k as v for (k,v) in categories">
+                        <select class="browser-default" data-ng-model="service.business_category_id" data-ng-options="k as v for (k,v) in categories" convert-to-number>
                             <option value=''>Category</option>
                         </select>
                     </div>

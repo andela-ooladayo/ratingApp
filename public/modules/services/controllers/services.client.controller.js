@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('services').controller('ServicesController', ['$scope', '$stateParams', '$location','User', 'Authentication','Message', 'Storage', 'Services', 'Images', 'Reviews',
-    function($scope, $stateParams, $location,User, Authentication, Message, Storage, Services, Images, Reviews) {
+angular.module('services').controller('ServicesController', ['$scope', '$stateParams', '$location', 'User', 'Authentication','Message', 'Storage', 'Services', 'Images', 'Reviews',
+    function($scope, $stateParams, $location, User, Authentication, Message, Storage, Services, Images, Reviews) {
         $scope.user = User.get();
         var image_url = '';
 
@@ -97,6 +97,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
         $scope.isReadonly = false;
 
         $scope.create = function() {
+
             var files = document.getElementById('service_img').files;
             var file = files[0];
             if (file == null) {
@@ -139,6 +140,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
             }, function(errorResponse) {
                 Message.error('Service',errorResponse.data.message);
             });
+
         };
 
         $scope.remove = function(service) {
@@ -170,8 +172,19 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
         };
 
         $scope.find = function() {
-            $scope.services = Services.query();
-            console.log($scope.services);
+            Services.query(function(response) {
+                $scope.serviceArray = [];
+                var service;
+                response.forEach(function(service) {
+                    service = Services.get({
+                        serviceId: service.id
+                    }, function() {
+                        $scope.serviceArray.push(service);
+                    });
+
+                })
+
+            });
         };
 
         $scope.findOne = function() {
@@ -194,7 +207,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
             }, function(errorResponse) {
                 Message.error('Review',errorResponse.data.message);
             });
-        }
+        };
 
         $('.dropdown-button').dropdown({
             belowOrigin: true,
@@ -253,4 +266,16 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
             }
         };
     }
-);
+).directive('convertToNumber', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, element, attrs, ngModel) {
+        ngModel.$parsers.push(function(val) {
+          return parseInt(val, 10);
+        });
+        ngModel.$formatters.push(function(val) {
+          return '' + val;
+        });
+      }
+    };
+});
