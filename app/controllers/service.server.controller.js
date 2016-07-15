@@ -117,6 +117,46 @@ exports.searchAll = function(req, res) {
 };
 
 
+exports.searchByCategoryId = function(req, res) {
+    var categoryId = req.params.categoryId;
+    var number = req.query.nums || 10;
+    if(!categoryId) {
+        return res.status(400).json({message: "categoryId parameter is missing in the request"});
+    }
+    else {
+        db.services.findAll({where: { business_category_id: categoryId }, include: [ { model: db.User, attributes: ['displayname', 'firstname', 'lastname', 'phone_number'] } ], limit : number }).then(function(services) {
+            var serviceList = [];
+            var serviceLen = services.length;
+            logger.info(serviceLen, "length")
+            if(services && serviceLen > 0) {
+                _.forEach(services, function(service, key) {
+                    db.images.findAll({where: {service_id : service.id} }).then(function (images) {
+                        service.dataValues.images = images;
+
+                        db.review_ratings.findAll({where: {service_id : service.id}, limit: 20 }).then(function (reviews) { 
+                            service.dataValues.reviews = reviews;
+                            serviceList.push(service);
+
+                            if((key + 1) == serviceLen) {
+                                return res.status(200).json(serviceList);
+                            }
+                        });
+                    }, function(err) {
+                        logger.error(err, " error while retrieving images");
+                    });
+                });
+            }
+            else {
+                return res.status(200).json([]);
+            }
+        }, function(err) {
+            logger.error(err, " error while searching service by category");
+            return res.status(400).json({message : "Unknown Error"})
+        });
+    }
+};
+
+
 exports.filterBy = function(req, res) {
     var query = req.query.q;
     var by = req.query.filter_by;

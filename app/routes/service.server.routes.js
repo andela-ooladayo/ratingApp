@@ -26,5 +26,8 @@ module.exports = function(app) {
         .put(users.isAuthenticated, users.isAuthorized('merchant'), service.isOwner, service.update)
         .delete(users.isAuthenticated, users.isAuthorized('merchant'), service.isOwner, service.delete);
 
+    app.route('/api/service/category/:categoryId')
+        .get(service.searchByCategoryId);
+
     app.param('serviceId', service.serviceByID);
 };
