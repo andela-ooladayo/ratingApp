@@ -1,31 +1,11 @@
 <section >
     <div class="row m-t-lg">
             <div class="col m6 offset-m1 s12">
-                <h4 class="section-title red-text">Write your review</h4>
+                <h4 class="section-title red-text">Write your review<span class="meta-text pull-right blue-text">Read our review guidelines</span></h4>
                 <hr>
                 <div class="col m12">
-                    <ul class="collection m-b-lg">
-                        <li class="collection-item avatar">
-                            <div class="row">
-                                <div class="col s6">
-                                    <a href=""><img src="http://placehold.it/60x60" class="square"></a>
-                                    <p class="m-b-md"><a href="" class="blue-text darken-4" ng-bind="service.business_name"></a></p>
-                                    <p class="red-text"><i class="fa fa-star"></i> <span class="grey-text meta-text">6 Reviews</span></p>
-                                    <p><span class="grey-text meta-text">Category</span></p>
-                                    <div class="m-t-sm">
-                                        <p class="meta-text"><a href=""><i class="fa fa-home">: </i>Business address</a></p>
-                                        <p class="meta-text"><a href=""><i class="fa fa-phone">: </i>+1234567890</a></p>
-                                        <p class="meta-text"><a href=""><i class="fa fa-envelope">: </i>email@example.com</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
-                        </li>
-                    </ul>
                     <div class="row">
                         <div class="col s12 m-t-lg">
-                        <h5>Your review <span class="meta-text pull-right blue-text">Read our review guidelines</span></h5>
-                        <hr>
                             <div ng-init="rating"></div>
                             <div class="star-rating" star-rating rating-value="3" data-max="5" on-rating-selected="rateFunction(rating)" readonly="false"></div>
                             <span class="">Select a rating</span>

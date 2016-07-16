@@ -25,18 +25,26 @@
     <section id="business_detail">
         <div class="row green lighten-5" style="border-bottom: 1px solid rgba(0,0,0,0.1);">
             <div class="col m6 s12">
-                <img src="{{service.images[0].url}}" class="img img-thumbnail img-responsive" style="float: left; margin: 20px; width: 200px;">
-                <h1 data-ng-bind="service.business_name"></h1>
-                <div ng-init="rating - 1"></div>
-                <div class="star-rating" star-rating rating-value="rating" data-max="5" on-rating-selected="rateFunction(rating)" readonly="isReadonly"></div>
-                <span class="meta-text">{{service.reviews.length}} Reviews</span>
-                <p data-ng-bind="categories[service.business_category_id]"></p>
-                <p data-ng-bind="service.business_description">We sell the best amala money can buy.</p>
-                <div class="m-t-sm">
-                    <p class="meta-text"><a href="" data-ng-bind="service.business_address"><i class="fa fa-home">: </i>Business address</a></p>
-                    <p class="meta-text"><a href="" data-ng-bind="service.business_phone_number"><i class="fa fa-phone">: </i>+1234567890</a></p>
-                    <p class="meta-text"><a href="" data-ng-bind="service.business_email"><i class="fa fa-envelope">: </i>email@example.com</a></p>
-                </div>
+                <ul class="m-t-lg collection">
+                    <li class="collection-item service-avatar">
+                        <div class="row">
+                            <div class="col s12">
+                                <a href=""><img src="{{service.images[0].url ? service.images[0].url : 'http://placehold.it/200x200'}}" class="square-mid"></a>
+                                <p class="text-sm_bold m-b-sm" ng-bind="service.business_name">
+                                    <a href="" class="blue-text darken-4"></a>
+                                </p>
+                                <p><span class="grey-text meta-text" ng-bind="categories[service.business_category_id]"></span></p>
+                                <div class="m-t-sm">
+                                    <span>{{service.reviews.length}} Review</span><span ng-if="service.reviews.length > 1">s</span>
+                                    <p class="meta-text" ng-bind="service.business_description"></p>
+                                    <p class="meta-text"><a href="" ng-bind="service.business_address"><i class="fa fa-home">: </i></a></p>
+                                    <p class="meta-text"><a href="" ng-bind="service.business_phone_number"><i class="fa fa-phone">: </i></a></p>
+                                    <p class="meta-text"><a href="" ng-bind="service.business_email"><i class="fa fa-envelope">: </i></a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
             <div class="col m6 s12">
                 <!-- <a href="" class="btn green darken-2 white-text m-t-lg"><i class="fa fa-star"></i> Write Review</a> -->
@@ -53,6 +61,9 @@
         <div class="row">
             <div class="col m6 offset-m1 s12">
                 <h3>Recommended Reviews</h3>
+                <div ng-hide="user.id === service.merchant_id || reviews.length">
+                    <h4>No review yet. Be the first to <a href="" ui-sref=".createReview">write a review.</a></h4>
+                </div>
                 <div class="col m12">
                     <ul class="collection m-b-lg">
                         <li ng-repeat="review in reviews | orderBy: '-created' | limitTo:10" class="collection-item avatar">
@@ -66,14 +77,14 @@
                                     <div ng-init="rating"></div>
                                     <div class="star-rating" star-rating rating-value="3" data-max="5" on-rating-selected="rateFunction(rating)" readonly="isReadonly"></div>
                                     <span class="meta-text">{{review.created | date:'mediumDate'}}</span>
-                                    <div class="review m-t-sm">
+                                    <div class="review m-t-md">
                                         <!-- <a href=""><img src="http://placehold.it/30x30" class="avatar"></a> -->
-                                        <p class="meta-text" ng-bind="review.review"></p>
+                                        <p ng-bind="review.review"></p>
                                     </div>
                                     <!-- <p class="m-t-md">
                                         <img src="http://placehold.it/300x300" class="img img-responsive">
                                     </p> -->
-                                    <p class="m-t-md">What do you think of this review?
+                                    <p class="meta-text m-t-md">What do you think of this review?
                                         <a href=""><span><i class="fa fa-thumbs-o-up"></i>Like</span></a> 
                                         <a href=""><span><i class="fa fa-thumbs-o-down"></i>Dislike</span></a>
                                     </p>

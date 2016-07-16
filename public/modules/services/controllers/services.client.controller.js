@@ -1,8 +1,9 @@
 'use strict';
 
-angular.module('services').controller('ServicesController', ['$scope', '$stateParams', '$location', 'User', 'Authentication','Message', 'Storage', 'Services', 'Images', 'Reviews',
-    function($scope, $stateParams, $location, User, Authentication, Message, Storage, Services, Images, Reviews) {
+angular.module('services').controller('ServicesController', ['$scope', '$stateParams', '$window', '$location', 'User', 'Authentication','Message', 'Storage', 'Services', 'Images', 'Reviews',
+    function($scope, $stateParams, $window, $location, User, Authentication, Message, Storage, Services, Images, Reviews) {
         $scope.user = User.get();
+        console.log($scope.user);
         var image_url = '';
 
         $scope.categories = [
@@ -76,11 +77,13 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
+                        $scope.createService(image_url);
                         // image_url = url;
                         alert('finished');
                     } else {
                         alert('Could not upload file.');
                     }
+
                 }
             };
             xhr.setRequestHeader('Content-Type', file.type);
@@ -89,7 +92,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
         }
 
 
-        $scope.rating = 5;
+        $scope.rating = 0;
         $scope.rateFunction = function(rating) {
             // alert('Rating selected - ' + rating);
         };
@@ -104,6 +107,9 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                 return alert('No file selected.');
             }
             getSignedRequest(file);
+        }
+
+        $scope.createService = function(image_url) {
             var service = new Services({
                 merchant_id: $scope.user.id,
                 business_name: this.business_name,
@@ -194,7 +200,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
             }, function() {
                 $scope.reviews = $scope.service.reviews;
                 $scope.reviews.forEach(function(review) {
-                    
+
                 })
             });
             console.log($scope.service);
@@ -211,6 +217,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
             review.$save(function(response) {
                 Message.success('Review','successfully added review');
                 $location.path('services/' + $scope.service.id);
+                $window.location.reload();
             }, function(errorResponse) {
                 Message.error('Review',errorResponse.data.message);
             });
@@ -265,7 +272,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                 
                 scope.$watch('ratingValue',
                     function(oldVal, newVal) {
-                        if (newVal) {
+                        if (newVal  || newVal == 0) {
                             updateStars();
                         }
                     }
