@@ -97,7 +97,10 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
             $scope.rating = rating;
         };
 
-        $scope.isReadonly = false;
+        $scope.reset = function() {
+            $scope.rating = 0;
+            this.review = "";
+        }
 
         $scope.create = function() {
 
@@ -185,7 +188,6 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                     service = Services.get({
                         serviceId: service.id
                     }, function() {
-                        console.log($scope.serviceArray);
                         $scope.serviceArray.push(service);
                     });
 
@@ -199,9 +201,13 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                 serviceId: $stateParams.serviceId
             }, function() {
                 $scope.reviews = $scope.service.reviews;
+                var len = $scope.reviews.length;
+                var total = 0;
                 $scope.reviews.forEach(function(review) {
-
-                })
+                    total+= review.value
+                });
+                $scope.avg_rating = Math.round(total/len);
+                console.log($scope.avg_rating);
             });
             console.log($scope.service);
         };
