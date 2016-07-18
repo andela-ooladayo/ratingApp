@@ -57,6 +57,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                         uploadFile(file, response.signed_request, response.url);
                     } else {
                         alert('Could not get signed URL.');
+                        $scope.isLoading = false;
                     }
                 }
             };
@@ -110,6 +111,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                 return alert('No file selected.');
             }
             getSignedRequest(file);
+            $scope.isLoading = true;
         }
 
         $scope.createService = function(image_url) {
@@ -140,6 +142,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                     Message.success('Image','Image successfully uploaded');
                 }, function(err) {
                     Message.error('Image', err.data.message);
+                    $scope.isLoading = false;
                 });
                 Message.success('Service','Service successfully created');
                 $location.path('services/' + response.id);
@@ -148,6 +151,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                 $scope.content = '';
             }, function(errorResponse) {
                 Message.error('Service',errorResponse.data.message);
+                $scope.isLoading = false;
             });
 
         };

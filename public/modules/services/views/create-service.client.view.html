@@ -90,6 +90,8 @@
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-default">
+                    <i ng-show="isLoading"class="fa fa-circle-o-notch fa-spin fa-2x fa-fw green-text darken-4" style="position: relative; top: 5px; margin-left: 10px;"></i>
+                    <span class="sr-only">Loading...</span>
                 </div>
                 <div data-ng-show="error" class="text-danger">
                     <strong data-ng-bind="error"></strong>

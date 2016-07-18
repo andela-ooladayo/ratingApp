@@ -1,8 +1,8 @@
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$scope', 'Authentication',
-	function($scope, Authentication) {
+angular.module('core').controller('HomeController', ['$scope', 'Authentication', '$http', 'Services',
+	function($scope, Authentication, $http, Services) {
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
     $scope.rate = 7;
@@ -21,7 +21,6 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
       {stateOn: 'glyphicon-heart'},
       {stateOff: 'glyphicon-off'}
     ];
-    $scope.view_tab = "home";
     $scope.categories = [
       "Agriculture & Agro-Allied",
       "Banking & Finance (banks)",
@@ -52,9 +51,47 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
       "Utilities",
     ];
 
+    $scope.default_view = function() {
+      
+      $scope.idx = 0;
+      $scope.view_tab = $scope.categories[$scope.idx];
+      getServiceByCategory(0);
+    }
+
     $scope.changeTab = function(tab) {
       $scope.view_tab = tab;
+      $scope.idx = $scope.categories.indexOf(tab);
+      // console.log(idx);
+      getServiceByCategory($scope.idx)
     }
+
+    var getServiceByCategory = function(idx) {
+      $http.get('/api/service/category/' + idx).success(function(response) {
+        $scope.categoryArr = response;
+
+      }).error(function(response) {
+        console.log(response);
+      });
+    }
+
+    $scope.getTopRated = function() {
+      $scope.topRated = [];
+      $http.get('/api/service/top-rated').success(function(response) {
+        response.data.forEach(function(service) {
+            var service = Services.get({
+                serviceId: service.id
+            }, function() {
+                $scope.topRated.push(service);
+            });
+
+        });
+
+      }).error(function(response) {
+        console.log(response);
+      });
+    }
+
+
     // $("#top").backstretch("http://dl.dropbox.com/u/515046/www/garfield-interior.jpg");
 	}
 ]);
