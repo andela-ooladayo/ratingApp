@@ -43,8 +43,9 @@ exports.read = function(req, res) {
     db.images.findAll({where: {service_id : service.id} }).then(function (images) {
         service.dataValues.images = images;
 
-        db.review_ratings.findAll({where: {service_id : service.id}, limit: 50 }).then(function (reviews) { 
+        db.review_ratings.findAll({where: {service_id : service.id}, limit: 50, include: [ { model: db.User, attributes: ['displayname', 'firstname', 'lastname', 'image_url'] } ] }).then(function (reviews) { 
             service.dataValues.reviews = reviews;
+
             return res.status(200).json(service);
         });
     }, function(err) {
@@ -133,10 +134,10 @@ exports.searchByCategoryId = function(req, res) {
                     db.images.findAll({where: {service_id : service.id} }).then(function (images) {
                         service.dataValues.images = images;
 
-                        db.review_ratings.findAll({where: {service_id : service.id}, limit: 20 }).then(function (reviews) { 
+                        db.review_ratings.findAll({where: {service_id : service.id}, limit: 20, include: [ { model: db.User, attributes: ['displayname', 'firstname', 'lastname', 'image_url'] } ] }).then(function (reviews) { 
                             service.dataValues.reviews = reviews;
                             serviceList.push(service);
-
+                            
                             if((key + 1) == serviceLen) {
                                 return res.status(200).json(serviceList);
                             }

@@ -13,10 +13,6 @@ module.exports = function(sequelize, DataTypes) {
         value: {
             type: DataTypes.FLOAT
         },
-        user_id: {
-            type: DataTypes.INTEGER,
-            references: { model: "Users", key: "id" }
-        },
         review: {
             type: DataTypes.TEXT,
             defaultValue: ''
@@ -26,6 +22,11 @@ module.exports = function(sequelize, DataTypes) {
         },
         no_of_dislikes: {
             type: DataTypes.INTEGER
+        }
+    },
+    {
+        associate: function(models){
+            ReviewRatings.belongsTo(models.User);
         }
     });
     return ReviewRatings;

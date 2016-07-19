@@ -4,7 +4,7 @@ var _ = require('lodash'),
     db = require('../../config/sequelize'),
     async = require('async'),
     pg = require('pg'),
-    connectionString = process.env.DATABASE_URL,
+    connectionString = process.env.DATABASE_URL || "postgres://raytee:nifemi00@localhost/rating-app",
     checkRequestBody = require('./request.body.checker'),
     errorHandler = require('./errors');
 
@@ -13,7 +13,7 @@ exports.create = function(req, res) {
     var reviewRating = req.body;
     var queryPar;
 
-    reviewRating.user_id = req.user.id;
+    reviewRating.UserId = req.user.id;
 
     var error = checkRequestBody(req.body, ['service_id', 'value', 'review']);
     if(error) {
@@ -37,10 +37,13 @@ exports.create = function(req, res) {
                 else if(parseInt(reviewRating.value) == 5) {
                     queryPar = "no_of_rating_five";
                 }
-                var sql = "UPDATE services SET " + queryPar + " = " + queryPar + "+ 1 WHERE id=($1)";
-
+                
+                var sql = 'UPDATE "services" SET ' + queryPar + ' = ' + queryPar + ' + 1 WHERE id=$1;';
                 client.query(sql, [reviewRating.service_id], function (err, result) {
                     drop();
+                    if(err) {
+                        logger.info(err, " updating service error");
+                    }
                     return res.status(200).json({message: "successful"});
                 });
             });
@@ -187,7 +190,7 @@ function addLikeToRecord(data, type) {
 
 
 exports.reviewByID = function(req, res, next, id) {
-    db.review_ratings.find({where: { id: id } }).then(function(review) {
+    db.review_ratings.find({where: { id: id }, include: [ { model: db.User, attributes: ['displayname', 'firstname', 'lastname', 'image_url'] } ] }).then(function(review) {
         if (!review) return next(new Error('Failed to load review ' + id));
         req.review = review;
         next();
