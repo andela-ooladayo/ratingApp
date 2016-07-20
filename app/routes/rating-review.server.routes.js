@@ -13,7 +13,14 @@ module.exports = function(app) {
         .delete(users.isAuthenticated, reviewRatings.delete);
 
     app.route('/api/review-ratings/user/:userId')
-        .get(reviewRatings.read)
+        .get(reviewRatings.read);
+
+    app.route('/api/review-ratings/like')
+        .post(reviewRatings.likeReview);
+
+
+    app.route('/api/review-ratings/dislike')
+        .post(reviewRatings.disLikeReview)
 
     app.param('reviewId', reviewRatings.reviewByID);
     app.param('userId', reviewRatings.reviewByUserID);
