@@ -110,6 +110,25 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
       });
     }
 
+    $scope.getTopReviews = function() {
+      $scope.topReviews = [];
+      $http.get('/api/service/top-reviews').success(function(response) {
+        response.data.forEach(function(review) {
+            console.log(review);
+            var res = Services.get({
+                serviceId: review.service_id
+            }, function() {
+                review.img = res.images[0].url
+                $scope.topReviews.push(review);
+            });
+
+        });
+
+      }).error(function(response) {
+        console.log(response);
+      });
+    }
+
 
     // $("#top").backstretch("http://dl.dropbox.com/u/515046/www/garfield-interior.jpg");
 	}
