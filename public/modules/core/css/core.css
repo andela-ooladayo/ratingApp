@@ -318,6 +318,7 @@ nav ul a:hover, .nav-wrapper a {
   float: left;
   margin-right: 5px;
   margin-bottom: 5px;
+  width: 30px;
 }
 
 .sheet {
@@ -350,6 +351,14 @@ ul.rating {
   text-align: center;
   font-weight: bold;
   cursor: pointer;
+}
+
+.small-star .rating li {
+  font-size: 1em;
+}
+
+.mid-star .rating li {
+  font-size: 1.5em;
 }
 
 .rating .filled {

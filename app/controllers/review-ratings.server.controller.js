@@ -188,6 +188,16 @@ function addLikeToRecord(data, type) {
     });
 }
 
+exports.reviewByUserID = function(req, res, next, id) {
+    db.review_ratings.findAll({where: { UserId: id }, include: [ { model: db.User, attributes: ['displayname', 'firstname', 'lastname', 'image_url'] } ] }).then(function(review) {
+        if (!review) return next(new Error('Failed to load review ' + id));
+        req.review = review;
+        next();
+    }, function(err) {
+        return next(err);
+    });
+};
+
 
 exports.reviewByID = function(req, res, next, id) {
     db.review_ratings.find({where: { id: id }, include: [ { model: db.User, attributes: ['displayname', 'firstname', 'lastname', 'image_url'] } ] }).then(function(review) {

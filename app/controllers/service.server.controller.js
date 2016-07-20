@@ -246,7 +246,7 @@ exports.topReviews = function(req, res) {
             return res.status(500).json({message: "server error"});
         }
         else {
-            var sql = 'SELECT * FROM (SELECT review_ratings.id, review_ratings.created, review_ratings.value, review_ratings.review, review_ratings.no_of_likes, review_ratings.no_of_dislikes, review_ratings.user_id, review_ratings.service_id, services.business_name, "Users".firstname, "Users".lastname FROM review_ratings LEFT JOIN "Users" ON "Users".id=review_ratings.user_id LEFT JOIN services ON services.id=review_ratings.service_id ORDER BY no_of_likes DESC) AS review_ratings LIMIT ($1)';
+            var sql = 'SELECT * FROM (SELECT review_ratings.id, review_ratings.created, review_ratings.value, review_ratings.review, review_ratings.no_of_likes, review_ratings.no_of_dislikes, review_ratings.user_id, review_ratings.service_id, services.business_name, "Users".firstname, "Users".lastname FROM review_ratings LEFT JOIN "Users" ON "Users".id=review_ratings.UserId LEFT JOIN services ON services.id=review_ratings.service_id ORDER BY no_of_likes DESC) AS review_ratings LIMIT ($1)';
             client.query(sql, [number], function(err, result) {
                 if(err) {
                     drop();
@@ -260,6 +260,45 @@ exports.topReviews = function(req, res) {
             });
         }
     });
+};
+
+exports.serviceByMerchantID = function(req, res) {
+    var merchantId = req.params.merchantId;
+    var number = req.query.nums || 10;
+    if(!merchantId) {
+        return res.status(400).json({message: "merchantId parameter is missing in the request"});
+    }
+    else {
+        db.services.findAll({where: { merchant_id: merchantId }, include: [ { model: db.User, attributes: ['displayname', 'firstname', 'lastname', 'phone_number'] } ], limit : number }).then(function(services) {
+            var serviceList = [];
+            var serviceLen = services.length;
+            logger.info(serviceLen, "length")
+            if(services && serviceLen > 0) {
+                _.forEach(services, function(service, key) {
+                    db.images.findAll({where: {service_id : service.id} }).then(function (images) {
+                        service.dataValues.images = images;
+
+                        db.review_ratings.findAll({where: {service_id : service.id}, limit: 20, include: [ { model: db.User, attributes: ['displayname', 'firstname', 'lastname', 'image_url'] } ] }).then(function (reviews) { 
+                            service.dataValues.reviews = reviews;
+                            serviceList.push(service);
+                            
+                            if((key + 1) == serviceLen) {
+                                return res.status(200).json(serviceList);
+                            }
+                        });
+                    }, function(err) {
+                        logger.error(err, " error while retrieving images");
+                    });
+                });
+            }
+            else {
+                return res.status(200).json([]);
+            }
+        }, function(err) {
+            logger.error(err, " error while searching service by merchant");
+            return res.status(400).json({message : "Unknown Error"})
+        });
+    }
 };
 
 

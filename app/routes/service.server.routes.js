@@ -29,5 +29,9 @@ module.exports = function(app) {
     app.route('/api/service/category/:categoryId')
         .get(service.searchByCategoryId);
 
+    app.route('/api/service/merchant/:merchantId')
+        .get(service.read);
+
     app.param('serviceId', service.serviceByID);
+    app.param('merchantId', service.serviceByMerchantID);
 };

@@ -5,22 +5,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 	function($scope, Authentication, $http, Services) {
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
-    $scope.rate = 7;
-    $scope.max = 10;
-    $scope.isReadonly = false;
-
-    $scope.hoveringOver = function(value) {
-      $scope.overStar = value;
-      $scope.percent = 100 * (value / $scope.max);
-    };
-
-    $scope.ratingStates = [
-      {stateOn: 'glyphicon-ok-sign', stateOff: 'glyphicon-ok-circle'},
-      {stateOn: 'glyphicon-star', stateOff: 'glyphicon-star-empty'},
-      {stateOn: 'glyphicon-heart', stateOff: 'glyphicon-ban-circle'},
-      {stateOn: 'glyphicon-heart'},
-      {stateOff: 'glyphicon-off'}
-    ];
+    
     $scope.categories = [
       "Agriculture & Agro-Allied",
       "Banking & Finance (banks)",
@@ -66,8 +51,29 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
     }
 
     var getServiceByCategory = function(idx) {
+      $scope.categoryArr = [];
       $http.get('/api/service/category/' + idx).success(function(response) {
-        $scope.categoryArr = response;
+        response.forEach(function(service) {
+            var service = Services.get({
+                serviceId: service.id
+            }, function() {
+                var len = service.reviews.length;
+                var total = 0;
+                if(service.reviews.length > 0) {
+                    service.reviews.forEach(function(review) {
+                        total += review.value;
+                    });
+                    service.avg_rating = Math.round(total/len);
+                    // console.log(service);
+                    $scope.categoryArr.push(service); 
+                }
+                else {
+                    service.avg_rating = 0;
+                    $scope.categoryArr.push(service);
+                }
+            });
+
+        });
 
       }).error(function(response) {
         console.log(response);
@@ -81,7 +87,20 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
             var service = Services.get({
                 serviceId: service.id
             }, function() {
-                $scope.topRated.push(service);
+                var len = service.reviews.length;
+                var total = 0;
+                if(service.reviews.length > 0) {
+                    service.reviews.forEach(function(review) {
+                        total += review.value;
+                    });
+                    service.avg_rating = Math.round(total/len);
+                    // console.log(service);
+                    $scope.topRated.push(service); 
+                }
+                else {
+                    service.avg_rating = 0;
+                    $scope.topRated.push(service);
+                }
             });
 
         });

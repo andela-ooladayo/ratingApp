@@ -12,5 +12,9 @@ module.exports = function(app) {
         .put(users.isAuthenticated, reviewRatings.update)
         .delete(users.isAuthenticated, reviewRatings.delete);
 
+    app.route('/api/review-ratings/user/:userId')
+        .get(reviewRatings.read)
+
     app.param('reviewId', reviewRatings.reviewByID);
+    app.param('userId', reviewRatings.reviewByUserID);
 };

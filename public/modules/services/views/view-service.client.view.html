@@ -35,7 +35,7 @@
                                 </p>
                                 <p><span class="grey-text meta-text" ng-bind="categories[service.business_category_id]"></span></p>
                                 <div class="m-t-sm">
-                                    <div star-rating rating-value="service.avg_rating" max="5" readonly="true"></div>
+                                    <div star-rating rating-value="avg_rating" max="5" readonly="true"></div>
                                     <span>{{service.reviews.length}} Review</span><span ng-if="service.reviews.length > 1">s</span>
                                     <p class="meta-text m-t-md" ng-bind="service.business_description"></p>
                                     <p class="meta-text"><a href="" ng-bind="service.business_address"><i class="fa fa-home">: </i></a></p>
@@ -70,8 +70,8 @@
                         <li ng-repeat="review in reviews | orderBy: '-created' | limitTo:10" class="collection-item avatar">
                             <div class="row">
                                 <div class="col s4">
-                                    <a href=""><img src="{{user.image_url}}" class="square"></a>
-                                    <p class="m-b-md"><a href="" class="blue-text darken-4">{{review.user_id}}</a></p>
+                                    <a href=""><img src="{{review.User.image_url}}" class="square"></a>
+                                    <p class="m-b-md"><a href="" class="blue-text darken-4">{{review.User.displayname}}</a></p>
                                     <p class="red-text"><i class="fa fa-star"></i> <span class="grey-text meta-text">6 Reviews</span></p>
                                 </div>
                                 <div class="col s8">

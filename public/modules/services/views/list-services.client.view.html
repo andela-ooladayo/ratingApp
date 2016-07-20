@@ -28,8 +28,8 @@
                         </div>
                         <div class="col s4 sec-content">
                             <div class="text-center">
-                                <h1 class="green-text lighten-2">4.5</h1>
-                                <p class="red-text darken-4"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></p>
+                                <h1 class="green-text lighten-2" ng-bind="service.avg_rating | number:1"></h1>
+                                <div star-rating rating-value="service.avg_rating" max="5" readonly="true" class="small-star"></div>
                                 <p>{{service.reviews.length}} <i class="fa fa-user"></i></p>
                                 <p class="m-t-lg">
                                     <a href="/services/{{service.id}}" class="red-text">View Reviews</a>

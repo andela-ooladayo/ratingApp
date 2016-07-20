@@ -1,8 +1,8 @@
-<div data-ng-controller="ServicesController" data-ng-init="find()">
+<div data-ng-controller="ServicesController" data-ng-init="findMy(user.id)">
     <div class="col-md-12">
-        <h4 class="section-title red-text">All Services<span><a href="" ui-sref="createService" class="pull-right blue-text meta-text">create-new</a></span></h4>
+        <h4 class="section-title red-text">All My Services<span><a href="" ui-sref="createService" class="pull-right blue-text meta-text">create-new</a></span></h4>
                 <ul class="collection">
-                    <li ng-repeat="service in serviceArray" class="collection-item service-avatar">
+                    <li ng-repeat="service in services" class="collection-item service-avatar">
                         <div class="row">
                             <div class="col s8">
                                 <a href=""><img src="{{service.images[0].url ? service.images[0].url : 'http://placehold.it/60x60'}}" class="square-mid"></a>
@@ -17,9 +17,9 @@
                             </div>
                             <div class="col s4 sec-content">
                                 <div class="text-center">
-                                    <h1 class="green-text lighten-2">4.5</h1>
-                                    <p class="red-text darken-4"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></p>
-                                    <p>209 <i class="fa fa-user"></i></p>
+                                    <h1 class="green-text lighten-2" ng-bind="service.avg_rating | number:1"></h1>
+                                    <p class="red-text darken-4"><div star-rating class="mid-star" rating-value="service.avg_rating" max="5" readonly="true"></div></p>
+                                    <p>{{service.reviews.length}} <i class="fa fa-user"></i></p>
                                     <p class="m-t-lg">
                                         <a href="" class="red-text">Read Reviews</a>
                                     </p>

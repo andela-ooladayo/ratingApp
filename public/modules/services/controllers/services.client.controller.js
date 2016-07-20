@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('services').controller('ServicesController', ['$scope', '$stateParams', '$window', '$location', 'User', 'Authentication','Message', 'Storage', 'Services', 'Images', 'Reviews',
-    function($scope, $stateParams, $window, $location, User, Authentication, Message, Storage, Services, Images, Reviews) {
+angular.module('services').controller('ServicesController', ['$scope', '$stateParams', '$window', '$location', '$http', 'User', 'Authentication','Message', 'Storage', 'Services', 'Images', 'Reviews',
+    function($scope, $stateParams, $window, $location, $http, User, Authentication, Message, Storage, Services, Images, Reviews) {
         $scope.user = User.get();
         console.log($scope.user);
         var image_url = '';
@@ -80,7 +80,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                     if (xhr.status === 200) {
                         $scope.createService(image_url);
                         // image_url = url;
-                        alert('finished');
+                        // alert('finished');
                     } else {
                         alert('Could not upload file.');
                     }
@@ -185,22 +185,37 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
         };
 
         $scope.find = function() {
+            $scope.serviceArray = [];
             Services.query(function(response) {
-                $scope.serviceArray = [];
                 var service;
                 response.forEach(function(service) {
                     service = Services.get({
                         serviceId: service.id
                     }, function() {
-                        $scope.serviceArray.push(service);
+                        var len = service.reviews.length;
+                        var total = 0;
+                        if(service.reviews.length > 0) {
+                            service.reviews.forEach(function(review) {
+                                total += review.value;
+                            });
+                            service.avg_rating = Math.round(total/len);
+                            $scope.serviceArray.push(service); 
+                        }
+                        else {
+                            service.avg_rating = 0;
+                            $scope.serviceArray.push(service);
+                        }
                     });
 
+                });
+                $scope.serviceArray.forEach(function(service) {
                 });
 
             });
         };
 
         $scope.findOne = function() {
+            $scope.avg_rating = 0;
             $scope.service = Services.get({
                 serviceId: $stateParams.serviceId
             }, function() {
@@ -208,12 +223,37 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                 var len = $scope.reviews.length;
                 var total = 0;
                 $scope.reviews.forEach(function(review) {
-                    total+= review.value
+                    total += review.value;
                 });
-                $scope.avg_rating = Math.round(total/len);
+                $scope.avg_rating += Math.round(total/len);
                 console.log($scope.avg_rating);
             });
             console.log($scope.service);
+        };
+
+        $scope.findMy = function(index) {
+            $scope.services = [];
+            $http.get('api/service/merchant/' + index).success(function(response) {
+                response.forEach(function(service) {
+                    var len = service.reviews.length;
+                    var total = 0;
+                    if(service.reviews.length > 0) {
+                        service.reviews.forEach(function(review) {
+                            total += review.value;
+                        });
+                        service.avg_rating = Math.round(total/len);
+                        // console.log(service);
+                        $scope.services.push(service); 
+                    }
+                    else {
+                        service.avg_rating = 0;
+                        $scope.services.push(service);
+                    }
+
+                });
+            }).error(function(errorResponse) {
+                console.log(errorResponse);
+            })
         };
 
         $scope.createReview = function() {
