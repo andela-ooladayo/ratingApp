@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('services').controller('ServicesController', ['$scope', '$stateParams', '$window', '$location', '$http', 'User', 'Authentication','Message', 'Storage', 'Services', 'Images', 'Reviews',
-    function($scope, $stateParams, $window, $location, $http, User, Authentication, Message, Storage, Services, Images, Reviews) {
+angular.module('services').controller('ServicesController', ['$scope', '$stateParams', '$window', '$location', '$http', 'User', 'Authentication','Message', 'Storage', 'Services', 'Images', 'Reviews', 'Likes',
+    function($scope, $stateParams, $window, $location, $http, User, Authentication, Message, Storage, Services, Images, Reviews, Likes) {
         $scope.user = User.get();
         console.log($scope.user);
         var image_url = '';
@@ -157,7 +157,6 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
         };
 
         $scope.remove = function(service) {
-            console.log(service);
             if (service) {
                 service.$remove();
 
@@ -288,6 +287,16 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
           }).error(function(response) {
             console.log(response);
           });
+        }
+
+        $scope.like = function(param) {
+            console.log("liked", param);
+            Likes.like(param);
+        }
+
+        $scope.dislike = function(param) {
+            console.log("disliked", param);
+            Likes.dislike(param);
         }
 
         $('.dropdown-button').dropdown({

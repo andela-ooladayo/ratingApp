@@ -6,7 +6,7 @@
                         <div class="row">
                             <div class="col s8">
                                 <a href=""><img src="{{service.images[0].url ? service.images[0].url : 'http://placehold.it/60x60'}}" class="square-mid"></a>
-                                <p class="text-sm_bold m-b-sm" ng-bind="service.business_name"><a href="" class="blue-text darken-4"></a></p>
+                                <p class="text-sm_bold m-b-sm" ng-bind="service.business_name"><a href="/services/{{service.id}}" class="blue-text darken-4"></a></p>
                                 <p><span class="grey-text meta-text" ng-bind="categories[service.business_category_id]"></span></p>
                                 <div class="m-t-sm">
                                     <p class="meta-text" ng-bind="service.business_description"></p>
@@ -21,7 +21,7 @@
                                     <p class="red-text darken-4"><div star-rating class="mid-star" rating-value="service.avg_rating" max="5" readonly="true"></div></p>
                                     <p>{{service.reviews.length}} <i class="fa fa-user"></i></p>
                                     <p class="m-t-lg">
-                                        <a href="" class="red-text">Read Reviews</a>
+                                        <a href="/services/{{service.id}}" class="red-text">Read Reviews</a>
                                     </p>
                                 </div>
                             </div>
