@@ -114,7 +114,7 @@ exports.likeReview = function(req, res) {
         return res.status(400).json(error);
     }
     else {
-        db.like_dislikes.find({where: { review_id: likeReviewBody.review_id, user_id: likeReviewBody.user_id, type_l: 'like' }}).then(function(like) {            
+        db.like_dislikes.find({where: { review_id: likeReviewBody.review_id, user_id: likeReviewBody.user_id, l_type: 'like' }}).then(function(like) {            
             if(like) {
                 return res.status(200).json({message: "You've like this review before"});
             }
@@ -150,7 +150,7 @@ exports.disLikeReview = function(req, res) {
         return res.status(400).json(error);
     }
     else {
-        db.like_dislikes.find({where: { review_id: disLikeReviewBody.review_id, user_id: disLikeReviewBody.user_id, type_l: 'dislike' }}).then(function(dislike) {
+        db.like_dislikes.find({where: { review_id: disLikeReviewBody.review_id, user_id: disLikeReviewBody.user_id, l_type: 'dislike' }}).then(function(dislike) {
 
             if(dislike) {
                 return res.status(200).json({message: "You've dislike this review before"});
