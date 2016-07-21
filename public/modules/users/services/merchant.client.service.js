@@ -1,8 +1,48 @@
 'use strict';
 
 // Users service used for communicating with the users REST endpoint
-angular.module('users').factory('Merchant', ['$resource',
-    function($resource) {
-        return $resource('/api/merchant/waiting_list');
+angular.module('users').factory('Merchant', ['$resource', '$http', 'Message',
+    function($resource, $http, Message) {
+
+        var waiting_list;
+        
+        var api_call = $resource('/api/merchant/waiting_list');
+
+        var getList = function() {
+            return api_call.query(function(response) {
+                console.log(response);
+                return waiting_list = response;
+            })
+        }
+
+
+        var approve = function(params) {
+            console.log(params);
+            $http.post('/api/merchant/approve', params).success(function(response) {
+                console.log(response);
+                // $scope.findMerchantList();
+                getList();
+                Message.success('Request to be a merchant by '+ params.firstname + ' has been sent Successfully.');
+            }).error(function(response) {
+                console.log(response);
+                Message.error('Failed to send',response.message);
+            });
+        };
+
+        var request = function(params) {
+            $http.post('/api/merchant/request', params).success(function(response) {
+                console.log(response);
+                Message.success('Request to be a merchant by '+ params.displayname + ' has been sent Successfully.');
+            }).error(function(response) {
+                console.log(response);
+                Message.error('Failed to send',response.message);
+            });
+        }
+
+        return {
+            getList: getList,
+            approve: approve,
+            request: request
+        }
     }
 ]);

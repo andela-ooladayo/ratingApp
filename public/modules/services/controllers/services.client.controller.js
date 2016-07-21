@@ -208,10 +208,8 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                     });
 
                 });
-                $scope.serviceArray.forEach(function(service) {
-                });
-
             });
+            console.log($scope.serviceArray);
         };
 
         $scope.findOne = function() {

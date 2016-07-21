@@ -75,32 +75,17 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 		};
 
 		$scope.merchantRequest = function() {
-			$http.post('/api/merchant/request', $scope.user).success(function(response) {
-                console.log(response);
-                Message.success('Request to be a merchant by '+ $scope.user.displayname + ' has been sent Successfully.');
-				// And redirect to the index page
-				// $location.path('/');
-			}).error(function(response) {
-                Message.error('Failed to send',response.message);
-			});
+			Merchant.request($scope.user);
+		}
+		$scope.findMerchantList = function() {
+			$scope.waitingList = Merchant.getList();
 		}
 
-		$scope.findMerchantList = function() {
-			Merchant.query(function(response) {
-				$scope.waitingList = angular.fromJson(response);
-			});
-			
-		};
+		console.log(Merchant);
+
 
 		$scope.approveMerchant = function(req) {
-			// console.log("approved");
-			$http.post('/api/merchant/approve', req).success(function(response) {
-				console.log(response);
-
-			}).error(function(response) {
-				console.log(response);
-                Message.error('Failed to send',response.message);
-			});
+			Merchant.approve(req);
 		}
 
 		angular.element('.profile-pic').click(function() {
