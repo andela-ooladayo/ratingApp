@@ -193,6 +193,11 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$sta
                 var len = $scope.reviews.length;
                 var total = 0;
                 $scope.reviews.forEach(function(review) {
+                    $http.get('api/review-ratings/user/' + review.UserId).success(function(response) {
+                        review.totalNum = response.length;
+                    }).error(function(response) {
+                        console.log(response)
+                    });
                     total += review.value;
                 });
                 $scope.avg_rating += Math.round(total/len);
