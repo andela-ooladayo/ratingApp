@@ -73,7 +73,7 @@
                 <div class="col s10 offset-s2">
                 <h4 class="section-title red-text">Top reviews</h4>
                     <ul class="collection m-b-lg" ng-init="getTopReviews()">
-                        <li ng-hide="topReviews.length"class="collection-item">No Result found. <a href="">Sign up</a> or <a href="">login into your account</li>
+                        <li ng-hide="topReviews.length"class="collection-item">No Result found.</li>
                         <li ng-repeat="review in topReviews" class="collection-item avatar">
                             <a href=""><img src="{{review.img ? review.img : 'http://placehold.it/60x60'}}" class="square"></a>
                             <p class="m-b-md"><a href="" class="blue-text darken-4">{{review.firstname}}</a> wrote for <a href="" class="text-sm_bold blue-text darken-4">{{review.business_name}}</a></p>

@@ -73,7 +73,7 @@
                                 <div class="col s4">
                                     <a href=""><img src="{{review.User.image_url}}" class="square"></a>
                                     <p class="m-b-md"><a href="" class="blue-text darken-4">{{review.User.displayname}}</a></p>
-                                    <p class="red-text"><i class="fa fa-star"></i> <span class="grey-text meta-text">{{review.totalNum}} Reviews</span></p>
+                                    <p><i class="fa fa-star red-text"></i> {{review.totalNum}} Review<span ng-if="review.totalNum > 1">s</span></span></p>
                                 </div>
                                 <div class="col s8">
                                     <div star-rating rating-value="review.value" max="5" readonly="true"></div>
