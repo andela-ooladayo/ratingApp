@@ -1,13 +1,13 @@
-<ul id="filter" class="dropdown-content">
+<!-- <ul id="filter" class="dropdown-content">
     <li><a href="" ng-click="">Recent</a></li>
     <li><a href="">Top Rated</a></li>
-</ul>
+</ul> -->
 <section class="row page" data-ng-controller="ServicesController" data-ng-init="find()">
     <div>
         <!-- {{services | json}} -->
         <div class="col m6 offset-m1 s12">
-            <h3 class="section-title red-text">All Services
-                <a href="" data-activates="filter"class="dropdown-button pull-right blue-text meta-text">Filter</a>
+            <h3 class="section-title red-text">All Services<!-- 
+                <a href="" data-activates="filter"class="dropdown-button pull-right blue-text meta-text">Filter</a> -->
             </h3>
             <hr>
             <ul class="collection">
@@ -46,9 +46,10 @@
             <h3 class="section-title red-text">Top reviews</h3>
             <hr>
             <ul class="collection m-b-lg" ng-init="getTopReviews()">
+                <li ng-show="isLoadingReviews" class="collection-item text-center"><span class="fa fa-circle-o-notch fa-spin"></span></li>
                 <li ng-repeat="review in topReviews" class="collection-item avatar">
                     <a href=""><img src="{{review.img ? review.img : 'http://placehold.it/60x60'}}" class="square"></a>
-                    <p class="m-b-md"><a href="" class="blue-text darken-4">{{review.firstname}}</a> wrote for <a href="" class="text-sm_bold blue-text darken-4">{{review.business_name}}</a></p>
+                    <p class="m-b-md"><a href="" class="blue-text darken-4">{{review.firstname}}</a> wrote for <a href="/services/{{review.service_id}}" class="text-sm_bold blue-text darken-4">{{review.business_name}}</a></p>
                     <p class="red-text"><div star-rating rating-value="review.value" max="5" readonly="true" class="small-star"></div><span class="grey-text meta-text">{{review.created | date:'mediumDate'}}</span></p>
                     <div class="review m-t-sm">
                         <!-- <a href=""><img src="http://placehold.it/30x30" class="avatar"></a> -->
@@ -59,7 +60,7 @@
             </ul>
         </div>
     </div>
-    <div class="col s10 offset-s1 alert alert-warning text-center" data-ng-if="!(serviceArray.length > 1)">
+    <div class="col s10 offset-s1 alert alert-warning text-center" data-ng-if="serviceArray.length === 0">
         No Service yet, why don't you <span ng-if="!isAuthenticated"><a href="/signup">sign up</a> </span> <a href="/services/create" ng-if="isAuthenticated && user.roleTitle === 'merchant'">create one</a> <a href="/settings/accounts/profile" ng-if="isAuthenticated && user.roleTitle === 'user'"> send a merchant request</a> ?
     </div>
 </section>

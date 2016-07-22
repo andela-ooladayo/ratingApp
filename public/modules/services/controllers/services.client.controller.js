@@ -278,6 +278,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
 
         $scope.getTopReviews = function() {
           $scope.topReviews = [];
+          $scope.isLoadingReviews = true;
           $http.get('service/top-reviews').success(function(response) {
             response.data.forEach(function(review) {
                 console.log(review);
@@ -289,6 +290,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                 });
 
             });
+            $scope.isLoadingReviews = false;
 
           }).error(function(response) {
             console.log(response);
@@ -304,16 +306,6 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
             console.log("disliked", param);
             Likes.dislike(param);
         }
-
-        $('.dropdown-button').dropdown({
-            belowOrigin: true,
-            alignment: 'left',
-            inDuration: 200,
-            outDuration: 150,
-            constrain_width: true,
-            hover: false,
-            gutter: 1
-        });
 
     }
 ])

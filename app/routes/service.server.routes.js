@@ -7,13 +7,15 @@ module.exports = function(app) {
 
     app.route('/service')
         .get(service.list)
+
+    app.route('/api/service')   
         .post(users.isAuthenticated, users.isAuthorized('merchant'), service.create);
 
     app.route('/service/search')
         .get(service.searchAll);
 
     app.route('/api/service/filter')
-        .get(users.isAuthenticated, users.isAuthorized('user'), service.filterBy);
+        .get(service.filterBy);
 
     app.route('/service/top-rated')
         .get(service.topRated);
