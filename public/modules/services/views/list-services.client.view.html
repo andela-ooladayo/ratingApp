@@ -5,7 +5,7 @@
 <section class="row page" data-ng-controller="ServicesController" data-ng-init="find()">
     <div>
         <!-- {{services | json}} -->
-        <div class="col m6 offset-m1">
+        <div class="col m6 offset-m1 s12">
             <h3 class="section-title red-text">All Services
                 <a href="" data-activates="filter"class="dropdown-button pull-right blue-text meta-text">Filter</a>
             </h3>
@@ -20,7 +20,7 @@
                             <p class="text-sm_bold m-b-sm"><a href="" class="blue-text darken-4" ng-bind="service.business_name"></a></p>
                             <p><span class="grey-text meta-text" ng-bind="categories[service.business_category_id]"></span></p>
                             <div class="m-t-sm">
-                                <p class="meta-text" ng-bind="service.business_description">First Line comes with a stint of sadness but if you can get past through the first few...<a href="" class="blue-text darken-4">View</a>.</p>
+                                <p class="meta-text" ng-bind="service.business_description">.</p>
                                 <p class="meta-text"><a href="" data-ng-bind="service.business_address"><i class="fa fa-home">: </i></a></p>
                                 <p class="meta-text"><a href="" data-ng-bind="service.business_phone_number"><i class="fa fa-phone">: </i>+1234567890</a></p>
                                 <p class="meta-text"><a href="" data-ng-bind="service.business_email"><i class="fa fa-envelope">: </i>email@example.com</a></p>
@@ -59,7 +59,7 @@
             </ul>
         </div>
     </div>
-   <!--  <div class="alert alert-warning text-center" data-ng-if="articles.$resolved && !articles.length">
-        No articles yet, why don't you <a href="/articles/create">create one</a>?
-    </div> -->
+    <div class="col s10 offset-s1 alert alert-warning text-center" data-ng-if="!(serviceArray.length > 1)">
+        No Service yet, why don't you <span ng-if="!isAuthenticated"><a href="/signup">sign up</a> </span> <a href="/services/create" ng-if="isAuthenticated && user.roleTitle === 'merchant'">create one</a> <a href="/settings/accounts/profile" ng-if="isAuthenticated && user.roleTitle === 'user'"> send a merchant request</a> ?
+    </div>
 </section>

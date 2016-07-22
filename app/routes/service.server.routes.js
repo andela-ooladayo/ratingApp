@@ -5,31 +5,34 @@ var users = require('../../app/controllers/users'),
 
 module.exports = function(app) {
 
-    app.route('/api/service')
-        .get(users.isAuthorized('user'), service.list)
+    app.route('/service')
+        .get(service.list)
         .post(users.isAuthenticated, users.isAuthorized('merchant'), service.create);
 
-    app.route('/api/service/search')
-        .get(users.isAuthenticated, users.isAuthorized('user'), service.searchAll);
+    app.route('/service/search')
+        .get(service.searchAll);
 
     app.route('/api/service/filter')
         .get(users.isAuthenticated, users.isAuthorized('user'), service.filterBy);
 
-    app.route('/api/service/top-rated')
+    app.route('/service/top-rated')
         .get(service.topRated);
 
-    app.route('/api/service/top-reviews')
+    app.route('/service/top-reviews')
         .get(service.topReviews);
+
+    app.route('/service/:serviceId')
+        .get(service.read)
 
     app.route('/api/service/:serviceId')
         .get(service.read)
         .put(users.isAuthenticated, users.isAuthorized('merchant'), service.isOwner, service.update)
         .delete(users.isAuthenticated, users.isAuthorized('merchant'), service.isOwner, service.delete);
 
-    app.route('/api/service/category/:categoryId')
+    app.route('/service/category/:categoryId')
         .get(service.searchByCategoryId);
 
-    app.route('/api/service/merchant/:merchantId')
+    app.route('/service/merchant/:merchantId')
         .get(service.read);
 
     app.param('serviceId', service.serviceByID);

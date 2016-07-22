@@ -1,10 +1,11 @@
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$scope', 'Authentication', '$http', 'Services',
-	function($scope, Authentication, $http, Services) {
+angular.module('core').controller('HomeController', ['$scope', 'Authentication', '$http', 'ServiceFac',
+	function($scope, Authentication, $http, ServiceFac) {
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
+    $scope.isAuthenticated = Authentication.isAuthenticated();
     
     $scope.categories = [
       "Agriculture & Agro-Allied",
@@ -52,9 +53,9 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 
     var getServiceByCategory = function(idx) {
       $scope.categoryArr = [];
-      $http.get('/api/service/category/' + idx).success(function(response) {
+      $http.get('/service/category/' + idx).success(function(response) {
         response.forEach(function(service) {
-            var service = Services.get({
+            var service = ServiceFac.get({
                 serviceId: service.id
             }, function() {
                 var len = service.reviews.length;
@@ -82,9 +83,9 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 
     $scope.getTopRated = function() {
       $scope.topRated = [];
-      $http.get('/api/service/top-rated').success(function(response) {
+      $http.get('/service/top-rated').success(function(response) {
         response.data.forEach(function(service) {
-            var service = Services.get({
+            var service = ServiceFac.get({
                 serviceId: service.id
             }, function() {
                 var len = service.reviews.length;
@@ -112,10 +113,10 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 
     $scope.getTopReviews = function() {
       $scope.topReviews = [];
-      $http.get('/api/service/top-reviews').success(function(response) {
+      $http.get('/service/top-reviews').success(function(response) {
         response.data.forEach(function(review) {
             console.log(review);
-            var res = Services.get({
+            var res = ServiceFac.get({
                 serviceId: review.service_id
             }, function() {
                 review.img = res.images[0].url

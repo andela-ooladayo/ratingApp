@@ -139,7 +139,6 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 		                $('.profile-pic').attr('src', url);
 		                $scope.user.image_url = url;
 		                $scope.updateUserProfile(true);
-		                alert('finished');
 		            } else {
 		                alert('Could not upload file.');
 		            }
