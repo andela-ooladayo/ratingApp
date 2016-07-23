@@ -15,6 +15,9 @@ module.exports = function(app) {
     app.route('/api/review-ratings/user/:userId')
         .get(reviewRatings.read);
 
+    app.route('/review-ratings/user/:userId')
+        .get(reviewRatings.read);
+
     app.route('/api/review-ratings/like')
         .post(reviewRatings.likeReview);
 

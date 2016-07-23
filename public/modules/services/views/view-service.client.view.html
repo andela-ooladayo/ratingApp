@@ -21,7 +21,7 @@
     <p class="lead" data-ng-bind="service.business_description"></p>
     <p class="lead" data-ng-bind="service.business_address_city"></p>
 </section> -->
-<section data-ng-controller="ViewServicesController" data-ng-init="findOne()">
+<section data-ng-controller="ViewServicesController" data-ng-init="finder()">
     <section id="business_detail">
         <div class="row green lighten-5" style="border-bottom: 1px solid rgba(0,0,0,0.1);">
             <div class="col m6 s12">
@@ -100,7 +100,7 @@
             <div class="col m3 offset-m1 s12">
                 <h3 class="section-title red-text">People also reviewed</h3>
                 <hr>
-                <ul class="collection m-b-lg" ng-init="getTopReviews()">
+                <ul class="collection m-b-lg" ng-init="findReviews()">
                     <li ng-repeat="review in topReviews" class="collection-item avatar">
                         <a href=""><img src="{{review.img ? review.img : 'http://placehold.it/60x60'}}" class="square"></a>
                         <p class="m-b-md"><a href="" class="blue-text darken-4">{{review.firstname}}</a> wrote for <a href="/services/{{review.service_id}}" class="text-sm_bold blue-text darken-4">{{review.business_name}}</a></p>

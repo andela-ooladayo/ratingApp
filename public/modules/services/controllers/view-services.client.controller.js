@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('services').controller('ViewServicesController', ['$scope', '$stateParams', '$window', '$location', '$http', 'User', 'Authentication','Message', 'Storage', 'Services', 'Images', 'Reviews', 'Likes',
-    function($scope, $stateParams, $window, $location, $http, User, Authentication, Message, Storage, Services, Images, Reviews, Likes) {
+angular.module('services').controller('ViewServicesController', ['$scope', '$stateParams', '$window', '$location', '$http', 'User', 'Authentication','Message', 'Storage', 'Services', 'ServiceFac', 'Images', 'Reviews', 'Likes',
+    function($scope, $stateParams, $window, $location, $http, User, Authentication, Message, Storage, Services, ServiceFac, Images, Reviews, Likes) {
         $scope.user = User.get();
         console.log($scope.user);
         var image_url = '';
@@ -182,10 +182,29 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$sta
             });
         };
 
+        function isEmpty(obj) {
+            for(var prop in obj) {
+                console.log('here');
+                if(obj.hasOwnProperty(prop))
+                    return false;
+            }
+            console.log('her');
+            return true;
+        }
 
-        $scope.findOne = function() {
+        $scope.finder = function() {
+            if(!isEmpty($scope.user)) {
+                $scope.findOne(Services);
+            } else {
+                $scope.findOne(ServiceFac);
+            }
+            console.log($scope.service);
+        };
+
+        $scope.findOne = function(ServiceProvider) {
+            console.log('got here');
             $scope.avg_rating = 0;
-            $scope.service = Services.get({
+            $scope.service = ServiceProvider.get({
                 serviceId: $stateParams.serviceId
             }, function() {
                 console.log($scope.service);
@@ -193,7 +212,7 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$sta
                 var len = $scope.reviews.length;
                 var total = 0;
                 $scope.reviews.forEach(function(review) {
-                    $http.get('api/review-ratings/user/' + review.UserId).success(function(response) {
+                    $http.get('review-ratings/user/' + review.UserId).success(function(response) {
                         review.totalNum = response.length;
                     }).error(function(response) {
                         console.log(response)
@@ -223,23 +242,32 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$sta
             });
         };
 
-        $scope.getTopReviews = function() {
-          $scope.topReviews = [];
-          $http.get('/service/top-reviews').success(function(response) {
-            response.data.forEach(function(review) {
-                console.log(review);
-                var res = Services.get({
-                    serviceId: review.service_id
-                }, function() {
-                    review.img = res.images[0].url
-                    $scope.topReviews.push(review);
+        $scope.getTopReviews = function(ServiceProvider) {
+            $scope.topReviews = [];
+            $http.get('/service/top-reviews').success(function(response) {
+                response.data.forEach(function(review) {
+                    console.log(review);
+                    var res = ServiceProvider.get({
+                        serviceId: review.service_id
+                    }, function() {
+                        review.img = res.images[0].url
+                        $scope.topReviews.push(review);
+                    });
+
                 });
 
+            }).error(function(response) {
+                console.log(response);
             });
+        };
 
-          }).error(function(response) {
-            console.log(response);
-          });
+        $scope.findReviews = function() {
+            if(!isEmpty($scope.user)) {
+                $scope.getTopReviews(Services)
+                
+            } else {
+                $scope.getTopReviews(ServiceFac);
+            }
         }
 
         $scope.getServiceByCategory = function(idx) {
