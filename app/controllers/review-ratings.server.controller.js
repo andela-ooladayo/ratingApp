@@ -10,10 +10,15 @@ var _ = require('lodash'),
 
 
 exports.create = function(req, res) {
+    delete req.body.no_of_likes;
+    delete req.body.no_of_dislikes;
+
     var reviewRating = req.body;
     var queryPar;
 
     reviewRating.UserId = req.user.id;
+    reviewRating.no_of_likes = 0;
+    reviewRating.no_of_dislikes = 0;
 
     var error = checkRequestBody(req.body, ['service_id', 'value', 'review']);
     if(error) {
@@ -119,6 +124,7 @@ exports.likeReview = function(req, res) {
                 return res.status(200).json({message: "You've like this review before"});
             }
             else {
+                delete likeReviewBody.id;
                 addLikeToRecord(likeReviewBody, "like");
                 pg.connect(connectionString, function(err, client, drop) { 
                     var sql = "UPDATE review_ratings SET no_of_likes = no_of_likes + 1 WHERE id=($1);";
@@ -144,6 +150,7 @@ exports.likeReview = function(req, res) {
 
 exports.disLikeReview = function(req, res) {
     var disLikeReviewBody = req.body;
+    disLikeReviewBody.user_id = req.user.id;
 
     var error = checkRequestBody(req.body, ['review_id', 'l_type']);
     if(error) {
@@ -156,10 +163,11 @@ exports.disLikeReview = function(req, res) {
                 return res.status(200).json({message: "You've dislike this review before"});
             }
             else {
+                delete disLikeReviewBody.id;
                 addLikeToRecord(disLikeReviewBody, "dislike");
                 pg.connect(connectionString, function(err, client, drop) { 
                     var sql = "UPDATE review_ratings SET no_of_dislikes = no_of_dislikes + 1 WHERE id=($1);";
-                    client.query(sql, [likeReviewBody.review_id], function () {
+                    client.query(sql, [disLikeReviewBody.review_id], function () {
                         drop();
                         if(err) {
                             logger.error(err);
@@ -180,7 +188,8 @@ exports.disLikeReview = function(req, res) {
 
 
 function addLikeToRecord(data, type) {
-    data.type_l = type;
+    data.l_type = type;
+    
     db.like_dislikes.create(data).then(function(l) {
         logger.info("addLikeToRecord");
     }, function(err) {
