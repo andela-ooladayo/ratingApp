@@ -7,7 +7,7 @@ angular.module('services').factory('Likes', ['$http', 'Message',
         var like = function(params) {
             params.l_type = "like";
             params.review_id = params.id;
-            $http.post('/review-ratings/like', params).success(function(response) {
+            $http.post('api/review-ratings/like', params).success(function(response) {
                 console.log(response);
                 Message.success(response.message);
             }).error(function(response) {
@@ -18,7 +18,7 @@ angular.module('services').factory('Likes', ['$http', 'Message',
         var dislike = function(params) {
             params.l_type = "dislike";
             params.review_id = params.id;
-            $http.post('/review-ratings/dislike', params).success(function(response) {
+            $http.post('api/review-ratings/dislike', params).success(function(response) {
                 console.log(response);
                 Message.success(response.message);
             }).error(function(response) {
