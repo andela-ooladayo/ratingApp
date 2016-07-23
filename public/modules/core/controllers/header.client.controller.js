@@ -33,6 +33,12 @@ angular.module('core').controller('HeaderController', ['$scope','$rootScope','$h
 
         };
 
+        $scope.searchTerm = "raytee";
+        $scope.search = function() {
+            console.log($scope.searchTerm);
+            $location.path('/service/search?q=' + $scope.searchTerm);
+        }
+
         $('.dropdown-button').dropdown({
             belowOrigin: true,
             alignment: 'left',

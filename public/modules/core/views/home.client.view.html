@@ -80,7 +80,7 @@
                             <p class="red-text"><div star-rating rating-value="review.value" max="5" readonly="true" class="small-star"></div><span class="grey-text meta-text">{{review.created | date:'mediumDate'}}</span></p>
                             <div class="review m-t-sm">
                                 <!-- <a href=""><img src="http://placehold.it/30x30" class="avatar"></a> -->
-                                <p class="meta-text">{{review.review}}...<a href="" class="blue-text darken-4">Read more</a>.</p>
+                                <p class="meta-text">{{review.review}}.</p>
                             </div>
                             <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
                         </li>
@@ -92,7 +92,7 @@
                         <li ng-hide="topRated.length"class="collection-item">No Result found </li>
                         <li ng-repeat="service in topRated" class="collection-item avatar">
                             <a href=""><img src="{{service.images[0].url ? service.images[0].url : 'http://placehold.it/60x60'}}" class="square"></a>
-                            <p class="text-sm_bold m-b-md"><a href="" class="blue-text darken-4" ng-bind="service.business_name"></a></p>
+                            <p class="text-sm_bold m-b-md"><a href="/services/{{service.id}}" class="blue-text darken-4" ng-bind="service.business_name"></a></p>
                             <p class="red-text"><div star-rating rating-value="service.avg_rating" max="5" readonly="true" class="small-star"></div> <span>{{service.reviews.length}} Review</span><span ng-if="service.reviews.length > 1">s</span></span></p>
                             <div class="review m-t-sm">
                                 <p class="meta-text">{{service.business_description}}...<a href="/services/{{service.id}}" class="blue-text darken-4">view</a>.</p>
