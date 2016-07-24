@@ -254,6 +254,7 @@ exports.topReviews = function(req, res) {
                     return res.status(500).json({message: "server error"});
                 }
                 else {
+                    drop();
                     return res.status(200).json({data : result.rows})
                 }
 
