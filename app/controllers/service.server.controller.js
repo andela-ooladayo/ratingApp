@@ -246,7 +246,7 @@ exports.topReviews = function(req, res) {
             return res.status(500).json({message: "server error"});
         }
         else {
-            var sql = 'SELECT * FROM (SELECT review_ratings.id, review_ratings.created, review_ratings.value, review_ratings.review, review_ratings.no_of_likes, review_ratings.no_of_dislikes, review_ratings."UserId", review_ratings.service_id, services.business_name, "Users".firstname, "Users".lastname FROM review_ratings LEFT JOIN "Users" ON "Users".id=review_ratings."UserId" LEFT JOIN services ON services.id=review_ratings.service_id ORDER BY no_of_likes DESC) AS review_ratings LIMIT ($1)';
+            var sql = 'SELECT * FROM (SELECT review_ratings.id, review_ratings.created, review_ratings.value, review_ratings.review, review_ratings.no_of_likes, review_ratings.no_of_dislikes, review_ratings."UserId", review_ratings.service_id, services.business_name, "Users".firstname, "Users".lastname FROM review_ratings LEFT JOIN "Users" ON "Users".id=review_ratings."UserId" LEFT JOIN services ON services.id=review_ratings.service_id ORDER BY review_ratings.no_of_likes DESC) AS review_ratings LIMIT ($1)';
             client.query(sql, [number], function(err, result) {
                 if(err) {
                     drop();
