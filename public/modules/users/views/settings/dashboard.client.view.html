@@ -1,4 +1,4 @@
-<div>
+<div data-ng-controller="SettingsController">
     <div class="row">
         <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="panel panel-primary text-center no-boder bg-color-green">
@@ -53,7 +53,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <p><a href="" ng-click="findMerchantList()">Find Merchant List</a></p>
 
-        <div class="panel panel-default" ng-show="waitingList">
+        <div class="panel panel-default" ng-show="waitingList.length">
             <div class="panel-heading">
                 Merchant List
             </div> 

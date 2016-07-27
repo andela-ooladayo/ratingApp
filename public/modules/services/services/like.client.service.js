@@ -9,7 +9,7 @@ angular.module('services').factory('Likes', ['$http', 'Message',
             params.review_id = params.id;
             $http.post('api/review-ratings/like', params).success(function(response) {
                 console.log(response);
-                Message.success(response.message);
+                Message.success('Like', response.message);
             }).error(function(response) {
                 Message.error(response.message);
             });

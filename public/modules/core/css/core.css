@@ -5,7 +5,7 @@
 }
 
 body {
-  font: 14px 'Raleway', Helvetica, Arial, sans-serif;
+  font: 12px 'Raleway', Helvetica, Arial, sans-serif;
   /*color: #4d4d4d;*/
   margin: 0 auto;
   line-height: 1.6em;
@@ -393,3 +393,12 @@ footer.page-footer {
   margin-top: 0;
   background-color: #403637;
 }
+
+
+/*debugger*/
+/*
+* {
+  background: #000 !important;
+  color: #0f0 !important;
+  outline: solid #f00 1px !important;
+}*/

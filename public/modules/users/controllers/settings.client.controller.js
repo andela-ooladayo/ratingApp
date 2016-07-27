@@ -51,7 +51,7 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 					$scope.success = true;
                     Storage.set('auth_token',response);
                     $rootScope.$broadcast('Auth');
-                    Message.success('Update Profile','Successfully updated your profile.');
+                    Message.success('Profile','Successfully updated your profile.');
 				}, function(response) {
                     Message.error('Failed to Update Profile',response.message);
 				});
@@ -68,7 +68,7 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 				// If successful show success message and clear form
 				$scope.success = true;
 				$scope.passwordDetails = null;
-                Message.success('Change Password','Successfully changed  your password.');
+                Message.success('Password','Successfully changed  your password.');
 			}).error(function(response) {
                 Message.error('Failed to change password',response.message);
 			});
@@ -77,11 +77,10 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 		$scope.merchantRequest = function() {
 			Merchant.request($scope.user);
 		}
-		$scope.findMerchantList = function() {
-			$scope.waitingList = Merchant.getList();
-		}
 
-		console.log(Merchant);
+		$scope.waitingList = Merchant.getList();
+
+		console.log($scope.waitingList);
 
 
 		$scope.approveMerchant = function(req) {

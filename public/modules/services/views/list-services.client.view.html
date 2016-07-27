@@ -5,11 +5,15 @@
 <section class="row page" data-ng-controller="ServicesController" data-ng-init="find()">
     <div>
         <!-- {{services | json}} -->
+
         <div class="col m6 offset-m1 s12">
             <h3 class="section-title red-text">All Services<!-- 
                 <a href="" data-activates="filter"class="dropdown-button pull-right blue-text meta-text">Filter</a> -->
             </h3>
             <hr>
+            <div class="col s10 offset-s1 alert alert-warning text-center" data-ng-if="serviceArray.length === 0">
+                No Service yet, why don't you <span ng-if="!isAuthenticated"><a href="/signup">sign up</a> </span> <a href="/services/create" ng-if="isAuthenticated && user.roleTitle === 'merchant'">create one</a> <a href="/settings/accounts/profile" ng-if="isAuthenticated && user.roleTitle === 'user'"> send a merchant request</a> ?
+            </div>
             <ul class="collection">
                 <li ng-repeat="service in serviceArray | orderBy:'-created'"class="collection-item service-avatar">
                     <div class="row">
@@ -59,8 +63,5 @@
                 </li>
             </ul>
         </div>
-    </div>
-    <div class="col s10 offset-s1 alert alert-warning text-center" data-ng-if="serviceArray.length === 0">
-        No Service yet, why don't you <span ng-if="!isAuthenticated"><a href="/signup">sign up</a> </span> <a href="/services/create" ng-if="isAuthenticated && user.roleTitle === 'merchant'">create one</a> <a href="/settings/accounts/profile" ng-if="isAuthenticated && user.roleTitle === 'user'"> send a merchant request</a> ?
     </div>
 </section>

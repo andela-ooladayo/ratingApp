@@ -38,7 +38,7 @@
                 <div class="tabbable tabs-left">
                     <ul class="nav nav-tabs">
                         <li ng-repeat="category in categories | limitTo:11" ng-class="{'active': view_tab == category}">
-                            <a href="" ng-click="changeTab(category)" data-toggle="tab">{{category}}</a>
+                            <a href="" ng-click="changeTab(category)" data-toggle="tab" style="font-size: 12px;">{{category}}</a>
                         </li>
                         <li>
                             <a href="">More Categories</a>
@@ -49,7 +49,7 @@
                             <div class="">
                                 <h4></h4>
                                 <ul class="collection">
-                                    <li class="collection-item red-text darken-4">{{categories[idx]}}</li>
+                                    <li class="collection-item red-text darken-4 flow-text" style="font-size: 12px;">{{categories[idx]}}</li>
                                     <li ng-hide="categoryArr.length"class="collection-item">No Result found</li>
                                     <li ng-repeat="service in categoryArr" class="collection-item avatar">
                                         <a href=""><img src="{{service.images[0].url ? service.images[0].url : 'http://placehold.it/60x60'}}" class="square"></a>

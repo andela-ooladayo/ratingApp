@@ -10,7 +10,6 @@ angular.module('users').factory('Merchant', ['$resource', '$http', 'Message',
 
         var getList = function() {
             return api_call.query(function(response) {
-                console.log(response);
                 return waiting_list = response;
             })
         }
@@ -22,7 +21,7 @@ angular.module('users').factory('Merchant', ['$resource', '$http', 'Message',
                 console.log(response);
                 // $scope.findMerchantList();
                 getList();
-                Message.success('Request to be a merchant by '+ params.firstname + ' has been sent Successfully.');
+                Message.success('Merchant', 'Request to be a merchant by '+ params.firstname + ' has been approved Successfully.');
             }).error(function(response) {
                 console.log(response);
                 Message.error('Failed to send',response.message);
@@ -32,7 +31,7 @@ angular.module('users').factory('Merchant', ['$resource', '$http', 'Message',
         var request = function(params) {
             $http.post('/api/merchant/request', params).success(function(response) {
                 console.log(response);
-                Message.success('Request to be a merchant by '+ params.displayname + ' has been sent Successfully.');
+                Message.success('Merchant', 'Request to be a merchant by '+ params.displayname + ' has been sent Successfully.');
             }).error(function(response) {
                 console.log(response);
                 Message.error('Failed to send',response.message);
@@ -40,6 +39,7 @@ angular.module('users').factory('Merchant', ['$resource', '$http', 'Message',
         }
 
         return {
+            waiting_list: waiting_list,
             getList: getList,
             approve: approve,
             request: request

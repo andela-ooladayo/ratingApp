@@ -6,6 +6,12 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$sta
         console.log($scope.user);
         var image_url = '';
 
+        $scope.showReview = false;
+
+        $scope.toggleReview = function() {
+            $scope.showReview = !$scope.showReview;
+        }
+
         $scope.categories = [
           "Agriculture & Agro-Allied",
           "Banking & Finance (banks)",
@@ -299,6 +305,7 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$sta
             console.log(response);
           });
         }
+
 
         $scope.like = function(param) {
             console.log("liked", param);

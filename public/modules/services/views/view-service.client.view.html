@@ -50,22 +50,64 @@
             <div class="col m6 s12">
                 <!-- <a href="" class="btn green darken-2 white-text m-t-lg"><i class="fa fa-star"></i> Write Review</a> -->
                 <div class="list-group list-group-horizontal m-t-lg">
-                    <a href="#" ui-sref=".createReview" class="list-group-item"><i class="fa fa-star"></i> Write a Review</a>
+                    <a href="#" class="list-group-item" ng-click="toggleReview()"><i class="fa fa-star"></i> Write a Review</a>
                     <a href="/services/{{service.id}}/edit" data-ng-show="user.id == service.merchant_id" class="list-group-item"><i class="fa fa-edit"></i> Edit</a>
                     <a href="#" data-ng-show="user.id == service.merchant_id" class="list-group-item" data-ng-click="remove();"><i class="fa fa-remove"></i> Delete</a>
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
-            <div ui-view></div>
+        <div class="row m-t-lg" ng-show="showReview">
+            <div class="col m6 offset-m1 s12">
+                <h4 class="section-title red-text">Write your review<span class="meta-text pull-right blue-text">Read our review guidelines</span></h4>
+                <hr>
+                <div class="col m12">
+                    <div class="row">
+                        <div class="col s12 m-t-lg">
+                            <div star-rating rating-value="rating" max="5" on-rating-selected="rateFunction(rating)"></div>
+                            <span ng-hide="rating > 0" class="">Select a rating</span>
+                            <span ng-show="rating > 0"class="">{{rating}} Star</span>
+                            <div class="review m-t-lg">
+                                <form name="reviewForm" class="form-horizontal" data-ng-submit="createReview()" novalidate>
+                                    <div class="form-group" ng-class="{ 'has-error': reviewForm.title.$dirty && reviewForm.title.$invalid }">
+                                        <div class="controls">
+                                            <textarea name="review" data-ng-model="review" id="review" class="form-control" cols="30" rows="10" placeholder="Your review helps other learn about great local businesses"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" class="btn btn-default" value="Post Review">
+                                        <a href="" style="margin-left: 20px;" ng-click="reset()">Cancel</a>
+                                        <p class="meta-text m-t-sm grey-text lighten-3">* You can always edit or remove reviews later.</p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col m3 offset-m1 s12" ng-init="getServiceByCategory(service.business_category_id)">
+                <h4 class="section-title red-text">Reviews for Similar Businesses</h4>
+                <hr>
+                <ul class="collection m-b-lg">
+                    <li ng-repeat="service in categoryArr" class="collection-item avatar">
+                        <a href=""><img src="{{service.images[0].url ? service.images[0].url : 'http://placehold.it/60x60'}}" class="square"></a>
+                        <p class="text-sm_bold m-b-md"><a href="/services/{{service.id}}" class="blue-text darken-4" ng-bind="service.business_name"></a></p>
+                        <p class="red-text"> <div star-rating rating-value="service.avg_rating" max="5" readonly="true" class="small-star"></div> <span>{{service.reviews.length}} Review</span><span ng-if="service.reviews.length > 1">s</span></p>
+                        <div class="review m-t-sm" ng-show="service.reviews.length">
+                            <a href=""><img src="{{service.reviews[0].User.image_url}}" class="img img-responsive avatar"></a>
+                            <p class="meta-text" ng-bind="service.reviews[0].review"></p>
+                        </div>
+                        <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="row">
-            <div class="col m6 offset-m1 s12">
+            <div class="col m6 s12">
                 <div ng-hide="user.id === service.merchant_id || reviews.length">
                     <h4>No review yet. Be the first to <a href="" ui-sref=".createReview">write a review.</a></h4>
                 </div>
                 <div class="col m12">
-                <h3 class="section-title red-text">Recommended Reviews</h3>
+                <h3 class="section-title red-text flow-text">Recommended Reviews</h3>
                     <hr>
                     <ul class="collection m-b-lg">
                         <li ng-repeat="review in reviews | orderBy: '-created' | limitTo:10" class="collection-item avatar">
@@ -86,8 +128,8 @@
                                         <img src="http://placehold.it/300x300" class="img img-responsive">
                                     </p> -->
                                     <p class="meta-text m-t-md">What do you think of this review?
-                                        <a href="" ng-click="like(review)"><span><i class="fa fa-thumbs-o-up"></i>Like</span></a> 
-                                        <a href="" ng-click="dislike(review)"><span><i class="fa fa-thumbs-o-down"></i>Dislike</span></a>
+                                        <p class="m-t-md"><a href="" ng-click="like(review)"><span><i class="fa fa-thumbs-o-up"></i>Like</span></a> 
+                                        <a href="" ng-click="dislike(review)"><span><i class="fa fa-thumbs-o-down"></i>Dislike</span></a></p>
                                     </p>
                                 </div>
                             </div>
@@ -97,8 +139,8 @@
                     </ul>
                 </div>
             </div>
-            <div class="col m3 offset-m1 s12">
-                <h3 class="section-title red-text">People also reviewed</h3>
+            <div class="col m4 offset-m1 s12">
+                <h3 class="section-title red-text flow-text">People also reviewed</h3>
                 <hr>
                 <ul class="collection m-b-lg" ng-init="findReviews()">
                     <li ng-repeat="review in topReviews" class="collection-item avatar">
