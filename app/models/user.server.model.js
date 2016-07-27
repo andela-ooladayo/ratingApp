@@ -4,7 +4,7 @@ var crypto = require('crypto');
 
 var validateLocalStrategyProperty = function(property) {
     if( ((this.provider !== 'local' && !this.updated) || property.length!==0) === false ){
-        throw new Error('Local strategy failed');
+        throw new Error('One field is missing');
     }
 };
 
@@ -44,10 +44,9 @@ module.exports = function(sequelize, DataTypes) {
             },
             email: {
                 type: DataTypes.STRING,
-                //unique: true,
-                defaultValue: ''
-                //validate: { isEmail: { msg: 'Please fill a valid email address}' },
-                    //isValid: validateLocalStrategyProperty}
+                unique: true,
+                validate: { isEmail: { msg: 'Please fill a valid email address}' },
+                    isValid: validateLocalStrategyProperty}
             },
             password: {
                 type: DataTypes.STRING,

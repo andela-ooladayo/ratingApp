@@ -39,7 +39,7 @@ exports.signup = function(req, res) {
 
             req.login(user.dataValues, function(err) {
                 if (err) {
-                    res.status(400).send(err);
+                    res.status(400).json(err);
                 } else {
                     logger.debug('New User (local) : { id: ' + user.id + ' username: ' + user.firstname + ' }');
 
@@ -52,6 +52,11 @@ exports.signup = function(req, res) {
 
                     res.jsonp({user: user, token: tokenService.issueToken(user)});
                 }
+            });
+        }, function(err) {
+            logger.error(err);
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
             });
         });
 };
