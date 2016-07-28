@@ -40,6 +40,13 @@ angular.module('services').config(['$stateProvider',
                 data : {
                     access : access.user
                 }
+        }).
+        state('search', {
+            url: '/search?:q',
+            templateUrl: 'modules/services/views/search.client.view.html',
+                data : {
+                    access : access.anon
+                }
         });
     }
 ]);
