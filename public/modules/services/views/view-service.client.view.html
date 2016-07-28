@@ -84,7 +84,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col m3 offset-m1 s12" ng-init="getServiceByCategory(service.business_category_id)">
+            <!-- <div class="col m3 offset-m1 s12" ng-init="getServiceByCategory(service.business_category_id)">
                 <h4 class="section-title red-text">Reviews for Similar Businesses</h4>
                 <hr>
                 <ul class="collection m-b-lg">
@@ -96,10 +96,10 @@
                             <a href=""><img src="{{service.reviews[0].User.image_url}}" class="img img-responsive avatar"></a>
                             <p class="meta-text" ng-bind="service.reviews[0].review"></p>
                         </div>
-                        <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->
+                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
                     </li>
                 </ul>
-            </div>
+            </div> -->
         </div>
         <div class="row">
             <div class="col m6 s12">
@@ -115,7 +115,7 @@
                                 <div class="col s4">
                                     <a href=""><img src="{{review.User.image_url}}" class="square"></a>
                                     <p class="m-b-md"><a href="" class="blue-text darken-4">{{review.User.displayname}}</a></p>
-                                    <p><i class="fa fa-star red-text"></i> {{review.totalNum}} Review<span ng-if="review.totalNum > 1">s</span></span></p>
+                                    <p><i class="fa fa-star red-text"></i> {{review.totalRev}} Review<span ng-if="review.totalRev > 1">s</span></span></p>
                                 </div>
                                 <div class="col s8">
                                     <div star-rating rating-value="review.value" max="5" readonly="true"></div>
@@ -128,8 +128,8 @@
                                         <img src="http://placehold.it/300x300" class="img img-responsive">
                                     </p> -->
                                     <p class="meta-text m-t-md">What do you think of this review?
-                                        <p class="m-t-md"><a href="" ng-click="like(review)"><span><i class="fa fa-thumbs-o-up"></i>Like</span></a> 
-                                        <a href="" ng-click="dislike(review)"><span><i class="fa fa-thumbs-o-down"></i>Dislike</span></a></p>
+                                        <p class="m-t-md"><a href="" ng-click="like(review)"><span><i class="fa fa-thumbs-o-up"></i> {{review.no_of_likes}}</span><span> Like</span><span ng-if="review.no_of_likes > 1">s</span></a> 
+                                        <a href="" ng-click="dislike(review)"><span><i class="fa fa-thumbs-o-down"></i> {{review.no_of_dislikes}}</span><span> Dislike</span><span ng-if="review.no_of_dislikes > 1">s</span></a></p>
                                     </p>
                                 </div>
                             </div>

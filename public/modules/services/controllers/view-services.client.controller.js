@@ -219,7 +219,7 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$sta
                 var total = 0;
                 $scope.reviews.forEach(function(review) {
                     $http.get('review-ratings/user/' + review.UserId).success(function(response) {
-                        review.totalNum = response.length;
+                        review.totalRev = response.length;
                     }).error(function(response) {
                         console.log(response)
                     });
@@ -241,6 +241,7 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$sta
             console.log(review);
             review.$save(function(response) {
                 Message.success('Review','successfully added review');
+                $scope.showReview = false;
                 $location.path('services/' + $scope.service.id);
                 $window.location.reload();
             }, function(errorResponse) {
@@ -308,7 +309,6 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$sta
 
 
         $scope.like = function(param) {
-            console.log("liked", param);
             Likes.like(param);
         }
 

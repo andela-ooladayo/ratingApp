@@ -74,19 +74,6 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 			});
 		};
 
-		$scope.merchantRequest = function() {
-			Merchant.request($scope.user);
-		}
-
-		$scope.waitingList = Merchant.getList();
-
-		console.log($scope.waitingList);
-
-
-		$scope.approveMerchant = function(req) {
-			Merchant.approve(req);
-		}
-
 		angular.element('.profile-pic').click(function() {
 			angular.element('#my_file').click();
 		});
