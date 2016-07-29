@@ -1,10 +1,7 @@
 'use strict';
 
-angular.module('users').controller('AuthenticationController', ['$scope','$rootScope', '$http', '$location', 'Authentication','Storage','Message', 'StatesServ',
-	function($scope,$rootScope, $http, $location, Authentication,Storage,Message, StatesServ) {
-
-        var states = StatesServ.getStates();
-        console.log(states);
+angular.module('users').controller('AuthenticationController', ['$scope','$rootScope', '$http', '$location', 'Authentication','Storage','Message',
+	function($scope,$rootScope, $http, $location, Authentication,Storage,Message) {
 
 		// If user is signed in then redirect back home
 		// if (Authentication.isAuthenticated()) $location.path('/');

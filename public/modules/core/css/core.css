@@ -49,6 +49,11 @@ hr {
     border-color:#78FA89;
 }
 
+.has-error .form-control {
+  box-shadow: 0 1px 0 0 #f44336;
+  transition: all 0.3s;
+}
+
 /*.navbar-inverse {
   background-image: -webkit-linear-gradient(bottom, #9AC765 0%, #CDDC39 100%);
   background-image: -o-linear-gradient(bottom, #9AC765 0%, #CDDC39 100%);
