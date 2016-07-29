@@ -11,14 +11,14 @@ module.exports = function(app) {
     app.route('/api/service')   
         .post(users.isAuthenticated, users.isAuthorized('merchant'), service.create);
 
-    app.route('/service/search')
+    app.route('/services/search')
         .get(service.searchAll);
 
-    app.route('/service/filter')
+    app.route('/services/filter')
         .get(service.filterBy);
 
-    app.route('/api/service/filter')
-        .get(service.filterBy);
+    // app.route('/api/service/filter')
+    //     .get(service.filterBy);
 
     app.route('/service/top-rated')
         .get(service.topRated);
