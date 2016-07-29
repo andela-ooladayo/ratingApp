@@ -26,7 +26,7 @@ angular.module('users').controller('AuthenticationController', ['$scope','$rootS
                 
                 Message.success('Login','Welcome '+ response.user.displayname);
 				
-				$location.path(states.previousState);
+				$location.path('/');
 			}).error(function(response) {
                 Message.error('Failed to login',response.message);
 			});
