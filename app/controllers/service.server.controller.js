@@ -111,7 +111,32 @@ exports.searchAll = function(req, res) {
                 return res.status(400).json({message: "Unknown Error"});
             }
             else {
-                return res.status(200).json(result.hits.hits);
+                var services = result.hits.hits
+                var serviceList = [];
+                var serviceLen = services.length;
+                logger.info(serviceLen, "length")
+                if(services && serviceLen > 0) {
+                    _.forEach(services, function(service, key) {
+                        db.images.findAll({where: {service_id : service._source.id} }).then(function (images) {
+                            service._source.images = images;
+
+                            db.review_ratings.findAll({where: {service_id : service._source.id}, limit: 20, include: [ { model: db.User, attributes: ['displayname', 'firstname', 'lastname', 'image_url'] } ] }).then(function (reviews) { 
+                                service._source.reviews = reviews;
+                                serviceList.push(service);
+                                
+                                if((key + 1) == serviceLen) {
+                                    return res.status(200).json(serviceList);
+                                }
+                            });
+                        }, function(err) {
+                            logger.error(err, " error while retrieving images");
+                        });
+                    });
+                }
+                else {
+                    return res.status(200).json([]);
+                }
+
             }
         });
     }
@@ -175,7 +200,31 @@ exports.filterBy = function(req, res) {
                 return res.status(400).json({message: "Unknown Error"});
             }
             else {
-                return res.status(200).json(result.hits.hits);
+                var services = result.hits.hits
+                var serviceList = [];
+                var serviceLen = services.length;
+                logger.info(serviceLen, "length")
+                if(services && serviceLen > 0) {
+                    _.forEach(services, function(service, key) {
+                        db.images.findAll({where: {service_id : service._source.id} }).then(function (images) {
+                            service._source.images = images;
+
+                            db.review_ratings.findAll({where: {service_id : service._source.id}, limit: 20, include: [ { model: db.User, attributes: ['displayname', 'firstname', 'lastname', 'image_url'] } ] }).then(function (reviews) { 
+                                service._source.reviews = reviews;
+                                serviceList.push(service);
+                                
+                                if((key + 1) == serviceLen) {
+                                    return res.status(200).json(serviceList);
+                                }
+                            });
+                        }, function(err) {
+                            logger.error(err, " error while retrieving images");
+                        });
+                    });
+                }
+                else {
+                    return res.status(200).json([]);
+                }
             }
         });
     }
