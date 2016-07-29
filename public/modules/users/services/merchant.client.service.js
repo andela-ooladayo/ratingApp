@@ -8,11 +8,10 @@ angular.module('users').factory('Merchant', ['$resource', '$http', 'Message',
         
         var api_call = $resource('/api/merchant/waiting_list');
 
-        var getList = function() {
-            return api_call.query(function(response) {
-                return waiting_list = response;
-            })
-        }
+        var getList = api_call.query(function(response) {
+            console.log("api response is ", response)
+            return waiting_list = response;
+        });  
 
 
         var approve = function(params) {
@@ -20,7 +19,6 @@ angular.module('users').factory('Merchant', ['$resource', '$http', 'Message',
             $http.post('/api/merchant/approve', params).success(function(response) {
                 console.log(response);
                 // $scope.findMerchantList();
-                getList();
                 Message.success('Merchant', 'Request to be a merchant by '+ params.firstname + ' has been approved Successfully.');
             }).error(function(response) {
                 console.log(response);

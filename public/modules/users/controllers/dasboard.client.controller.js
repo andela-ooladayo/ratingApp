@@ -10,12 +10,13 @@ angular.module('users').controller('DashboardController', ['$scope', '$rootScope
 
 
         $http.get('api/stats').success(function(response) {
+            console.log(response);
             $scope.stats = response;
         }).error(function(response) {
             console.log(response);
         });
 
-        $scope.waitingList = Merchant.getList();
+        $scope.waitingList = Merchant.waitingList;
 
         console.log($scope.waitingList);
 

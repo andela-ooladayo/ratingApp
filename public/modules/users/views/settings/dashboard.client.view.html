@@ -52,8 +52,8 @@
     <!-- <h1>Hi, I'm the dashboard</h1> -->
     <div class="col-md-12 col-sm-12 col-xs-12">
         <!-- <p><a href="" ng-click="findMerchantList()">Find Merchant List</a></p -->
-
-        <div class="panel panel-default" ng-show="waitingList.length">
+        {{waitingList.length}}
+        <div class="panel panel-default" ng-show="waitingList.length > 0">
             <div class="panel-heading">
                 Merchant List
             </div> 

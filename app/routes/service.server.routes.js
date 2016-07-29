@@ -14,6 +14,9 @@ module.exports = function(app) {
     app.route('/service/search')
         .get(service.searchAll);
 
+    app.route('/service/filter')
+        .get(service.filterBy);
+
     app.route('/api/service/filter')
         .get(service.filterBy);
 
