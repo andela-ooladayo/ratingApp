@@ -1,9 +1,11 @@
 'use strict';
 
-angular.module('services').controller('ViewServicesController', ['$scope', '$stateParams', '$window', '$location', '$http', 'User', 'Authentication','Message', 'Storage', 'Services', 'ServiceFac', 'Images', 'Reviews', 'Likes',
-    function($scope, $stateParams, $window, $location, $http, User, Authentication, Message, Storage, Services, ServiceFac, Images, Reviews, Likes) {
+angular.module('services').controller('ViewServicesController', ['$scope', '$rootScope', '$stateParams', '$window', '$location', '$http', 'User', 'Authentication','Message', 'Storage', 'Services', 'ServiceFac', 'Images', 'Reviews', 'Likes',
+    function($scope, $rootScope, $stateParams, $window, $location, $http, User, Authentication, Message, Storage, Services, ServiceFac, Images, Reviews, Likes) {
         $scope.user = User.get();
         console.log($scope.user);
+        $scope.authentication = Authentication;
+        $scope.isAuthenticated = Authentication.isAuthenticated();
         var image_url = '';
 
         $scope.showReview = false;
@@ -12,6 +14,7 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$sta
             $scope.showReview = !$scope.showReview;
         }
 
+        
         $scope.categories = [
           "Agriculture & Agro-Allied",
           "Banking & Finance (banks)",

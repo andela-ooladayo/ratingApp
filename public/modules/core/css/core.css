@@ -5,7 +5,7 @@
 }
 
 body {
-  font: 12px 'Raleway', Helvetica, Arial, sans-serif;
+  font: 12px 'Lato', Helvetica, Arial, sans-serif;
   /*color: #4d4d4d;*/
   margin: 0 auto;
   line-height: 1.6em;
@@ -311,6 +311,14 @@ nav ul a:hover, .nav-wrapper a {
 .collection .collection-item.service-avatar {
   padding-top: 15px;
   padding-left: 150px; 
+}
+
+.no-border {
+  border: none;
+}
+
+#topRated > .collection .collection-item {
+  background-color: none !important;
 }
 
 

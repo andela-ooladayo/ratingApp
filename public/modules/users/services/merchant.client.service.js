@@ -29,6 +29,7 @@ angular.module('users').factory('Merchant', ['$resource', '$http', 'Message',
         };
 
         var request = function(params) {
+            console.log(params);
             $http.post('/api/merchant/request', params).success(function(response) {
                 console.log(response);
                 Message.success('Merchant', 'Request to be a merchant by '+ params.displayname + ' has been sent Successfully.');

@@ -13,16 +13,28 @@
 		<div class="col s8 offset-s2">
 			<form name="userForm" class="signin" novalidate autocomplete="off">
 				<fieldset>
-					<div class="form-group">
-						<!-- <label for="firstname">First Name</label> -->
-						<input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstname" placeholder="First Name">
+					<div class="form-group" ng-class="{ 'has-error': userForm.firstName.$touched && userForm.firstName.$invalid }">
+						<div class="help-block no-margin" ng-messages="userForm.firstName.$error" ng-minlength="3" ng-show="userForm.firstName.$touched">
+                            <p ng-message="required">Firstname can't be blank</p>
+                            <p ng-message="maxlength">Firstname can't be less than 3 letters</p>
+                        </div>
+						<!-- <label for="firstName" data-error="wrong" data-success="right">First Name</label> -->
+						<input type="text" required id="firstName" name="firstName" class="form-control validate" data-ng-model="credentials.firstname" placeholder="First Name">
 					</div>
-					<div class="form-group">
+					<div class="form-group" ng-class="{ 'has-error': userForm.lastName.$touched && userForm.lastName.$invalid }">
+						<div class="help-block no-margin" ng-messages="userForm.lastName.$error" ng-minlength="3" ng-show="userForm.lastName.$touched">
+                            <p ng-message="required">Lastname can't be blank</p>
+                            <p ng-message="maxlength">Lastname can't be less than 3 letters</p>
+                        </div>
 						<!-- <label for="lastname">Last Name</label> -->
 						<input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastname" placeholder="Last Name">
 					</div>
 					<div class="form-group">
 						<!-- <label for="email">Email</label> -->
+						<div class="help-block no-margin" ng-messages="userForm.phone.$error" ng-minlength="3" ng-show="userForm.phone.$touched">
+                            <p ng-message="required">Firstname can't be blank</p>
+                            <p ng-message="maxlength">Firstname can't be less than 3 letters</p>
+                        </div>
 						<input type="tel" id="phone" name="phone" class="form-control" data-ng-model="credentials.phone" placeholder="Phone">
 					</div>
 					<div class="form-group">
@@ -36,7 +48,7 @@
 					</div>
 					<div class="form-group">
 						<p class="policy">By signing up, you agree to Raytee’s <a href="">Terms of Service</a> and <a href="">Privacy Policy</a>.</p>
-						<button type="submit" ng-click="signup()" class="btn btn-large btn-lng green darken-2">Sign up</button>
+						<button type="submit" ng-click="signup()" ng-disabled="userForm.$invalid" class="btn btn-large btn-lng green darken-2">Sign up</button>
 						<p class="pull-right m-t-sm alt-login">Already on Raytee? <a href="/signin">Log in</a></p>
 					</div>
 				</fieldset>

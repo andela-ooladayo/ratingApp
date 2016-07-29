@@ -74,7 +74,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="submit" class="btn btn-default" value="Post Review">
+                                        <a ui-sref="signin" ng-if="!isAuthenticated" class="btn btn-default">Login to write a review</a>
+                                        <input type="submit" ng-if="isAuthenticated" class="btn btn-default" value="Post Review">
                                         <a href="" style="margin-left: 20px;" ng-click="reset()">Cancel</a>
                                         <p class="meta-text m-t-sm grey-text lighten-3">* You can always edit or remove reviews later.</p>
                                     </div>

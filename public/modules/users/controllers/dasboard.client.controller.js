@@ -15,10 +15,6 @@ angular.module('users').controller('DashboardController', ['$scope', '$rootScope
             console.log(response);
         });
 
-        $scope.merchantRequest = function() {
-            Merchant.request($scope.user);
-        }
-
         $scope.waitingList = Merchant.getList();
 
         console.log($scope.waitingList);

@@ -88,6 +88,10 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 
 		});
 
+		$scope.merchantRequest = function() {
+            Merchant.request($scope.user);
+        }
+
 		function getSignedRequest(file) {
 			var xhr;
 		    if (window.ActiveXObject) {

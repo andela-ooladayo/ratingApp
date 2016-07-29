@@ -15,9 +15,10 @@
     "angular-socket-io": "~0.6.0",
     "angularjs-toaster": "~0.4.8",
     "angular-local-storage": "~0.1.0",
-    "elasticsearch": "^11.0.1"
+    "elasticsearch": "^11.0.1",
+    "angular-messages": "1.5.8"
   },
   "resolutions": {
-    "angular": "^1.2.6"
+    "angular": ">=1"
   }
 }

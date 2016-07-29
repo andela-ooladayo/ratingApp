@@ -1,10 +1,13 @@
 'use strict';
 
-angular.module('users').controller('AuthenticationController', ['$scope','$rootScope', '$http', '$location', 'Authentication','Storage','Message',
-	function($scope,$rootScope, $http, $location, Authentication,Storage,Message) {
+angular.module('users').controller('AuthenticationController', ['$scope','$rootScope', '$http', '$location', 'Authentication','Storage','Message', 'StatesServ',
+	function($scope,$rootScope, $http, $location, Authentication,Storage,Message, StatesServ) {
+
+        var states = StatesServ.getStates();
+        console.log(states);
 
 		// If user is signed in then redirect back home
-		if (Authentication.isAuthenticated()) $location.path('/');
+		// if (Authentication.isAuthenticated()) $location.path('/');
 
 		$scope.signup = function() {
 			$http.post('/auth/signup', $scope.credentials).success(function(response) {
@@ -26,7 +29,7 @@ angular.module('users').controller('AuthenticationController', ['$scope','$rootS
                 
                 Message.success('Login','Welcome '+ response.user.displayname);
 				
-				$location.path('/');
+				$location.path(states.previousState);
 			}).error(function(response) {
                 Message.error('Failed to login',response.message);
 			});
