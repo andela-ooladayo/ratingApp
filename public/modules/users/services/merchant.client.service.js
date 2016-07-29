@@ -4,13 +4,13 @@
 angular.module('users').factory('Merchant', ['$resource', '$http', 'Message',
     function($resource, $http, Message) {
 
-        var waiting_list;
+        // var waiting_list;
         
         var api_call = $resource('/api/merchant/waiting_list');
 
         var getList = api_call.query(function(response) {
             console.log("api response is ", response)
-            return waiting_list = response;
+            return response;
         });  
 
 

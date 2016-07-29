@@ -131,6 +131,6 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
     }
 
 
-    // $("#top").backstretch("http://dl.dropbox.com/u/515046/www/garfield-interior.jpg");
+    $("#top").backstretch("/modules/core/img/honest_reviews.jpg");
 	}
 ]);

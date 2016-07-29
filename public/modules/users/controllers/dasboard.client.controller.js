@@ -16,7 +16,7 @@ angular.module('users').controller('DashboardController', ['$scope', '$rootScope
             console.log(response);
         });
 
-        $scope.waitingList = Merchant.waitingList;
+        $scope.waitingList = Merchant.getList;
 
         console.log($scope.waitingList);
 

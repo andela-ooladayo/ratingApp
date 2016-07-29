@@ -82,7 +82,7 @@
         <div class="row">
             <div class="col m6 s12">
                 <div ng-hide="user.id === service.merchant_id || reviews.length">
-                    <h4>No review yet. Be the first to <a href="" ui-sref=".createReview">write a review.</a></h4>
+                    <h4>No review yet. Be the first to <a href="" ng-click="toggleReview()">write a review.</a></h4>
                 </div>
                 <div class="col m12">
                 <h3 class="section-title red-text flow-text">Recommended Reviews</h3>
@@ -105,8 +105,8 @@
                                     <!-- <p class="m-t-md">
                                         <img src="http://placehold.it/300x300" class="img img-responsive">
                                     </p> -->
-                                    <p class="meta-text m-t-md">What do you think of this review?
-                                        <p class="m-t-md"><a href="" ng-click="like(review)"><span><i class="fa fa-thumbs-o-up"></i> {{review.no_of_likes}}</span><span> Like</span><span ng-if="review.no_of_likes > 1">s</span></a> 
+                                    <p class="meta-text m-t-md">
+                                        <p class="m-t-md">Helpful? <a href="" class="btn btn-upvote" ng-click="like(review)"><span><i class="fa fa-thumbs-o-up"></i> {{review.no_of_likes}}</span><span> Like</span><span ng-if="review.no_of_likes > 1">s</span></a> 
                                         <a href="" ng-click="dislike(review)"><span><i class="fa fa-thumbs-o-down"></i> {{review.no_of_dislikes}}</span><span> Dislike</span><span ng-if="review.no_of_dislikes > 1">s</span></a></p>
                                     </p>
                                 </div>
