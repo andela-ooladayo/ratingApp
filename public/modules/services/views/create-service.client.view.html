@@ -6,19 +6,27 @@
                 <span></span>
             </div>
         </div>
-        <form name="serviceForm" class="form-horizontal" data-ng-submit="create()" novalidate>
+        <form name="serviceForm" class="" data-ng-submit="create()" novalidate>
             <fieldset>
-                <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
-                    <div class="controls">
-                        <input name="business_name" type="text" data-ng-model="business_name" id="business_name" class="form-control" placeholder="Business Name" required>
+                <div class="form-group" ng-class="{ 'has-error': serviceForm.business_name.$dirty && serviceForm.business_name.$invalid }">
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_name.$error" ng-minlength="3" ng-show="serviceForm.business_name.$touched">
+                        <p ng-message="required">Business name can't be blank</p>
+                        <p ng-message="minlength">Business name can't be less than 3 letters</p>
                     </div>
+                    <!-- <div class="controls"> -->
+                        <input name="business_name" type="text" data-ng-model="business_name" id="business_name" class="form-control validate" placeholder="Business Name" ng-minlength="3" required>
+                    <!-- </div> -->
                 </div>
-                <div class="form-group">
-                    <div class="controls">
-                        <textarea name="business_description" data-ng-model="business_description" id="business_description" class="form-control" cols="30" rows="10" placeholder="Tell us what your brand is about"></textarea>
+                <div class="form-group" ng-class="{ 'has-error': serviceForm.business_description.$dirty && serviceForm.business_description.$invalid }">
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_description.$error" ng-minlength="20" ng-show="serviceForm.business_description.$touched">
+                        <p ng-message="required">Business description can't be blank</p>
+                        <p ng-message="minlength">Business description cantitle't be less than 20 characters</p>
                     </div>
+                    <!-- <div class="controls"> -->
+                        <textarea name="business_description" data-ng-model="business_description" id="business_description" class="form-control" cols="30" rows="3" ng-minlength="20" placeholder="Tell us what your brand is about" required></textarea>
+                    <!-- </div> -->
                 </div>
-                <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
+                <div class="form-group" ng-class="{ 'has-error': serviceForm..$dirty && serviceForm.title.$invalid }">
                     <div class="controls">
                         <div class="file-field input-field">
                             <div class="btn" style="line-height: 1.2em;">
@@ -31,49 +39,85 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
+                <div class="form-group" ng-class="{ 'has-error': serviceForm.business_category_id.$dirty && serviceForm.business_category_id.$invalid }" required>
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_category_id.$error" ng-minlength="3" ng-show="serviceForm.business_category_id.$touched">
+                        <p ng-message="required">Business name can't be blank</p>
+                        <p ng-message="minlength">Business name can't be less than 3 letters</p>
+                    </div>
                     <div class="controls">
-                        <select class="browser-default" data-ng-model="business_category_id" data-ng-options="k as v for (k,v) in categories">
+                        <select class="browser-default" data-ng-model="business_category_id" data-ng-options="k as v for (k,v) in categories" required>
                             <option value=''>Category</option>
                         </select>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
+                <div class="form-group" ng-class="{ 'has-error': serviceForm.business_website.$dirty && serviceForm.business_website.$invalid }">
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_category_id.$error" ng-minlength="3" ng-show="serviceForm.business_category_id.$touched">
+                        <p ng-message="required">Business name can't be blank</p>
+                        <p ng-message="minlength">Business name can't be less than 3 letters</p>
+                    </div>
                     <div class="controls">
                         <input name="business_website" type="text" data-ng-model="business_website" id="title" class="form-control" placeholder="Website" required>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
+                <div class="form-group" ng-class="{ 'has-error': serviceForm.business_email.$dirty && serviceForm.business_email.$invalid }">
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_category_id.$error" ng-minlength="3" ng-show="serviceForm.business_category_id.$touched">
+                        <p ng-message="required">Business name can't be blank</p>
+                        <p ng-message="minlength">Business name can't be less than 3 letters</p>
+                    </div>
                     <div class="controls">
                         <input name="business_email" type="email" data-ng-model="business_email" id="business_email" class="form-control" placeholder="Email" required>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
+                <div class="form-group" ng-class="{ 'has-error': serviceForm.business_phone_number.$dirty && serviceForm.business_phone_number.$invalid }">
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_category_id.$error" ng-minlength="3" ng-show="serviceForm.business_category_id.$touched">
+                        <p ng-message="required">Business name can't be blank</p>
+                        <p ng-message="minlength">Business name can't be less than 3 letters</p>
+                    </div>
                     <div class="controls">
                         <input name="business_phone_number" type="tel" data-ng-model="business_phone_number" id="business_phone_number" class="form-control" placeholder="Phone number" required>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
+                <div class="form-group" ng-class="{ 'has-error': serviceForm.business_address.$dirty && serviceForm.business_address.$invalid }">
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_category_id.$error" ng-minlength="3" ng-show="serviceForm.business_category_id.$touched">
+                        <p ng-message="required">Business name can't be blank</p>
+                        <p ng-message="minlength">Business name can't be less than 3 letters</p>
+                    </div>
                     <div class="controls">
                         <input name="business_address" type="text" data-ng-model="business_address" id="business_address" class="form-control" placeholder="Address" required>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
+                <div class="form-group" ng-class="{ 'has-error': serviceForm.business_address_street.$dirty && serviceForm.title.$invalid }">
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_category_id.$error" ng-minlength="3" ng-show="serviceForm.business_category_id.$touched">
+                        <p ng-message="required">Business name can't be blank</p>
+                        <p ng-message="minlength">Business name can't be less than 3 letters</p>
+                    </div>
                     <div class="controls">
                         <input name="business_address_street" type="text" data-ng-model="business_address_street" id="business_address_street" class="form-control" placeholder="Street address" required>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
+                <div class="form-group" ng-class="{ 'has-error': serviceForm.business_address_city.$dirty && serviceForm.business_address_city.$invalid }">
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_category_id.$error" ng-minlength="3" ng-show="serviceForm.business_category_id.$touched">
+                        <p ng-message="required">Business name can't be blank</p>
+                        <p ng-message="minlength">Business name can't be less than 3 letters</p>
+                    </div>
                     <div class="controls">
                         <input name="business_address_city" type="text" data-ng-model="business_address_city" id="business_address_city" class="form-control" placeholder="City" required>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
+                <div class="form-group" ng-class="{ 'has-error': serviceForm.business_address_state.$dirty && serviceForm.business_address_state.$invalid }">
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_category_id.$error" ng-minlength="3" ng-show="serviceForm.business_category_id.$touched">
+                        <p ng-message="required">Business name can't be blank</p>
+                        <p ng-message="minlength">Business name can't be less than 3 letters</p>
+                    </div>
                     <div class="controls">
                         <input name="business_address_state" type="text" data-ng-model="business_address_state" id="business_address_state" class="form-control" placeholder="State" required>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
+                <div class="form-group" ng-class="{ 'has-error': serviceForm.business_address_country.$dirty && serviceForm.business_address_country.$invalid }">
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_category_id.$error" ng-minlength="3" ng-show="serviceForm.business_category_id.$touched">
+                        <p ng-message="required">Business name can't be blank</p>
+                        <p ng-message="minlength">Business name can't be less than 3 letters</p>
+                    </div>
                     <div class="controls">
                         <input name="business_address_country" type="text" data-ng-model="business_address_country" id="business_address_country" class="form-control" placeholder="Country" required>
                     </div>
@@ -89,7 +133,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-default">
+                    <input type="submit" class="btn btn-default" ng-disabled="serviceForm.$invalid">
                     <i ng-show="isLoading"class="fa fa-circle-o-notch fa-spin fa-2x fa-fw green-text darken-4" style="position: relative; top: 5px; margin-left: 10px;"></i>
                     <span class="sr-only">Loading...</span>
                 </div>

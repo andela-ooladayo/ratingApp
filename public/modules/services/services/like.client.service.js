@@ -17,7 +17,7 @@ angular.module('services').factory('Likes', ['$http', 'Message',
                     Message.note('Like', response.message);
                 }
             }).error(function(response) {
-                Message.error(response.message);
+                Message.error('Oops! Something went wrong');
             });
         };
 
@@ -32,7 +32,7 @@ angular.module('services').factory('Likes', ['$http', 'Message',
                 params.no_of_dislikes++;
                 Message.success('Dislike', "You downvoted a review");
             }).error(function(response) {
-                Message.error(response.message);
+                Message.error('Oops! Something went wrong');
             });
         };
 

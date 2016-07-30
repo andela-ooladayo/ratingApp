@@ -158,7 +158,7 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$roo
                 $scope.title = '';
                 $scope.content = '';
             }, function(errorResponse) {
-                Message.error('Service',errorResponse.data.message);
+                Message.error('Service','Oops! Something went wrong.');
                 $scope.isLoading = false;
             });
 
