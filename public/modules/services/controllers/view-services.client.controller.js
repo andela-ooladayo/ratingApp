@@ -248,7 +248,7 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$roo
                 $location.path('services/' + $scope.service.id);
                 $window.location.reload();
             }, function(errorResponse) {
-                Message.error('Review',errorResponse.data.message);
+                Message.error('Review', 'Something went wrong!');
             });
         };
 

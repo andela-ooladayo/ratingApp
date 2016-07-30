@@ -37,6 +37,6 @@
             </li>
             <li class="text-center" ng-show="user.roleTitle === 'merchant'"><a href="" ui-sref="createService" class="meta-text blue-text darken-4">Create new</a></li>
         </ul>
-        <p>Can't find what you're looking for? <span ng-if="user.roleTitle === 'merchant'">Add a business</span></p>
+        <p>Can't find what you're looking for? <span ng-if="user.roleTitle === 'merchant'"><a ui-sref="createService" href="">Add a business</a></span></p>
     </div>
 </section>

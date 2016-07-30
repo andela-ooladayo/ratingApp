@@ -11,8 +11,11 @@ angular.module('services').factory('Likes', ['$http', 'Message',
                 console.log(response);
                 if(response.message != "You've liked this review before") {
                     params.no_of_likes++;
+                    Message.success('Like', "You upvoted a review");
                 }
-                Message.success('Like', response.message);
+                else{
+                    Message.note('Like', response.message);
+                }
             }).error(function(response) {
                 Message.error(response.message);
             });
@@ -23,10 +26,11 @@ angular.module('services').factory('Likes', ['$http', 'Message',
             params.review_id = params.id;
             $http.post('api/review-ratings/dislike', params).success(function(response) {
                 console.log(response);
-                if(response.message != "You've disliked this review before") {
-                    params.no_of_dislikes++;
+                if(response.message === "You've disliked this review before") {
+                    Message.note('Dislike', response.message);
                 }
-                Message.success(response.message);
+                params.no_of_dislikes++;
+                Message.success('Dislike', "You downvoted a review");
             }).error(function(response) {
                 Message.error(response.message);
             });

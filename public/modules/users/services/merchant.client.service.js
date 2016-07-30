@@ -1,25 +1,32 @@
 'use strict';
 
 // Users service used for communicating with the users REST endpoint
-angular.module('users').factory('Merchant', ['$resource', '$http', 'Message',
-    function($resource, $http, Message) {
+angular.module('users').factory('Merchant', ['$resource', '$http', '$q', 'Message',
+    function($resource, $http, $q, Message) {
 
-        // var waiting_list;
+        var waiting_list;
         
         var api_call = $resource('/api/merchant/waiting_list');
 
-        var getList = api_call.query(function(response) {
-            console.log("api response is ", response)
-            return response;
-        });  
+        // api_call.query(function(response) {
+        //     console.log("api response is ", response)
+        //     return waiting_list = $q.when(response);
+        // });
+
+        var getList = function() {
+            return $http.get('/api/merchant/waiting_list').then(function(response) {
+                return response.data;
+            });
+        };
 
 
         var approve = function(params) {
             console.log(params);
             $http.post('/api/merchant/approve', params).success(function(response) {
                 console.log(response);
-                // $scope.findMerchantList();
-                Message.success('Merchant', 'Request to be a merchant by '+ params.firstname + ' has been approved Successfully.');
+                // // $scope.findMerchantList();
+                // getList();
+                Message.success('Merchant', 'Request approved successfully.');
             }).error(function(response) {
                 console.log(response);
                 Message.error('Failed to send',response.message);
@@ -30,7 +37,7 @@ angular.module('users').factory('Merchant', ['$resource', '$http', 'Message',
             console.log(params);
             $http.post('/api/merchant/request', params).success(function(response) {
                 console.log(response);
-                Message.success('Merchant', 'Request to be a merchant by '+ params.displayname + ' has been sent Successfully.');
+                Message.success('Merchant', 'Request sent successfully.');
             }).error(function(response) {
                 console.log(response);
                 Message.error('Failed to send',response.message);
@@ -38,7 +45,6 @@ angular.module('users').factory('Merchant', ['$resource', '$http', 'Message',
         }
 
         return {
-            waiting_list: waiting_list,
             getList: getList,
             approve: approve,
             request: request

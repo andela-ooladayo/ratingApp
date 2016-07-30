@@ -1,4 +1,4 @@
-<div data-ng-controller="DashboardController">
+<div data-ng-controller="DashboardController" ng-init="getStats()">
     <div class="row">
         <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="panel panel-primary text-center no-boder bg-color-green">
@@ -51,9 +51,9 @@
     </div>
     <!-- <h1>Hi, I'm the dashboard</h1> -->
     <div class="col-md-12 col-sm-12 col-xs-12">
-        <!-- <p><a href="" ng-click="findMerchantList()">Find Merchant List</a></p -->
-        {{waitingList.length}}
-        <div class="panel panel-default" ng-show="waitingList.length > 0">
+        <p><a href="" ng-if="user.roleTitle === 'merchant'" ng-click="findMerchantList()">Find Merchant List</a></p>
+        <!-- {{waitingList.length}} -->
+        <div class="panel panel-default" ng-if="waitingList.length > 0">
             <div class="panel-heading">
                 Merchant List
             </div> 
