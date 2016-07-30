@@ -5,6 +5,8 @@ var _ = require('lodash'),
     passport = require('passport'),
     config = require('../../../config/config'),
     nodemailer = require('nodemailer'),
+    mailer = require('../email.server.controller'),
+    moment = require('moment'),
     db = require('../../../config/sequelize'),
     tokenService = require('../../services/token'),
     async = require('async'),
@@ -35,7 +37,7 @@ exports.forgot = function(req, res, next) {
                         });
                     } else {
                         user.reset_password_token = token;
-                        user.reset_password_expires = Date.now() + 7200000; // 2 hour
+                        user.reset_password_expires = moment().add(2, 'hours');
 
                         user.save().then(function() {
                             done(null, token, user);
@@ -55,7 +57,7 @@ exports.forgot = function(req, res, next) {
         },
         function(token, user, done) {
             res.render('templates/reset-password-email', {
-                name: user.displayName,
+                name: user.firstname,
                 appName: config.app.title,
                 url: 'http://' + req.headers.host + '/auth/reset/' + token
             }, function(err, emailHTML) {
@@ -64,40 +66,35 @@ exports.forgot = function(req, res, next) {
         },
        
         function(emailHTML, user, done) {
-            var smtpTransport = nodemailer.createTransport(config.mailer.options);
-            var mailOptions = {
-                to: user.email,
-                from: config.mailer.from,
-                subject: 'Password Reset',
-                html: emailHTML
-            };
-            smtpTransport.sendMail(mailOptions, function(err) {
-                if (!err) {
-                    res.send({
-                        message: 'An email has been sent to ' + user.email + ' with further instructions.'
-                    });
-                }
 
-                done(err);
-            });
+            var msg = {};
+            msg.subject = "Password Reset";
+            msg.to = user.email;
+            msg.html = emailHTML;
+            mailer(msg);
+
+            return res.status(200).json({message: 'An email has been sent to ' + user.email + ' with further instructions.'});
         }
     ], function(err) {
-        if (err) return next(err);
+        return res.status(400).json(err);
+        //if (err) return next(err);
     });
 };
 
 
 exports.validateResetToken = function(req, res) {
-    db.User.find({ where: {
-        reset_password_token: req.params.token,
-        reset_password_expires : {gt :Date.now()
-        }}
-    }).then(function(user) {
-        if (!user) {
+    db.User.find({ where: {reset_password_token: req.params.token} }).then(function(user) {
+
+        if (user && user.reset_password_expires > moment()) {
+            return res.redirect('/password/reset/' + req.params.token);
+        }
+        else {
             return res.redirect('/password/reset/invalid');
         }
-        res.redirect('/password/reset/' + req.params.token);
+
+        
     }, function(err) {
+        logger.info(err, "err");
         return res.redirect('/password/reset/invalid');
     });
 };
@@ -108,33 +105,27 @@ exports.reset = function(req, res, next) {
 
     async.waterfall([
         function(done) {
-            User.find({ where: {
-                reset_password_token: req.params.token,
-                reset_password_expires : {gt :Date.now()
-                }}
-            }).then(function(user) {
-                if (user) {
+            db.User.find({ where: {reset_password_token: req.params.token} }).then(function(user) {
+                if (user && user.reset_password_expires > moment()) {
                     if (passwordDetails.newPassword === passwordDetails.verifyPassword) {
-                        user.password = passwordDetails.newPassword;
+                        user.password = crypto.pbkdf2Sync(passwordDetails.newPassword, user.salt, 10000, 64).toString('base64');
                         user.reset_password_token = undefined;
                         user.reset_password_expires = undefined;
 
-                        user.save().done(function(err) {
-                            if (err) {
-                                return res.status(400).send({
-                                    message: errorHandler.getErrorMessage(err)
-                                });
-                            } else {
-                                req.login(user, function(err) {
-                                    if (err) {
-                                        res.status(400).send(err);
-                                    } else {
-                                        res.jsonp({user: user, token: tokenService.issueToken(user)});
+                        user.save().then(function() {
+                            req.login(user, function(err) {
+                                if (err) {
+                                    res.status(400).send(err);
+                                } else {
+                                    res.jsonp({user: user, token: tokenService.issueToken(user)});
 
-                                        done(err, user);
-                                    }
-                                });
-                            }
+                                    done(err, user);
+                                }
+                            });
+                        }, function(err) {
+                            return res.status(400).send({
+                                message: errorHandler.getErrorMessage(err)
+                            });
                         });
                     } else {
                         return res.status(400).send({
@@ -154,7 +145,7 @@ exports.reset = function(req, res, next) {
         },
         function(user, done) {
             res.render('templates/reset-password-confirm-email', {
-                name: user.displayName,
+                name: user.firstname,
                 appName: config.app.title
             }, function(err, emailHTML) {
                 done(err, emailHTML, user);
@@ -162,50 +153,45 @@ exports.reset = function(req, res, next) {
         },
         // If valid email, send reset email using service
         function(emailHTML, user, done) {
-            var smtpTransport = nodemailer.createTransport(config.mailer.options);
-            var mailOptions = {
-                to: user.email,
-                from: config.mailer.from,
-                subject: 'Your password has been changed',
-                html: emailHTML
-            };
 
-            smtpTransport.sendMail(mailOptions, function(err) {
-                done(err, 'done');
-            });
+            var msg = {};
+            msg.subject = "Your password has been changed";
+            msg.to = user.email;
+            msg.html = emailHTML;
+            mailer(msg);
+
+            res.status(200).json({message: 'Your password has been changed'});
         }
     ], function(err) {
-        if (err) return next(err);
+        return res.status(400).json(err);
     });
 };
 
 
 exports.changePassword = function(req, res, next) {
     var passwordDetails = req.body;
-
     if (req.user) {
         if (passwordDetails.newPassword) {
             db.User.find({ where : { id :req.user.id}}).then(function(user) {
                 if (user) {
-                    if (user.authenticate(passwordDetails.currentPassword)) {
+                    var saltedCurrentPassword = crypto.pbkdf2Sync(passwordDetails.currentPassword, user.salt, 10000, 64).toString('base64');
+                    if (user.password === saltedCurrentPassword) {
                         if (passwordDetails.newPassword === passwordDetails.verifyPassword) {
-                            user.password = user.hashPassword(passwordDetails.newPassword);
-                            user.save().done(function(err) {
-                                if (err) {
-                                    return res.status(400).send({
-                                        message: errorHandler.getErrorMessage(err)
-                                    });
-                                } else {
-                                    req.login(user, function(err) {
-                                        if (err) {
-                                            res.status(400).send(err);
-                                        } else {
-                                            res.send({
-                                                message: 'Password changed successfully'
-                                            });
-                                        }
-                                    });
-                                }
+                            user.password = crypto.pbkdf2Sync(passwordDetails.newPassword, user.salt, 10000, 64).toString('base64');
+                            user.save().then(function() {
+                                req.login(user, function(err) {
+                                    if (err) {
+                                        res.status(400).send(err);
+                                    } else {
+                                        res.send({
+                                            message: 'Password changed successfully'
+                                        });
+                                    }
+                                });
+                            }, function(err) {
+                                return res.status(400).send({
+                                    message: errorHandler.getErrorMessage(err)
+                                });
                             });
                         } else {
                             res.status(400).send({

@@ -9,7 +9,7 @@ module.exports = {
        port : 5432 //
     },
 	app: {
-		title: 'SEAN - Development Environment'
+		title: 'Raytee'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || '233301570389186',

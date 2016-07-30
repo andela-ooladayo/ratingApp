@@ -5,7 +5,7 @@ var api_key = 'key-56d8fcf90a99fa73da7494aa0f7b0b39';
 module.exports = function(msg, cb) {
  
     var data = {
-        from: msg.from,
+        from: "no-reply@raytee.com",
         to: msg.to,
         subject: msg.subject,
         html: msg.html

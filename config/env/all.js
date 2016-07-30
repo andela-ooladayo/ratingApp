@@ -5,7 +5,7 @@ var path = require('path'),
 
 module.exports = {
 	app: {
-		title: 'SEAN',
+		title: 'Raytee',
 		description: 'Full-Stack JavaScript with SQL Express, AngularJS, and Node.js',
 		keywords: 'SQL, express, angularjs, node.js, sequelize, passport'
 	},
