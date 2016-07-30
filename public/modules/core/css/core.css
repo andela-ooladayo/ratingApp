@@ -189,7 +189,7 @@ nav ul a:hover, .nav-wrapper a {
   width: 200px;
   border: 1px solid rgba(0,200,0,0.7) !important;
   border-radius: 20px !important;
-  padding-left: 20px !important;
+  padding-left: 10px !important;
   color: grey
 }
 

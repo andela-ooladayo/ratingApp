@@ -78,7 +78,7 @@
                 <li>
                     <form name="searchForm" id="searchBar" ng-submit="search()">
                         <div class="search-bar">
-                            <input id="search" type="text" ng-model="searchTerm" required class="round-input" placeholder="Search">
+                            <input id="search" type="text" ng-model="searchTerm" required class="round-input" placeholder="Type a word and press enter">
                         </div>
                     </form>
                 </li>
@@ -94,16 +94,13 @@
             </ul>
             <ul class="side-nav" id="mobile-demo">
                 <li>
-                    <form>
-                        <div class="">
-                            <input id="search" type="text" required style="width: 200px;">
-                            <!-- <label for="search"><i class="material-icons">search</i></label>
-                            <i class="material-icons black">close</i> -->
+                    <form name="searchForm" id="searchBar" ng-submit="search()">
+                        <div class="search-bar">
+                            <input id="search" type="text" ng-model="searchTerm" required class="round-input" placeholder="Type a word and press enter">
                         </div>
                     </form>
                 </li>
-                <li ui-sref="signup" ng-class="{active: $uiRoute}"><a class="waves-effect waves-light blue-text">Write a Review</a></li>
-            		<li ui-sref="signup" ng-class="{active: $uiRoute}"><a class="waves-effect waves-light blue-text">Explore</a></li>
+                <li ui-sref="listServices" ng-class="{active: $uiRoute}"><a class="waves-effect waves-light blue-text">Explore</a></li>
                 <li ui-sref="signup" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Sign Up</a></li>
                 <li li ui-sref="signin" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Log In</a></li>
                 <li data-ng-show="isAuthenticated">

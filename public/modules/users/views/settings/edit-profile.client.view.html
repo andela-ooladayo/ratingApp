@@ -2,6 +2,7 @@
 
 	<div class="">
 	    <div class="row" id="main">
+	    	<p style="font-size: 14px; font-weight:700" ng-show="user.roleTitle === 'user'"><a class="green-text darken-4" href="" ng-click="merchantRequest()">Send a merchant request</a> to become a Merchant and start adding your businesses.</p>
 	        <div class="col-md-4 well" id="leftPanel">
 	            <div class="row">
 	                <div class="col-md-12">
@@ -13,7 +14,7 @@
 	                    	<!-- </a> -->
 	                        <h2>{{user.displayname}}</h2>
 	                        <p>{{user.email}}</p>
-	                        <p ng-show="user.roleTitle === 'user'">Do you have a service that you want to put on the map? <a href="" ng-click="merchantRequest()">Send a merchant request</a></p>
+	                        <!-- <p ng-show="user.roleTitle === 'user'">Do you have a service that you want to put on the map? <a href="" ng-click="merchantRequest()">Send a merchant request</a></p> -->
 	                    </div>
 	                </div>
 	            </div>

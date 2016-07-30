@@ -53,7 +53,7 @@
     </div>
     <div class="container m-t-lg" ng-init="default_view()">
         <div class="row">
-            <div class="col l12 m12 s12">
+            <div class="col l0 m10 s12">
                 <h4 class="section-title red-text">See Recommended Brands</h4>
                 <!-- tabs -->
                 <div class="tabbable ">
@@ -70,8 +70,24 @@
                             <div class="">
                                 <h4></h4>
                                 <ul class="collection">
-                                    <li class="collection-item red-text darken-4 bold-text" style="font-size: 12px;">{{categories[idx]}}</li>
-                                    <li ng-hide="categoryArr.length"class="collection-item">No Result found</li>
+                                    <li class="collection-item red-text darken-4" style="font-size: 12px; overflow: auto;">
+                                        <div class="col s12">
+                                            <div class="col s6">
+                                                <p>{{categories[idx]}}</p>
+                                            </div>
+                                           <!--  <div class="col s6">
+                                                <div class="list-group list-group-horizontal">
+                                                    <a class="list-group-item" ng-click="toggleReview()"><i class="fa fa-star"></i> Recent</a>
+                                                    <a href="/services/{{service.id}}/edit" data-ng-show="user.id == service.merchant_id" class="list-group-item"><i class="fa fa-edit"></i> Toppers</a>
+                                                    <a href="#" data-ng-show="user.id == service.merchant_id" class="list-group-item" data-ng-click="remove();"><i class="fa fa-remove"></i> Wack</a>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </li>
+                                    <li ng-hide="categoryArr.length"class="collection-item">
+                                        No Result found
+
+                                    </li>
                                     <li ng-repeat="service in categoryArr" class="collection-item avatar">
                                         <a href=""><img ng-src="{{service.images[0].url ? service.images[0].url : 'http://placehold.it/60x60'}}" class="square"></a>
                                         <p class="text-sm_bold m-b-md"><a href="/services/{{service.id}}" class="blue-text darken-4" ng-bind="service.business_name"></a></p>
