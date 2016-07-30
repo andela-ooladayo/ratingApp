@@ -23,7 +23,7 @@ function requestToBeMerchant(req, res) {
 
         msg.subject = "Request to be a Merchant";
         msg.from = "no-reply@onepercentlab.com";
-        msg.to = "hello@onepercentlab.com";
+        msg.to = req.user.email;
         msg.html = "<p> This is a merchant approval request for " + req.user.firstname + " " + req.user.lastname + "</p>" + "<p> Rating App Support Team</p>";
         mailer(msg);
 
@@ -56,7 +56,7 @@ function approvalToBeMerchant(req, res) {
                     var msg = {};
                     msg.subject = "Congratulations!!!";
                     msg.from = "no-reply@onepercentlab.com";
-                    msg.to = "hello@onepercentlab.com";
+                    msg.to = user.email;
                     msg.html = "<p> You are now a merchant. List your businesses now.  " + "<p> Rating App Support Team</p>"
                     mailer(msg);
 

@@ -251,7 +251,7 @@ exports.topRated = function(req, res) {
             return res.status(500).json({message: "server error"});
         }
         else {
-            var sql = "SELECT * FROM (SELECT id, business_name, business_description, business_address_city, business_address, business_address_country FROM services ORDER BY ((no_of_rating_five * 5) + (no_of_rating_four * 4) + (no_of_rating_three * 3) + (no_of_rating_two * 2) + (no_of_rating_one * 1)) DESC) AS services LIMIT ($1)";
+            var sql = "SELECT * FROM (SELECT id, business_name, business_description, business_address_city, business_address, business_address_country, ((no_of_rating_five * 5) + (no_of_rating_four * 4) + (no_of_rating_three * 3) + (no_of_rating_two * 2) + (no_of_rating_one * 1)) / (no_of_rating_five + no_of_rating_four + no_of_rating_three + no_of_rating_two + no_of_rating_one + 0.1) AS average_value FROM services ORDER BY average_value DESC) AS services LIMIT ($1)";
             client.query(sql, [number], function(err, result) {
                 if(err) {
                     drop();
@@ -262,22 +262,29 @@ exports.topRated = function(req, res) {
                 var finalList = [];
 
                 if(result && result.rows) {
-                    _.forEach(result.rows, function(value, key) {
-                        var nSql = "SELECT * FROM review_ratings ORDER BY value WHERE service_id=($1) LIMIT 2";
-                        client.query(nSql, [value.id], function(err, rst) {
-                            if(!err && rst && rst.rows) {
-                                value.reviews = rst.rows;
-                                finalList.push(value);
-                            }
-                            else {
-                                value.reviews = [];
-                                finalList.push(value);
-                            }
+                    _.forEach(result.rows, function(service, key) {
 
-                            if(result.rows.length == key + 1) {
-                                drop();
-                                return res.status(200).json({data: finalList});
-                            } 
+                        db.images.findAll({where: {service_id : service.id} }).then(function (images) {
+                            service.images = images;
+
+                            var nSql = "SELECT * FROM review_ratings WHERE service_id=($1) ORDER BY value LIMIT 2";
+                            client.query(nSql, [service.id], function(err, rst) {
+                                if(!err && rst && rst.rows) {
+                                    service.reviews = rst.rows;
+                                    finalList.push(service);
+                                }
+                                else {
+                                    service.reviews = [];
+                                    finalList.push(service);
+                                }
+
+                                if(result.rows.length == key + 1) {
+                                    drop();
+                                    return res.status(200).json({data: finalList});
+                                } 
+                            });
+                        }, function(err) {
+                            logger.error(err, " error while retrieving images");
                         });
                     });
                 }
@@ -371,4 +378,3 @@ exports.isOwner = function(req, res, next) {
     }
     next();
 };
-
