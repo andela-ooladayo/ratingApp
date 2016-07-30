@@ -45,7 +45,6 @@ exports.read = function(req, res) {
 
         db.review_ratings.findAll({where: {service_id : service.id}, limit: 50, include: [ { model: db.User, attributes: ['displayname', 'firstname', 'lastname', 'image_url'] } ] }).then(function (reviews) { 
             service.dataValues.reviews = reviews;
-
             return res.status(200).json(service);
         });
     }, function(err) {

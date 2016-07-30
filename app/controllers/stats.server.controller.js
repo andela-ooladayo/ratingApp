@@ -19,6 +19,7 @@ exports.getStats = function(req, res) {
         }
 
         client.query(sql, ['merchant'], function(err, result) {
+            drop();
             if(err) {
                 logger.error(err, "stats-error");
                 return res.status(400).json({message: 'Unknown Error'});
