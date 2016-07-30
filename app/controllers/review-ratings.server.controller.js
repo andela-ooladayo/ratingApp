@@ -4,7 +4,7 @@ var _ = require('lodash'),
     db = require('../../config/sequelize'),
     async = require('async'),
     pg = require('pg'),
-    connectionString = process.env.DATABASE_URL,
+    connectionString = process.env.DATABASE_URL || "postgres://project:nifemi00@localhost/rating-app",
     checkRequestBody = require('./request.body.checker'),
     errorHandler = require('./errors');
 
