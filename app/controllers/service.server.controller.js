@@ -262,22 +262,29 @@ exports.topRated = function(req, res) {
                 var finalList = [];
 
                 if(result && result.rows) {
-                    _.forEach(result.rows, function(value, key) {
-                        var nSql = "SELECT * FROM review_ratings WHERE service_id=($1) ORDER BY value LIMIT 2";
-                        client.query(nSql, [value.id], function(err, rst) {
-                            if(!err && rst && rst.rows) {
-                                value.reviews = rst.rows;
-                                finalList.push(value);
-                            }
-                            else {
-                                value.reviews = [];
-                                finalList.push(value);
-                            }
+                    _.forEach(result.rows, function(service, key) {
 
-                            if(result.rows.length == key + 1) {
-                                drop();
-                                return res.status(200).json({data: finalList});
-                            } 
+                        db.images.findAll({where: {service_id : service.id} }).then(function (images) {
+                            service.images = images;
+
+                            var nSql = "SELECT * FROM review_ratings WHERE service_id=($1) ORDER BY value LIMIT 2";
+                            client.query(nSql, [service.id], function(err, rst) {
+                                if(!err && rst && rst.rows) {
+                                    service.reviews = rst.rows;
+                                    finalList.push(service);
+                                }
+                                else {
+                                    service.reviews = [];
+                                    finalList.push(service);
+                                }
+
+                                if(result.rows.length == key + 1) {
+                                    drop();
+                                    return res.status(200).json({data: finalList});
+                                } 
+                            });
+                        }, function(err) {
+                            logger.error(err, " error while retrieving images");
                         });
                     });
                 }
