@@ -21,7 +21,7 @@
                             <a href="">
                                 <img src="{{service.images[0].url ? service.images[0].url : 'http://placehold.it/60x60'}}" class="square-mid">
                             </a>
-                            <h4 class="text-sm_bold m-b-sm"><a href="/services/{{service.id}}" class="blue-text darken-4" ng-bind="service.business_name"></a></h4>
+                            <p class="text-sm_bold m-b-sm" style="font-size: 18px; font-weight: 700"><a href="/services/{{service.id}}" class="blue-text darken-4" ng-bind="service.business_name"></a></>
                             <p><span class="grey-text meta-text" ng-bind="categories[service.business_category_id]"></span></p>
                             <div class="m-t-sm">
                                 <p class="meta-text" ng-bind="service.business_description">.</p>
@@ -53,7 +53,7 @@
                 <li ng-show="isLoadingReviews" class="collection-item text-center"><span class="fa fa-circle-o-notch fa-spin"></span></li>
                 <li ng-repeat="review in topReviews" class="collection-item avatar">
                     <a href=""><img src="{{review.img ? review.img : 'http://placehold.it/60x60'}}" class="square"></a>
-                    <p class="m-b-md"><a href="" class="blue-text darken-4">{{review.firstname}}</a> wrote for <a href="/services/{{review.service_id}}" class="text-sm_bold blue-text darken-4">{{review.business_name}}</a></p>
+                    <p class="m-b-md" ><a href="" class="blue-text darken-4">{{review.firstname}}</a> wrote for <a href="/services/{{review.service_id}}" class="text-sm_bold blue-text darken-4">{{review.business_name}}</a></p>
                     <p class="red-text"><div star-rating rating-value="review.value" max="5" readonly="true" class="small-star"></div><span class="grey-text meta-text">{{review.created | date:'mediumDate'}}</span></p>
                     <div class="review m-t-sm">
                         <!-- <a href=""><img src="http://placehold.it/30x30" class="avatar"></a> -->

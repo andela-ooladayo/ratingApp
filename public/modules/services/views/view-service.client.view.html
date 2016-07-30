@@ -7,9 +7,9 @@
                         <div class="row">
                             <div class="col s12">
                                 <a href=""><img src="{{service.images[0].url ? service.images[0].url : 'http://placehold.it/200x200'}}" class="square-mid"></a>
-                                <h4 class="text-sm_bold m-b-sm" ng-bind="service.business_name">
+                                <p class="text-sm_bold m-b-sm" ng-bind="service.business_name" style="font-size: 18px; font-weight: 700">
                                     <a href="" class="blue-text darken-4"></a>
-                                </h4>
+                                </p>
                                 <p><span class="grey-text meta-text" ng-bind="categories[service.business_category_id]"></span></p>
                                 <div class="m-t-sm">
                                     <div star-rating rating-value="avg_rating" max="5" readonly="true"></div>
