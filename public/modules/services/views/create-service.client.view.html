@@ -26,7 +26,7 @@
                         <textarea name="business_description" data-ng-model="business_description" id="business_description" class="form-control" cols="30" rows="3" ng-minlength="20" placeholder="Tell us what your brand is about" required></textarea>
                     <!-- </div> -->
                 </div>
-                <div class="form-group" ng-class="{ 'has-error': serviceForm..$dirty && serviceForm.title.$invalid }">
+                <div class="form-group">
                     <div class="controls">
                         <div class="file-field input-field">
                             <div class="btn" style="line-height: 1.2em;">
@@ -41,8 +41,7 @@
                 </div>
                 <div class="form-group" ng-class="{ 'has-error': serviceForm.business_category_id.$dirty && serviceForm.business_category_id.$invalid }" required>
                     <div class="help-block no-margin" ng-messages="serviceForm.business_category_id.$error" ng-minlength="3" ng-show="serviceForm.business_category_id.$touched">
-                        <p ng-message="required">Business name can't be blank</p>
-                        <p ng-message="minlength">Business name can't be less than 3 letters</p>
+                        <p ng-message="required">Select a category</p>
                     </div>
                     <div class="controls">
                         <select class="browser-default" data-ng-model="business_category_id" data-ng-options="k as v for (k,v) in categories" required>
@@ -51,83 +50,76 @@
                     </div>
                 </div>
                 <div class="form-group" ng-class="{ 'has-error': serviceForm.business_website.$dirty && serviceForm.business_website.$invalid }">
-                    <div class="help-block no-margin" ng-messages="serviceForm.business_category_id.$error" ng-minlength="3" ng-show="serviceForm.business_category_id.$touched">
-                        <p ng-message="required">Business name can't be blank</p>
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_website.$error" ng-minlength="3" ng-show="serviceForm.business_website.$touched">
+                        <p ng-message="required">Business website can't be blank</p>
                         <p ng-message="minlength">Business name can't be less than 3 letters</p>
                     </div>
                     <div class="controls">
-                        <input name="business_website" type="text" data-ng-model="business_website" id="title" class="form-control" placeholder="Website" required>
+                        <input name="business_website" type="text" data-ng-model="business_website" id="title" class="form-control" placeholder="Website">
                     </div>
                 </div>
                 <div class="form-group" ng-class="{ 'has-error': serviceForm.business_email.$dirty && serviceForm.business_email.$invalid }">
-                    <div class="help-block no-margin" ng-messages="serviceForm.business_category_id.$error" ng-minlength="3" ng-show="serviceForm.business_category_id.$touched">
-                        <p ng-message="required">Business name can't be blank</p>
-                        <p ng-message="minlength">Business name can't be less than 3 letters</p>
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_email.$error" ng-minlength="3" ng-show="serviceForm.business_email.$touched">
+                        <p ng-message="required">Business email can't be blank</p>
                     </div>
                     <div class="controls">
                         <input name="business_email" type="email" data-ng-model="business_email" id="business_email" class="form-control" placeholder="Email" required>
                     </div>
                 </div>
                 <div class="form-group" ng-class="{ 'has-error': serviceForm.business_phone_number.$dirty && serviceForm.business_phone_number.$invalid }">
-                    <div class="help-block no-margin" ng-messages="serviceForm.business_category_id.$error" ng-minlength="3" ng-show="serviceForm.business_category_id.$touched">
-                        <p ng-message="required">Business name can't be blank</p>
-                        <p ng-message="minlength">Business name can't be less than 3 letters</p>
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_phone_number.$error" ng-minlength="3" ng-show="serviceForm.business_phone_number.$touched">
+                        <p ng-message="required">Business phone number can't be blank</p>
                     </div>
                     <div class="controls">
                         <input name="business_phone_number" type="tel" data-ng-model="business_phone_number" id="business_phone_number" class="form-control" placeholder="Phone number" required>
                     </div>
                 </div>
                 <div class="form-group" ng-class="{ 'has-error': serviceForm.business_address.$dirty && serviceForm.business_address.$invalid }">
-                    <div class="help-block no-margin" ng-messages="serviceForm.business_category_id.$error" ng-minlength="3" ng-show="serviceForm.business_category_id.$touched">
-                        <p ng-message="required">Business name can't be blank</p>
-                        <p ng-message="minlength">Business name can't be less than 3 letters</p>
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_address.$error" ng-minlength="3" ng-show="serviceForm.business_address.$touched">
+                        <p ng-message="required">Business address can't be blank</p>
                     </div>
                     <div class="controls">
                         <input name="business_address" type="text" data-ng-model="business_address" id="business_address" class="form-control" placeholder="Address" required>
                     </div>
                 </div>
                 <div class="form-group" ng-class="{ 'has-error': serviceForm.business_address_street.$dirty && serviceForm.title.$invalid }">
-                    <div class="help-block no-margin" ng-messages="serviceForm.business_category_id.$error" ng-minlength="3" ng-show="serviceForm.business_category_id.$touched">
-                        <p ng-message="required">Business name can't be blank</p>
-                        <p ng-message="minlength">Business name can't be less than 3 letters</p>
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_address_street.$error" ng-minlength="3" ng-show="serviceForm.business_address_street.$touched">
+                        <p ng-message="required">Business address can't be blank</p>
                     </div>
                     <div class="controls">
                         <input name="business_address_street" type="text" data-ng-model="business_address_street" id="business_address_street" class="form-control" placeholder="Street address" required>
                     </div>
                 </div>
                 <div class="form-group" ng-class="{ 'has-error': serviceForm.business_address_city.$dirty && serviceForm.business_address_city.$invalid }">
-                    <div class="help-block no-margin" ng-messages="serviceForm.business_category_id.$error" ng-minlength="3" ng-show="serviceForm.business_category_id.$touched">
-                        <p ng-message="required">Business name can't be blank</p>
-                        <p ng-message="minlength">Business name can't be less than 3 letters</p>
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_address_city.$error" ng-minlength="3" ng-show="serviceForm.business_address_city.$touched">
+                        <p ng-message="required">Business City can't be blank</p>
                     </div>
                     <div class="controls">
                         <input name="business_address_city" type="text" data-ng-model="business_address_city" id="business_address_city" class="form-control" placeholder="City" required>
                     </div>
                 </div>
                 <div class="form-group" ng-class="{ 'has-error': serviceForm.business_address_state.$dirty && serviceForm.business_address_state.$invalid }">
-                    <div class="help-block no-margin" ng-messages="serviceForm.business_category_id.$error" ng-minlength="3" ng-show="serviceForm.business_category_id.$touched">
-                        <p ng-message="required">Business name can't be blank</p>
-                        <p ng-message="minlength">Business name can't be less than 3 letters</p>
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_address_state.$error" ng-minlength="3" ng-show="serviceForm.business_address_state.$touched">
+                        <p ng-message="required">Business State can't be blank</p>
                     </div>
                     <div class="controls">
                         <input name="business_address_state" type="text" data-ng-model="business_address_state" id="business_address_state" class="form-control" placeholder="State" required>
                     </div>
                 </div>
                 <div class="form-group" ng-class="{ 'has-error': serviceForm.business_address_country.$dirty && serviceForm.business_address_country.$invalid }">
-                    <div class="help-block no-margin" ng-messages="serviceForm.business_category_id.$error" ng-minlength="3" ng-show="serviceForm.business_category_id.$touched">
-                        <p ng-message="required">Business name can't be blank</p>
-                        <p ng-message="minlength">Business name can't be less than 3 letters</p>
+                    <div class="help-block no-margin" ng-messages="serviceForm.business_address_country.$error" ng-minlength="3" ng-show="serviceForm.business_address_country.$touched">
+                        <p ng-message="required">Business Country can't be blank</p>
                     </div>
                     <div class="controls">
                         <input name="business_address_country" type="text" data-ng-model="business_address_country" id="business_address_country" class="form-control" placeholder="Country" required>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
+                <div class="form-group">
                     <div class="controls">
                         <input name="business_lat" type="hidden" data-ng-model="business_lat" id="business_lat" class="form-control" >
                     </div>
                 </div>
-                <div class="form-group" ng-class="{ 'has-error': serviceForm.title.$dirty && serviceForm.title.$invalid }">
+                <div class="form-group">
                     <div class="controls">
                         <input name="business_long" type="hidden" data-ng-model="business_long" id="business_long" class="form-control">
                     </div>

@@ -85,25 +85,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
       $scope.topRated = [];
       $http.get('/service/top-rated').success(function(response) {
         response.data.forEach(function(service) {
-            var service = ServiceFac.get({
-                serviceId: service.id
-            }, function() {
-                var len = service.reviews.length;
-                var total = 0;
-                if(service.reviews.length > 0) {
-                    service.reviews.forEach(function(review) {
-                        total += review.value;
-                    });
-                    service.avg_rating = Math.round(total/len);
-                    // console.log(service);
-                    $scope.topRated.push(service); 
-                }
-                else {
-                    service.avg_rating = 0;
-                    $scope.topRated.push(service);
-                }
-            });
-
+            console.log(service);
+            $scope.topRated.push(service);
         });
 
       }).error(function(response) {
@@ -115,7 +98,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
       $scope.topReviews = [];
       $http.get('/service/top-reviews').success(function(response) {
         response.data.forEach(function(review) {
-            console.log(review);
+            // console.log(review);
             var res = ServiceFac.get({
                 serviceId: review.service_id
             }, function() {
