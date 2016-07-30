@@ -14,7 +14,7 @@
                         <a href="">
                             <img src="{{service._source.images[0].url ? service._source.images[0].url : 'http://placehold.it/60x60'}}" class="square-mid">
                         </a>
-                        <p class="text-sm_bold m-b-sm"><a href="/services/{{service._source.id}}" class="blue-text darken-4" ng-bind="service._source.business_name"></a></p>
+                        <h4 class="text-sm_bold m-b-sm"><a href="/services/{{service._source.id}}" class="blue-text darken-4" ng-bind="service._source.business_name"></a></h4>
                         <p><span class="grey-text meta-text" ng-bind="categories[service._source.business_category_id]"></span></p>
                         <div class="m-t-sm">
                             <p class="meta-text" ng-bind="service._source.business_description">.</p>

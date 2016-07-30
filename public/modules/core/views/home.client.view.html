@@ -59,7 +59,7 @@
                 <div class="tabbable ">
                     <ul class="nav nav-tabs">
                         <li ng-repeat="category in categories | limitTo:14" ng-class="{'active': view_tab == category}">
-                            <a href="" ng-click="changeTab(category)" data-toggle="tab" style="font-size: 12px;">{{category}}</a>
+                            <a href="" ng-click="changeTab(category)" data-toggle="tab" style="font-size: 14px; font-weight: 600;">{{category}}</a>
                         </li>
                         <li>
                             <a href="" ng-click="toggleCategory()">More Categories</a>
@@ -90,7 +90,7 @@
                                     </li>
                                     <li ng-repeat="service in categoryArr" class="collection-item avatar">
                                         <a href=""><img ng-src="{{service.images[0].url ? service.images[0].url : 'http://placehold.it/60x60'}}" class="square"></a>
-                                        <p class="text-sm_bold m-b-md"><a href="/services/{{service.id}}" class="blue-text darken-4" ng-bind="service.business_name"></a></p>
+                                        <h4 class="text-sm_bold m-b-md"><a href="/services/{{service.id}}" class="blue-text darken-4" ng-bind="service.business_name"></a></h4>
                                         <p class="red-text"> <div star-rating rating-value="service.avg_rating" max="5" readonly="true" class="small-star"></div> <span>{{service.reviews.length}} Review</span><span ng-if="service.reviews.length > 1">s</span></p>
                                         <div class="review m-t-sm" ng-show="service.reviews.length">
                                             <a href=""><img src="{{service.reviews[0].User.image_url}}" class="img img-responsive avatar"></a>
@@ -113,7 +113,7 @@
                         <li ng-hide="topRated.length"class="collection-item">No Result found </li>
                         <li ng-repeat="service in topRated | orderBy: average_value" class="collection-item avatar">
                             <a href=""><img ng-src="{{service.images[0].url ? service.images[0].url : 'http://placehold.it/60x60'}}" class="square"></a>
-                            <p class="text-sm_bold m-b-md"><a href="/services/{{service.id}}" class="blue-text darken-4" ng-bind="service.business_name"></a></p>
+                            <h4 class="text-sm_bold m-b-md"><a href="/services/{{service.id}}" class="blue-text darken-4" ng-bind="service.business_name"></a></h4>
                             <p class="red-text"><div star-rating rating-value="service.average_value" max="5" readonly="true" class="small-star"></div> <span>{{service.reviews.length}} Review</span><span ng-if="service.reviews.length > 1">s</span></span></p>
                         </li>
                     </ul>
@@ -124,7 +124,7 @@
                         <li ng-hide="topReviews.length"class="collection-item">No Result found.</li>
                         <li ng-repeat="review in topReviews" class="collection-item avatar">
                             <a href=""><img ng-src="{{review.img ? review.img : 'http://placehold.it/60x60'}}" class="square"></a>
-                            <p class="m-b-md"><a href="" class="blue-text darken-4">{{review.firstname}}</a> wrote for <a href="services/{{review.service_id}}" class="text-sm_bold blue-text darken-4">{{review.business_name}}</a></p>
+                            <h4 class="m-b-md"><a href="" class="blue-text darken-4">{{review.firstname}}</a> wrote for <a href="services/{{review.service_id}}" class="text-sm_bold blue-text darken-4">{{review.business_name}}</a></h4>
                             <p class="red-text"><div star-rating rating-value="review.value" max="5" readonly="true" class="small-star"></div><span class="grey-text meta-text">{{review.created | date:'mediumDate'}}</span></p>
                             <div class="review m-t-sm">
                                 <!-- <a href=""><img src="http://placehold.it/30x30" class="avatar"></a> -->
