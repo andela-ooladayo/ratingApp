@@ -260,7 +260,7 @@ nav ul a:hover, .nav-wrapper a {
 .top-content {
   width: 80%;
   position: relative;
-  margin: 120px auto;
+  margin: 80px auto 140px;
 }
 
 .tabs-left > .nav-tabs {

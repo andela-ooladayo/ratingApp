@@ -4,7 +4,7 @@
 var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'sean';
-	var applicationModuleVendorDependencies = ['ngResource', 'ngAnimate', 'ui.router', 'ngMessages', 'ui.bootstrap', 'ui.materialize', 'ui.utils', 'elasticsearch', 'toaster','btford.socket-io','LocalStorageModule'];
+	var applicationModuleVendorDependencies = ['ngResource', 'ngAnimate', 'ui.router', 'ngMessages', 'ui.materialize', 'ui.utils', 'elasticsearch', 'toaster','btford.socket-io','LocalStorageModule'];
 
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
