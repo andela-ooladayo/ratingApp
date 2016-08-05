@@ -28,6 +28,15 @@ body {
 .row {
   margin-right: 0 !important;
   margin-left: 0 !important;
+  margin-bottom: 0px; 
+}
+
+nav .nav-wrapper form, nav .nav-wrapper form .input-field{
+  height: 100%;
+  width: 400px;
+  position: absolute;
+  left: 20%;
+  font-size: 14px;
 }
 
 .page {
@@ -136,6 +145,10 @@ nav ul a:hover, .nav-wrapper a {
   padding-top: 60px;
 }
 
+.p-b-lg {
+  padding-bottom: 60px;
+}
+
 /*Meta*/
 .meta-text {
   font-size: 12px;
@@ -188,13 +201,26 @@ nav ul a:hover, .nav-wrapper a {
 .round-input {
   width: 200px;
   border: 1px solid rgba(0,200,0,0.7) !important;
-  border-radius: 20px !important;
+  border-top-left-radius: 20px !important;
+  border-bottom-left-radius: 20px !important;
   padding-left: 10px !important;
   color: grey
 }
 
 .round-input:focus {
   box-shadow: none !important;
+}
+
+.btn-search {
+  position: absolute;
+  top: 17px;
+  right: 7em;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 0px;
+  height: 3.3rem;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 0px;
+
 }
 
 
@@ -410,6 +436,13 @@ ul.rating {
     height: 20px;
     margin: 0 10px;
     line-height: .5;
+    color: white !important;
+    font-weight: 600;
+    background-color: #4CAF50;
+}
+
+.btn-post {
+    margin: 0 10px;
     color: white !important;
     font-weight: 600;
     background-color: #4CAF50;

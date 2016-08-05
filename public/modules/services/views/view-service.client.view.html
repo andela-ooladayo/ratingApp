@@ -47,14 +47,13 @@
                                 <form name="reviewForm" class="form-horizontal" data-ng-submit="createReview()" novalidate>
                                     <div class="form-group" ng-class="{ 'has-error': reviewForm.review.$dirty && reviewForm.review.$invalid }">
                                         <div class="controls">
-                                            <textarea name="review" data-ng-model="review" id="review" class="form-control" cols="30" rows="" placeholder="Your review helps other learn about great local businesses"></textarea>
+                                            <textarea name="review" data-ng-model="review" id="review" class="form-control" cols="30" rows="3" placeholder="Your review helps other learn about great local businesses"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <a ui-sref="signin" ng-if="!isAuthenticated" class="btn btn-default">Login to write a review</a>
-                                        <input type="submit" ng-if="isAuthenticated" class="btn btn-default" value="Post Review">
+                                        <a ui-sref="signin" ng-if="!isAuthenticated" class="btn btn-default green">Login to write a review</a>
+                                        <a ng-if="isAuthenticated" ng-click="createReview()"  class="btn btn-post">Post Review</a>
                                         <a href="" style="margin-left: 20px;" ng-click="reset()">Cancel</a>
-                                        <p class="meta-text m-t-sm grey-text lighten-3">* You can always edit or remove reviews later.</p>
                                     </div>
                                 </form>
                             </div>

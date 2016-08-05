@@ -94,5 +94,7 @@ angular.module('users').controller('AuthenticationController', ['$scope','$rootS
             });  
         };
 
+        $("#loginpage").backstretch("/modules/core/img/login.jpg");
+
 	}
 ]);

@@ -193,11 +193,9 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$roo
 
         function isEmpty(obj) {
             for(var prop in obj) {
-                console.log('here');
                 if(obj.hasOwnProperty(prop))
                     return false;
             }
-            console.log('her');
             return true;
         }
 

@@ -1,64 +1,5 @@
-<!-- <div class="navbar navbar-fixed-top white darken-1" data-ng-controller="HeaderController">
-	<div class="navbar-header">
-		<button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		<a href="/" class="navbar-brand">RAYTEE</a>
-	</div>
-	<nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
-		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(user);">
-			<li data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(user);" ng-switch="item.menuItemType" ui-route="{{item.uiRoute}}" class="{{item.menuItemClass}}" ng-class="{active: ($uiRoute)}" dropdown="item.menuItemType === 'dropdown'">
-				<a ng-switch-when="dropdown" class="dropdown-toggle">
-					<span data-ng-bind="item.title"></span>
-					<b class="caret"></b>
-				</a>
-				<ul ng-switch-when="dropdown" class="dropdown-menu">
-					<li data-ng-repeat="subitem in item.items | orderBy: 'position'" data-ng-if="subitem.shouldRender(user);" ui-route="{{subitem.uiRoute}}" ng-class="{active: $uiRoute}">
-						<a href="/{{subitem.link}}" data-ng-bind="subitem.title"></a>
-					</li>
-				</ul>
-				<a ng-switch-default href="/{{item.link}}" data-ng-bind="item.title"></a>
-			</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right" data-ng-hide="isAuthenticated">
-			<li ui-sref="signup" ng-class="{active: $uiRoute}">
-				<a>Sign Up</a>
-			</li>
-			<li class="divider-vertical"></li>
-			<li ui-sref="signin" ng-class="{active: $uiRoute}">
-				<a>Log In</a>
-			</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right" data-ng-show="isAuthenticated">
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					<span data-ng-bind="user.displayname"></span> <b class="caret"></b>
-				</a>
-				<ul class="dropdown-menu">
-					<li>
-						<a href="/settings/profile">Edit Profile</a>
-					</li>
-					<li>
-						<a href="/settings/accounts">Manage Social Accounts</a>
-					</li>
-					<li data-ng-show="user.provider === 'local'">
-						<a href="/settings/password">Change Password</a>
-					</li>
-					<li class="divider"></li>
-					<li>
-						<a ng-click="signOut()">Signout</a>
-					</li>
-				</ul>
-			</li>
-		</ul>
-	</nav>
-</div>
- -->
 <ul id="menu" class="dropdown-content" data-ng-controller="HeaderController">
-    <li><a href="/settings/accounts/dashboard">Manage Account</a></li>
+    <li><a href="/settings/accounts/profile">Manage Account</a></li>
     <li><a href="/settings/password">Change Password</a></li>
     <li class="divider"></li>
     <li><a ng-click="signOut()">Signout</a></li>
@@ -72,15 +13,51 @@
 <div class="navbar-fixed" data-ng-controller="HeaderController">
     <nav class="white darken-4">
         <div class="nav-wrapper">
-            <a href="/" class="brand-logo sc-logo left"><img src="/modules/core/img/raytee3.png" class="" style="width:150px;"></a>
+            <a href="/" class="brand-logo sc-logo left hide-on-small-only"><img src="/modules/core/img/raytee3.png" class="" style="width:150px;"></a>
+             <!-- <form>
+                <div class="input-field">
+                    <input id="search" type="search" placeholder="enter search query" required>
+                    <label for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                </div>
+            </form> -->
+            <form name="searchForm" id="searchBar" ng-submit="search()">
+                <div class="search-bar">
+                    <input id="search" type="text" ng-model="searchTerm" required class="round-input" placeholder="Type a word and press enter">
+                    <button class="btn btn-search green darken-1" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </form>
             <a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="fa fa-bars"></i></a>
             <ul class="right m-r-md hide-on-med-and-down" >
+                <!-- <li>
+                    <div class="input-group">
+                        <div class="input-group-btn search-panel">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span id="search_concept">Filter by</span> <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                              <li><a href="#contains">Contains</a></li>
+                              <li><a href="#its_equal">It's equal</a></li>
+                              <li><a href="#greather_than">Greather than ></a></li>
+                              <li><a href="#less_than">Less than < </a></li>
+                              <li class="divider"></li>
+                              <li><a href="#all">Anything</a></li>
+                            </ul>
+                        </div>
+                        <input type="hidden" name="search_param" value="all" id="search_param">         
+                        <input type="text" class="form-control" name="x" placeholder="Search term...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                    </div>
+                </li> -->
                 <li>
-                    <form name="searchForm" id="searchBar" ng-submit="search()">
+                    <!-- <form name="searchForm" id="searchBar" ng-submit="search()">
                         <div class="search-bar">
                             <input id="search" type="text" ng-model="searchTerm" required class="round-input" placeholder="Type a word and press enter">
+                            <button class="btn btn-search" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                         </div>
-                    </form>
+                    </form> -->
                 </li>
         		<li ui-sref="listServices" ng-class="{active: $uiRoute}"><a class="waves-effect waves-light blue-text">Explore</a></li>
                 <li ui-sref="signup" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Sign Up</a></li>

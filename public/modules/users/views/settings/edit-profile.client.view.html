@@ -22,21 +22,27 @@
 	        <div class="col-md-8" id="rightPanel">
 	            <div class="row">
 	                <div class="col-md-12">
-	                    <form role="form" name="userForm" data-ng-submit="updateUserProfile(userForm.$valid)" class="signin" autocomplete="off">
+	                    <form role="form" name="userForm" data-ng-submit="updateUserProfile(userForm.$valid)" class="signin" autocomplete="off" novalidate>
 	                        <h2>Edit your profile.<br><small>It's always easy</small></h2>
 	                        <hr class="colorgraph">
-	                        <div class="row">
-	                            <div class="col-xs-12 col-sm-6 col-md-6">
-	                                <div class="form-group">
-	                                    <input type="text" id="firstName" name="firstName" class="form-control" data-ng-model="user.firstname" placeholder="First Name" tabindex="1">
-	                                </div>
-	                            </div>
-	                            <div class="col-xs-12 col-sm-6 col-md-6">
-	                                <div class="form-group">
-	                                    <input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="user.lastname" placeholder="Last Name" tabindex="2">
-	                                </div>
-	                            </div>
-	                        </div>
+                            <div class="col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error': userForm.firstName.$touched && userForm.firstName.$invalid }">
+                                	<div class="help-block no-margin" ng-messages="userForm.firstName.$error" ng-minlength="3" ng-show="userForm.firstName.$touched">
+			                            <p ng-message="required">Firstname can't be blank</p>
+			                            <p ng-message="minlength">Firstname can't be less than 3 letters</p>
+			                        </div>
+                                    <input type="text" id="firstName" name="firstName" class="form-control" data-ng-model="user.firstname" placeholder="First Name" ng-minlength="3" tabindex="1" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error': userForm.lastName.$touched && userForm.lastName.$invalid }">
+                                	<div class="help-block no-margin" ng-messages="userForm.lastName.$error" ng-minlength="3" ng-show="userForm.lastName.$touched">
+			                            <p ng-message="required">Lastname can't be blank</p>
+			                            <p ng-message="minlength">Lastname can't be less than 3 letters</p>
+			                        </div>
+                                    <input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="user.lastname" placeholder="Last Name" tabindex="2" ng-minlength="3" required>
+                                </div>
+                            </div>
 	                        <div class="row">
 		                        <div class="col-xs-12">
 			                        <div class="form-group">

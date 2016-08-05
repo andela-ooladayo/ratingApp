@@ -22,7 +22,7 @@ input[type=text], input[type=password], input[type=email], input[type=tel] {
 }
 
 .login_text {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .forgot-password a, p.policy, p.alt-login, .meta {
@@ -242,6 +242,13 @@ input:focus {
   -ms-transition: all 100ms ease-in;
   transition: all 100ms ease-in;
 }*/
+.fb-blue {
+  color: #3b5998;
+}
+
+.linkin-blue {
+  color: #007bb5;
+}
 
 .margin-top {
   margin-top: 50px;
@@ -254,8 +261,8 @@ input:focus {
 }
 
 .sidebar {
-  position: fixed;
-  top: 64px;
+  position: absolute;
+  /*top: 64px;*/
   bottom: 0;
   left: 0;
   width: 260px;

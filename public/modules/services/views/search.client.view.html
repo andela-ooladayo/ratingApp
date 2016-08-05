@@ -23,20 +23,10 @@
                             <p class="meta-text"><a href="" data-ng-bind="service._source.business_email"><i class="fa fa-envelope">: </i>email@example.com</a></p>
                         </div>
                     </div>
-                   <!--  <div class="col s4 sec-content">
-                        <div class="text-center">
-                            <h1 class="green-text lighten-2" ng-bind="service.avg_rating | number:1"></h1>
-                            <div star-rating rating-value="service.avg_rating" max="5" readonly="true" class="small-star"></div>
-                            <p>{{service.reviews.length}} <i class="fa fa-user"></i></p>
-                            <p class="m-t-lg">
-                                <a href="/services/{{service.id}}" class="red-text">View Reviews</a>
-                            </p>
-                        </div>
-                    </div> -->
                 </div>
             </li>
             <li class="text-center" ng-show="user.roleTitle === 'merchant'"><a href="" ui-sref="createService" class="meta-text blue-text darken-4">Create new</a></li>
         </ul>
-        <p>Can't find what you're looking for? <span ng-if="user.roleTitle === 'merchant'"><a ui-sref="createService" href="">Add a business</a></span></p>
+        <p>Can't find what you're looking for? <span ng-if="!user"><a ui-sref="signin" href="">Login</a> and add the business</span><span ng-if="user.roleTitle === 'merchant'"><a ui-sref="createService" href="">Add a business</a></span><span ng-if="user.roleTitle === 'user'"><a class="green-text darken-4" href="/settings/accounts/profile">Become a merchant</a> and add businesses</span></p>
     </div>
 </section>

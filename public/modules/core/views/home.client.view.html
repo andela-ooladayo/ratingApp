@@ -1,14 +1,14 @@
 <section data-ng-controller="HomeController">
     <div id="top" class="row grey darken-5" ng-hide="isAuthenticated">
         <div class="top-content text center">
-            <h2 class="white-text">Raytee is the best way to find great local businesses</h2>
-            <p class="white-text flow-text">People use Raytee to search for everything from the city's tastiest amala to the most renowned disc jockey. What will you uncover in your neighborhood?</p>
+            <h2 class="white-text">Raytee is the best way to Find, Review and Rate amazing local brands</h2>
+            <p class="white-text flow-text">and bad brands too. People use Raytee to make daily purchase decisions. From the city’s tastiest ice-cream spot to the best local wedding planner. What will you uncover in your neighborhood?</p>
             <form class="">
-                <div class="input-field">
+                <div class="input-field m-t-lg">
                     <label for="search"></label>
                     <!-- <input type="text" name="search" id="search" class="" placeholder="Search for anything"> -->
                     <!-- <input ui-sref="listServices" type="submit" name="submit" id="submit" value="WRITE A REVIEW"> -->
-                    <a ui-sref="listServices" class="waves-effect waves-light btn-large green white-text">Write a review</a>
+                    <a ui-sref="listServices" class="waves-effect waves-light btn-large green white-text" style="width: 200px; font-weight: 700; font-size: 14px;">Rate a Brand</a>
                 </div>
             </form>
         </div>
@@ -16,7 +16,7 @@
     <div class="row text-center white">
         <div class="col l6 m6 s12 green lighten-2 white-text" style="height: 400px;">
             <h2 class="m-t-xlg">Reviewers</h2>
-            <p class="m-t-lg" style="font-size: 14px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?</p>
+            <p class="m-t-lg" style="font-size: 14px;">Sign up to rate a specific or several brands based on your interaction with them. You can also drop a comment to recommend their services or otherwise. Will you help others save time and money? </p>
             <div class="m-t-lg">
                 <div class="col s4">
                     <i class="fa fa-search fa-3x m-b-md"></i>
@@ -34,7 +34,7 @@
         </div>
         <div class="col l6 m6 s12 grey lighten-3 green-text" style="height: 400px;">
             <h2 class="m-t-xlg">Merchants</h2>
-            <p class="m-t-lg" style="font-size: 14px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?</p>
+            <p class="m-t-lg" style="font-size: 14px;">Grow your business by offering exceptional service to customers and watch your profit soar instantly. With Raytee, you can improve your company’s business performance through timely customer feedback and industry peer rating. We will provide the performance analytics with the right marketing mix to back you up.</p>
             <div class="m-t-lg">
                 <div class="col s4">
                     <i class="fa fa-search fa-3x m-b-md"></i>
@@ -53,10 +53,10 @@
     </div>
     <div class="container m-t-lg" ng-init="default_view()">
         <div class="row">
-            <div class="col l0 m10 s12">
+            <div class="col l12 m12 s12">
                 <h4 class="section-title red-text">See Recommended Brands</h4>
                 <!-- tabs -->
-                <div class="tabbable ">
+                <!-- <div class="tabbable ">
                     <ul class="nav nav-tabs">
                         <li ng-repeat="category in categories | limitTo:14" ng-class="{'active': view_tab == category}">
                             <a href="" ng-click="changeTab(category)" data-toggle="tab" style="font-size: 14px; font-weight: 600;">{{category}}</a>
@@ -75,13 +75,13 @@
                                             <div class="col s6">
                                                 <p>{{categories[idx]}}</p>
                                             </div>
-                                           <!--  <div class="col s6">
-                                                <div class="list-group list-group-horizontal">
+                                            <div class="col s6">
+                                                <div class="list-group list-group-horizontal right">
                                                     <a class="list-group-item" ng-click="toggleReview()"><i class="fa fa-star"></i> Recent</a>
-                                                    <a href="/services/{{service.id}}/edit" data-ng-show="user.id == service.merchant_id" class="list-group-item"><i class="fa fa-edit"></i> Toppers</a>
+                                                    <a href="" data-ng-show="user.id == service.merchant_id" class="list-group-item"><i class="fa fa-edit"></i> Toppers</a>
                                                     <a href="#" data-ng-show="user.id == service.merchant_id" class="list-group-item" data-ng-click="remove();"><i class="fa fa-remove"></i> Wack</a>
                                                 </div>
-                                            </div> -->
+                                            </div>
                                         </div>
                                     </li>
                                     <li ng-hide="categoryArr.length"class="collection-item">
@@ -91,7 +91,7 @@
                                     <li ng-repeat="service in categoryArr" class="collection-item avatar">
                                         <a href=""><img ng-src="{{service.images[0].url ? service.images[0].url : 'http://placehold.it/60x60'}}" class="square"></a>
                                         <p class="text-sm_bold m-b-md" style="font-size: 18px; font-weight: 700"><a href="/services/{{service.id}}" class="blue-text darken-4" ng-bind="service.business_name"></a></p>
-                                        <!-- <p class="red-text"> <div star-rating rating-value="service.avg_rating" max="5" readonly="true" class="small-star"></div> <span>{{service.reviews.length}} Review</span><span ng-if="service.reviews.length > 1">s</span></p> -->
+                                        <p class="red-text"> <div star-rating rating-value="service.avg_rating" max="5" readonly="true" class="small-star"></div> <span>{{service.reviews.length}} Review</span><span ng-if="service.reviews.length > 1">s</span></p>
                                         <div class="review m-t-sm" ng-show="service.reviews.length">
                                             <a href=""><img src="{{service.reviews[0].User.image_url}}" class="img img-responsive avatar"></a>
                                             <p class="meta-text" ng-bind="service.reviews[0].review"></p>
@@ -104,8 +104,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- /tabs -->
-            </div>
+            </div> -->
+
             <div class="col l12 m12 s12 m-t-lg" id="#topRated">
                 <div class="col l6 m6 s12">
                     <h4 class="section-title red-text">Top Rated Brands</h4>

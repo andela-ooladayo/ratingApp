@@ -114,6 +114,6 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
     }
 
 
-    $("#top").backstretch("/modules/core/img/honest_reviews.jpg");
+    $("#top").backstretch(["/modules/core/img/bg2.jpg", "/modules/core/img/bg1.jpg", "/modules/core/img/bg3.jpg"], {duration:3000, fade: 750});
 	}
 ]);
