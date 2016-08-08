@@ -412,11 +412,34 @@ ul.rating {
   color: #ff9900;
 }
 
-.progress {
-  width: 90%;
-  float: right;
-  height: 10px;
+.star-detail {
+  display: inline-block;
 }
+
+.star-detail .fa-star {
+  color: #ff9900;
+}
+
+.progress {
+  width: 200px;    
+  position: relative;
+  top: -21px;
+  left: 40px;
+  height: 10px;
+  border-radius: 1px;
+  margin-bottom: 0;
+}
+
+.progress-bar {
+  background-image: -webkit-linear-gradient(to bottom, #4DB6AC 0%, #43A047 100%);
+  background-image: linear-gradient(to bottom, #4DB6AC 0%, #43A047 100%);
+}
+
+./*star-num {
+  position: relative;
+  top: -37px;
+  left: 260px;
+}*/
 
 /*button group*/
 .list-group {

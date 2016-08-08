@@ -85,7 +85,6 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
       $scope.topRated = [];
       $http.get('/service/top-rated').success(function(response) {
         response.data.forEach(function(service) {
-            console.log(service);
             $scope.topRated.push(service);
         });
 

@@ -3,7 +3,6 @@
 angular.module('services').controller('ViewServicesController', ['$scope', '$rootScope', '$stateParams', '$window', '$location', '$http', 'User', 'Authentication','Message', 'Storage', 'Services', 'ServiceFac', 'Images', 'Reviews', 'Likes',
     function($scope, $rootScope, $stateParams, $window, $location, $http, User, Authentication, Message, Storage, Services, ServiceFac, Images, Reviews, Likes) {
         $scope.user = User.get();
-        console.log($scope.user);
         $scope.authentication = Authentication;
         $scope.isAuthenticated = Authentication.isAuthenticated();
         var image_url = '';
@@ -90,7 +89,6 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$roo
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
                         var response = JSON.parse(xhr.responseText);
-                        console.log(response, "response");
                         image_url = response.url;
                         uploadFile(file, response.signed_request, response.url);
                     } else {
@@ -165,7 +163,6 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$roo
                 });
 
                 image.$save(function(response) {
-                    console.log(response);
                     Message.success('Image','Image successfully uploaded');
                 }, function(err) {
                     Message.error('Image', err.data.message);
@@ -224,7 +221,6 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$roo
             } else {
                 $scope.findOne(ServiceFac);
             }
-            console.log($scope.service);
         };
 
             $scope.avg_rating = 0;
@@ -244,17 +240,13 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$roo
                     total += review.value;
                 });
                 $scope.avg_rating += Math.round(total/len);
-                console.log($scope.avg_rating);
                 var totalrating = parseInt($scope.service.no_of_rating_five) + parseInt($scope.service.no_of_rating_four) + parseInt($scope.service.no_of_rating_three) + parseInt($scope.service.no_of_rating_two) + parseInt($scope.service.no_of_rating_one);
-                console.log(totalrating);
                 $scope.percentage_five =   (parseInt($scope.service.no_of_rating_five) / totalrating) * 100;
                 $scope.percentage_four =   (parseInt($scope.service.no_of_rating_four) / totalrating) * 100;
                 $scope.percentage_three =   (parseInt($scope.service.no_of_rating_three) / totalrating) * 100;
                 $scope.percentage_two =   (parseInt($scope.service.no_of_rating_two) / totalrating) * 100;
                 $scope.percentage_one =   (parseInt($scope.service.no_of_rating_one) / totalrating) * 100;
-                console.log($scope.percentage_five);
             });
-            console.log($scope.service);
 
         };
 
@@ -266,7 +258,6 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$roo
                 review: this.review,
                 user_id: $scope.user.id
             });
-            console.log(review);
             review.$save(function(response) {
                 Message.success('Review','successfully added review');
                 $scope.showReview = false;
@@ -281,7 +272,6 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$roo
             $scope.topReviews = [];
             $http.get('/service/top-reviews').success(function(response) {
                 response.data.forEach(function(review) {
-                    console.log(review);
                     var res = ServiceProvider.get({
                         serviceId: review.service_id
                     }, function() {
@@ -341,7 +331,6 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$roo
         }
 
         $scope.dislike = function(param) {
-            console.log("disliked", param);
             Likes.dislike(param);
         }
 
