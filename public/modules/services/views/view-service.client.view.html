@@ -13,6 +13,8 @@
                                 <p><span class="grey-text meta-text" ng-bind="categories[service.business_category_id]"></span></p>
                                 <div class="m-t-sm">
                                     <div star-rating rating-value="avg_rating" max="5" readonly="true"></div>
+                                    <!-- {{service.average_rating}} -->
+                                    <!-- <div stark-rating rating="avg_rating" read-only="true" max-rating="5" > </div> -->
                                     <span>{{service.reviews.length}} Review</span><span ng-if="service.reviews.length > 1">s</span>
                                     <p class="meta-text m-t-md" ng-bind="service.business_description"></p>
                                     <p class="meta-text"><a href="" ng-bind="service.business_address"><i class="fa fa-home">: </i></a></p>
@@ -31,6 +33,36 @@
                     <a href="/services/{{service.id}}/edit" data-ng-show="user.id == service.merchant_id" class="list-group-item"><i class="fa fa-edit"></i> Edit</a>
                     <a href="#" data-ng-show="user.id == service.merchant_id" class="list-group-item" data-ng-click="remove();"><i class="fa fa-remove"></i> Delete</a>
                 </div>
+                <div>
+                    <div>
+                        <span>5 <i class="fa fa-star"></i></span>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="{{percentage_five}}" aria-valuemin="0" aria-valuemax="100" style="min-width: 1em;width: {{percentage_five}}%;">
+                                <span class="sr-only">60% Complete</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 1em;width: {{percentage_four}}%;">
+                            <span class="sr-only">60% Complete</span>
+                        </div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 1em;width: {{percentage_three}}%;">
+                            <span class="sr-only">60% Complete</span>
+                        </div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 1em;width: {{percentage_two}}%;">
+                            <span class="sr-only">60% Complete</span>
+                        </div>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 1em;width: {{percentage_one}}%;">
+                            <span class="sr-only">60% Complete</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row m-t-lg" ng-show="showReview">
@@ -41,13 +73,13 @@
                     <div class="row">
                         <div class="col s12 m-t-lg">
                             <!-- <div star-rating rating-value="rating" max="5" on-rating-selected="rateFunction(rating)"></div> -->
-                            <div stark-rating rating="starRating1" read-only="false" max-rating="5" click="click1(param)" mouse-hover="mouseHover1(param)" mouse-leave="mouseLeave1(param)"></div>
-                            <div> <span class="label label-primary">Star Rating: {{starRating1}}</span>
-                                <span class="label label-primary">Hover Rating: {{hoverRating1}}</span>
+                            <div stark-rating rating="starRating1" read-only="false" max-rating="5" click="click1(param)" mouse-hover="mouseHover1(param)"> </div> 
+                            <span ng-class="hoverClass" class="label rating-value">{{hoverRating1}}</span>
+                            <div> 
+                                <!-- <span class="label label-primary">Star Rating: {{starRating1}}</span> -->
+                                <!-- <span class="label label-success">{{hoverRating1}}</span> -->
 
                             </div>
-                            <span ng-hide="rating > 0" class="">Select a rating</span>
-                            <span ng-show="rating > 0"class="">{{rating}} Star</span>
                             <div class="review m-t-lg">
                                 <form name="reviewForm" class="form-horizontal" data-ng-submit="createReview()" novalidate>
                                     <div class="form-group" ng-class="{ 'has-error': reviewForm.review.$dirty && reviewForm.review.$invalid }">
@@ -56,7 +88,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <a ui-sref="signin" ng-if="!isAuthenticated" class="btn btn-default green">Login to write a review</a>
+                                        <a ui-sref="signin" ng-if="!isAuthenticated" class="btn green white-text">Login to write a review</a>
                                         <a ng-if="isAuthenticated" ng-click="createReview()"  class="btn btn-post">Post Review</a>
                                         <a href="" style="margin-left: 20px;" ng-click="reset()">Cancel</a>
                                     </div>
@@ -96,11 +128,12 @@
                             <div class="row">
                                 <div class="col s4">
                                     <a href=""><img src="{{review.User.image_url}}" class="square"></a>
-                                    <p class="m-b-md"><a href="" class="blue-text darken-4">{{review.User.displayname}}</a></p>
+                                    <p class="m-b-md blue-text darken-4">{{review.User.displayname}}</p>
                                     <p><i class="fa fa-star red-text"></i> {{review.totalRev}} Review<span ng-if="review.totalRev > 1">s</span></span></p>
                                 </div>
                                 <div class="col s8">
-                                    <div star-rating rating-value="review.value" max="5" readonly="true"></div>
+                                    <!-- <div star-rating rating-value="review.value" max="5" readonly="true"></div> -->
+                                    <div stark-rating rating="review.value" read-only="true" max-rating="5" class="mid-star"> </div>
                                     <span class="meta-text">{{review.created | date:'mediumDate'}}</span>
                                     <div class="review m-t-md">
                                         <!-- <a href=""><img src="http://placehold.it/30x30" class="avatar"></a> -->
@@ -127,8 +160,8 @@
                 <ul class="collection m-b-lg" ng-init="findReviews()">
                     <li ng-repeat="review in topReviews" class="collection-item avatar">
                         <a href=""><img src="{{review.img ? review.img : 'http://placehold.it/60x60'}}" class="square"></a>
-                        <p class="m-b-md"><a href="" class="blue-text darken-4">{{review.firstname}}</a> wrote for <a href="/services/{{review.service_id}}" class="text-sm_bold blue-text darken-4">{{review.business_name}}</a></p>
-                        <p class="red-text"><div star-rating rating-value="review.value" max="5" readonly="true" class="small-star"></div><span class="grey-text meta-text">{{review.created | date:'mediumDate'}}</span></p>
+                        <p class="m-b-sm"><a href="" class="blue-text darken-4">{{review.firstname}}</a> wrote for <a href="/services/{{review.service_id}}" class="text-sm_bold blue-text darken-4">{{review.business_name}}</a></p>
+                        <p class="red-text"><div stark-rating rating="review.value" read-only="true" max-rating="5" class="small-star"> </div><span class="grey-text meta-text">{{review.created | date:'mediumDate'}}</span></p>
                         <div class="review m-t-sm">
                             <!-- <a href=""><img src="http://placehold.it/30x30" class="avatar"></a> -->
                             <p class="meta-text">{{review.review}}.</p>

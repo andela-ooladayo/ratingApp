@@ -55,21 +55,24 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$roo
             this.review = "";
         }
 
+        var ratingValue = [{},{comment: "Poor", color: "label-danger"}, {comment: "Ok", color: "label-warning"}, {comment: "Average", color: "label-info"}, {comment: "Very Good", color: "label-primary"}, {comment: "Excellent", color: "label-success"}];
+
         $scope.starRating1 = 0;
         $scope.click1 = function (param) {
-            console.log('Click(' + param + ')');
             $scope.rating = param;
         };
 
         $scope.mouseHover1 = function (param) {
-            console.log('mouseHover(' + param + ')');
-            $scope.hoverRating1 = param;
+            $scope.hoverRating1 = ratingValue[param].comment;
+            $scope.hoverClass = ratingValue[param].color;
         };
 
         $scope.mouseLeave1 = function (param) {
-            console.log('mouseLeave(' + param + ')');
-            $scope.hoverRating1 = param + '*';
+            $scope.hoverRating1 = ratingValue[param].comment;
+            $scope.hoverClass = ratingValue[param].color;
         };
+
+        $scope.percentages;
 
         function getSignedRequest(file) {
             var xhr;
@@ -224,13 +227,12 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$roo
             console.log($scope.service);
         };
 
+            $scope.avg_rating = 0;
         $scope.findOne = function(ServiceProvider) {
             console.log('got here');
-            $scope.avg_rating = 0;
             $scope.service = ServiceProvider.get({
                 serviceId: $stateParams.serviceId
             }, function() {
-                console.log($scope.service);
                 $scope.reviews = $scope.service.reviews;
                 var len = $scope.reviews.length;
                 var total = 0;
@@ -238,15 +240,24 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$roo
                     $http.get('review-ratings/user/' + review.UserId).success(function(response) {
                         review.totalRev = response.length;
                     }).error(function(response) {
-                        console.log(response)
                     });
                     total += review.value;
                 });
                 $scope.avg_rating += Math.round(total/len);
                 console.log($scope.avg_rating);
+                var totalrating = parseInt($scope.service.no_of_rating_five) + parseInt($scope.service.no_of_rating_four) + parseInt($scope.service.no_of_rating_three) + parseInt($scope.service.no_of_rating_two) + parseInt($scope.service.no_of_rating_one);
+                console.log(totalrating);
+                $scope.percentage_five =   (parseInt($scope.service.no_of_rating_five) / totalrating) * 100;
+                $scope.percentage_four =   (parseInt($scope.service.no_of_rating_four) / totalrating) * 100;
+                $scope.percentage_three =   (parseInt($scope.service.no_of_rating_three) / totalrating) * 100;
+                $scope.percentage_two =   (parseInt($scope.service.no_of_rating_two) / totalrating) * 100;
+                $scope.percentage_one =   (parseInt($scope.service.no_of_rating_one) / totalrating) * 100;
+                console.log($scope.percentage_five);
             });
             console.log($scope.service);
+
         };
+
 
         $scope.createReview = function() {
             var review = new Reviews({
@@ -349,8 +360,8 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$roo
         restrict: 'EA',
         template:
             "<div style='display: inline-block; margin: 0px; padding: 0px; cursor:pointer;' ng-repeat='idx in maxRatings track by $index'> \
-                    <img ng-src='{{((hoverValue + _rating) <= $index) && \"http://www.codeproject.com/script/ratings/images/star-empty-lg.png\" || \"http://www.codeproject.com/script/ratings/images/star-fill-lg.png\"}}' \
-                    ng-Click='isolatedClick($index + 1)' \
+                    <img ng-src='{{((hoverValue + _rating) <= $index) && \"/modules/core/img/star-empty-lg.png\" || \"/modules/core/img/star-fill-lg.png\"}}' \
+                    ng-click='isolatedClick($index + 1)' \
                     ng-mouseenter='isolatedMouseHover($index + 1)' \
                     ng-mouseleave='isolatedMouseLeave($index + 1)'></img> \
             </div>",

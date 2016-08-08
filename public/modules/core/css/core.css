@@ -5,7 +5,7 @@
 }
 
 body {
-  font: 12px 'Lato', Helvetica, Arial, sans-serif;
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
   /*color: #4d4d4d;*/
   margin: 0 auto;
   line-height: 1.6em;
@@ -260,7 +260,7 @@ nav ul a:hover, .nav-wrapper a {
 .top-content {
   width: 80%;
   position: relative;
-  margin: 80px auto 140px;
+  margin: 100px auto 140px;
 }
 
 .tabs-left > .nav-tabs {
@@ -396,8 +396,12 @@ ul.rating {
   cursor: pointer;
 }
 
-.small-star .rating li {
-  font-size: 1.2em;
+.small-star img {
+  width: 14px;
+}
+
+.mid-star img {
+  width: 18px;
 }
 
 .mid-star .rating li {
@@ -405,9 +409,14 @@ ul.rating {
 }
 
 .rating .filled {
-  color: #4CAF50;
+  color: #ff9900;
 }
 
+.progress {
+  width: 90%;
+  float: right;
+  height: 10px;
+}
 
 /*button group*/
 .list-group {
@@ -431,6 +440,16 @@ ul.rating {
   border-bottom-left-radius:0;
 }
 
+.label.rating-value {
+  position: relative;
+  left: 128px;
+  top: -20px;
+}
+
+.label.rating-value {
+  font-size: 90%
+}
+
 .btn-upvote {
     font-size: 12px;
     height: 20px;
@@ -441,11 +460,22 @@ ul.rating {
     background-color: #4CAF50;
 }
 
+.btn-large {
+  box-shadow: none;
+}
+
+.btn-large:hover {
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.1),0 2px 2px 0 rgba(0,0,0,0.1);
+}
+
 .btn-post {
-    margin: 0 10px;
     color: white !important;
     font-weight: 600;
     background-color: #4CAF50;
+}
+
+.filter-btn-padding {
+  /*padding: 4px 10px;*/
 }
 
 /*footer*/
@@ -454,6 +484,84 @@ footer.page-footer {
   background-color: #403637;
 }
 
+#gallery {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#gallery a {
+  display: inline-block;
+  margin-bottom: 8px;
+  width: calc(50% - 4px);
+  margin-right: 8px;
+  text-decoration: none;
+  color: black;
+}
+
+#gallery a:nth-of-type(2n) {
+  margin-right: 0;
+}
+
+@media screen and (min-width: 50em) {
+ #gallery a {
+    width: calc(25% - 6px);
+  }
+  
+  #gallery a:nth-of-type(2n) {
+    margin-right: 8px;
+  }
+  
+  #gallery a:nth-of-type(4n) {
+    margin-right: 0;
+  }
+}
+
+#gallery a:hover img, #gallery a:hover h4 {
+  transform: scale(1.15);
+}
+
+figure {
+  margin: 0;
+  overflow: hidden;
+}
+
+#gallery h4 {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 900;
+  position: relative;
+  top: -50px;
+  transition: all 0.5s ease;
+}
+
+#gallery img {
+  border: none;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  background: #ccc;
+  transition: transform .2s ease-in-out;
+}
+
+@media only screen and (max-width: 600px) {
+  #toast-container {
+    min-width: 0;
+  }
+}
+
+/*.p a {
+  display: inline;
+  font-size: 13px;
+  margin: 0;
+  text-decoration: underline;
+  color: blue;
+}
+
+.p {
+  text-align: center;
+  font-size: 13px;
+  padding-top: 100px;
+}*/
 
 /*debugger*/
 /*

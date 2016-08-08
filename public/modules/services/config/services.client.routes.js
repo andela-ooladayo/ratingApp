@@ -47,6 +47,13 @@ angular.module('services').config(['$stateProvider',
                 data : {
                     access : access.anon
                 }
+        }).
+        state('categories', {
+            url: '/categories/:categoryId',
+            templateUrl: 'modules/services/views/categories.client.view.html',
+                data : {
+                    access : access.anon
+                }
         });
     }
 ]);

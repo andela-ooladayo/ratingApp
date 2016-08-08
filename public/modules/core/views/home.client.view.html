@@ -2,7 +2,7 @@
     <div id="top" class="row grey darken-5" ng-hide="isAuthenticated">
         <div class="top-content text center">
             <h2 class="white-text">Raytee is the best way to Find, Review and Rate amazing local brands</h2>
-            <p class="white-text flow-text">and bad brands too. People use Raytee to make daily purchase decisions. From the city’s tastiest ice-cream spot to the best local wedding planner. What will you uncover in your neighborhood?</p>
+            <p class="white-text flow-text hide-on-small-only" style="font-weight: 500;">and bad brands too. People use Raytee to make daily purchase decisions. From the city’s tastiest ice-cream spot to the best local wedding planner. What will you uncover in your neighborhood?</p>
             <form class="">
                 <div class="input-field m-t-lg">
                     <label for="search"></label>
@@ -18,71 +18,42 @@
             <h2 class="m-t-xlg">Reviewers</h2>
             <p class="m-t-lg" style="font-size: 14px;">Sign up to rate a specific or several brands based on your interaction with them. You can also drop a comment to recommend their services or otherwise. Will you help others save time and money? </p>
             <div class="m-t-lg">
-                <a ui-sref="listServices" class="waves-effect waves-light btn-large grey lighten-3 green-text" style="width: 200px; font-weight: 700; font-size: 14px;">Come along here</a>
+                <a ui-sref="signup" class="waves-effect waves-light btn-large grey lighten-3 green-text" style="width: 200px; font-weight: 700; font-size: 14px;">Come along here</a>
             </div>
         </div>
         <div class="col l6 m6 s12 grey lighten-3 green-text" style="height: 400px; padding: 0 50px;">
             <h2 class="m-t-xlg">Merchants</h2>
             <p class="m-t-lg" style="font-size: 14px;">With Raytee, you can improve your company’s business performance through timely customer feedback and industry peer rating. We will provide the performance analytics with the right marketing mix to back you up.</p>
             <div class="m-t-lg">
-                <a ui-sref="listServices" class="waves-effect waves-light btn-large green white-text" style="width: 200px; font-weight: 700; font-size: 14px;">Ask for an invite</a>
+                <a href="/settings/accounts/profile" class="waves-effect waves-light btn-large green white-text" style="width: 200px; font-weight: 700; font-size: 14px;">Ask for an invite</a>
             </div>
         </div>
     </div>
-    <div class="container m-t-lg" ng-init="default_view()">
+    <div class="m-t-lg" ng-init="default_view()">
         <div class="row">
             <div class="col l12 m12 s12">
-                <h4 class="section-title red-text">See Recommended Brands</h4>
-                <!-- tabs -->
-                <!-- <div class="tabbable ">
-                    <ul class="nav nav-tabs">
-                        <li ng-repeat="category in categories | limitTo:14" ng-class="{'active': view_tab == category}">
-                            <a href="" ng-click="changeTab(category)" data-toggle="tab" style="font-size: 14px; font-weight: 600;">{{category}}</a>
-                        </li>
-                        <li>
-                            <a href="" ng-click="toggleCategory()">More Categories</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane" ng-class="{'active': view_tab == categories[idx]}" id="categories[idx]">
-                            <div class="">
-                                <h4></h4>
-                                <ul class="collection">
-                                    <li class="collection-item red-text darken-4" style="font-size: 12px; overflow: auto;">
-                                        <div class="col s12">
-                                            <div class="col s6">
-                                                <p>{{categories[idx]}}</p>
-                                            </div>
-                                            <div class="col s6">
-                                                <div class="list-group list-group-horizontal right">
-                                                    <a class="list-group-item" ng-click="toggleReview()"><i class="fa fa-star"></i> Recent</a>
-                                                    <a href="" data-ng-show="user.id == service.merchant_id" class="list-group-item"><i class="fa fa-edit"></i> Toppers</a>
-                                                    <a href="#" data-ng-show="user.id == service.merchant_id" class="list-group-item" data-ng-click="remove();"><i class="fa fa-remove"></i> Wack</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li ng-hide="categoryArr.length"class="collection-item">
-                                        No Result found
-
-                                    </li>
-                                    <li ng-repeat="service in categoryArr" class="collection-item avatar">
-                                        <a href=""><img ng-src="{{service.images[0].url ? service.images[0].url : 'http://placehold.it/60x60'}}" class="square"></a>
-                                        <p class="text-sm_bold m-b-md" style="font-size: 18px; font-weight: 700"><a href="/services/{{service.id}}" class="blue-text darken-4" ng-bind="service.business_name"></a></p>
-                                        <p class="red-text"> <div star-rating rating-value="service.avg_rating" max="5" readonly="true" class="small-star"></div> <span>{{service.reviews.length}} Review</span><span ng-if="service.reviews.length > 1">s</span></p>
-                                        <div class="review m-t-sm" ng-show="service.reviews.length">
-                                            <a href=""><img src="{{service.reviews[0].User.image_url}}" class="img img-responsive avatar"></a>
-                                            <p class="meta-text" ng-bind="service.reviews[0].review"></p>
-                                        </div>
-                                        <a class="secondary-content"><p class="red-text"> <div star-rating rating-value="service.avg_rating" max="5" readonly="true" class="mid-star"></div> <span>{{service.reviews.length}} Review</span><span ng-if="service.reviews.length > 1">s</span></p></a>
-                                    </li>
-                                    
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                <h1 class="section-title grey-text darken-4 text-center">Categories</h1>
+                <div class="seperator m-b-lg">
+                    <span></span>
                 </div>
-            </div> -->
+            <div id="gallery">
+                <a ng-repeat="category in categories | limitTo: 11" href="/categories/{{$index}}" >
+                    <figure>
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/placeimg01.jpg" alt="">
+                        <h4 class="text-center white-text">
+                            {{categories[$index]}}
+                        </h4>
+                    </figure>
+                </a>
+                <a href="/categories/1" >
+                    <figure>
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/placeimg01.jpg" alt="">
+                        <h4 class="text-center white-text">
+                            More
+                        </h4>
+                    </figure>
+                </a>
+            </div>
 
             <div class="col l12 m12 s12 m-t-lg" id="#topRated">
                 <div class="col l6 m6 s12">
@@ -92,7 +63,9 @@
                         <li ng-repeat="service in topRated | orderBy: '-average_value'" class="collection-item avatar">
                             <a href=""><img ng-src="{{service.images[0].url ? service.images[0].url : 'http://placehold.it/60x60'}}" class="square"></a>
                             <p class="text-sm_bold m-b-md" style="font-size: 18px; font-weight: 700"><a href="/services/{{service.id}}" class="blue-text darken-4" ng-bind="service.business_name"></a></p>
-                            <p class="red-text"><div star-rating rating-value="service.average_value" max="5" readonly="true" class="small-star"></div></p>
+                            <p class="red-text">
+                                <div stark-rating rating="service.average_value" read-only="true" max-rating="5" class="small-star" > </div>
+                            </p>
                         </li>
                     </ul>
                 </div>
@@ -103,7 +76,10 @@
                         <li ng-repeat="review in topReviews" class="collection-item avatar">
                             <a href=""><img ng-src="{{review.img ? review.img : 'http://placehold.it/60x60'}}" class="square"></a>
                             <p class="m-b-md"><a href="" class="blue-text darken-4">{{review.firstname}}</a> wrote for <a href="services/{{review.service_id}}" class="text-sm_bold blue-text darken-4">{{review.business_name}}</a></p>
-                            <p class="red-text"><div star-rating rating-value="review.value" max="5" readonly="true" class="small-star"></div><span class="grey-text meta-text">{{review.created | date:'mediumDate'}}</span></p>
+                            <p class="red-text">
+                                <div stark-rating rating="review.value" read-only="true" max-rating="5" class="small-star" > </div>
+                                <span class="grey-text meta-text">{{review.created | date:'mediumDate'}}</span>
+                            </p>
                             <div class="review m-t-sm">
                                 <!-- <a href=""><img src="http://placehold.it/30x30" class="avatar"></a> -->
                                 <p class="meta-text">{{review.review}}.</p>
@@ -116,8 +92,4 @@
             
         </div>
     </div>
-    <!-- <tabset class="tabs-left">
-    <tab heading="Vertical A">Vertical content A</tab>
-    <tab heading="Vertical B">Vertical content B</tab>
-</tabset> -->
 </section>

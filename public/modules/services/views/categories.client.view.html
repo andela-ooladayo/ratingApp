@@ -1,15 +1,11 @@
-<!-- <ul id="filter" class="dropdown-content">
-    <li><a href="" ng-click="">Recent</a></li>
-    <li><a href="">Top Rated</a></li>
-</ul> -->
-<section class="row page" data-ng-controller="ServicesController" data-ng-init="find()">
-    <div class="ng-cloak">
+<section class="row page" data-ng-controller="CategoriesController" data-ng-init="find()">
+    <div>
         <!-- {{services | json}} -->
 
-        <div class="col l6 offset-l1 s12 m-b-lg">
+        <div class="col m6 offset-m1 s12 ng-cloak">
             <div>
                 <div class="col m6 s12">
-                    <h3 class="section-title red-text">Popular Services</h3>
+                    <h3 class="section-title red-text">{{category}}</h3>
                 </div>
                 <div class="col m6 s12">
                     <div class="list-group list-group-horizontal right" style="font-size: 8px;">
@@ -21,14 +17,8 @@
                 </div>
                 <hr>
             </div>
-            <!-- 
-                <a href="" data-activates="filter"class="dropdown-button pull-right blue-text meta-text">Filter</a> -->
-            
-            <div class="col s10 offset-s1 alert alert-warning text-center" data-ng-if="serviceArray.length === 0">
-                No Service yet, why don't you <span ng-if="!isAuthenticated"><a href="/signup">sign up</a> </span> <a href="/services/create" ng-if="isAuthenticated && user.roleTitle === 'merchant'">create one</a> <a href="/settings/accounts/profile" ng-if="isAuthenticated && user.roleTitle === 'user'"> send a merchant request</a> ?
-            </div>
-            <ul class="collection">
-                <li ng-repeat="service in serviceArray | orderBy:'-created'"class="collection-item service-avatar">
+            <ul class="collection m-b-lg">
+                <li ng-repeat="service in categoryArr | orderBy:'-created'"class="collection-item service-avatar">
                     <div class="row">
                         <div class="col m8 s12">
                             <a href="">
@@ -59,7 +49,7 @@
                 <!-- <li class="collection-item text-center" ng-show="user.roleTitle === 'merchant'"><a href="" ui-sref="createService" class="meta-text blue-text darken-4">GET MORE</a></li> -->
             </ul>
         </div>
-        <div class="col m3 offset-m1 s12 m-b-lg">
+        <div class="col m3 offset-m1 s12">
             <h3 class="section-title red-text">Top reviews</h3>
             <hr>
             <ul class="collection m-b-lg" ng-init="getTopReviews()">
