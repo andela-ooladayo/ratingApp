@@ -3,7 +3,6 @@ var api_key = 'key-56d8fcf90a99fa73da7494aa0f7b0b39';
     var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
 module.exports = function(msg, cb) {
- 
     var data = {
         from: "no-reply@raytee.com",
         to: msg.to,
@@ -15,8 +14,6 @@ module.exports = function(msg, cb) {
         if(error) {
             console.log(error, "Mail post error >>> Mailgun");
         }
-        
         if(cb) {cb();}
-        
     });
 };

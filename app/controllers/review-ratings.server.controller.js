@@ -1,5 +1,4 @@
 'use strict';
-
 var _ = require('lodash'),
     db = require('../../config/sequelize'),
     async = require('async'),
@@ -12,7 +11,7 @@ var _ = require('lodash'),
 exports.create = function(req, res) {
     delete req.body.no_of_likes;
     delete req.body.no_of_dislikes;
-
+    
     var reviewRating = req.body;
     var queryPar;
 

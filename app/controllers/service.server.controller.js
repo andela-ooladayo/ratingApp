@@ -1,5 +1,4 @@
 'use strict';
-
 var _ = require('lodash'),
     db = require('../../config/sequelize'),
     errorHandler = require('./errors'),
@@ -10,7 +9,6 @@ var _ = require('lodash'),
 
 
 exports.create = function(req, res) {
-    
     var data = req.body;
 
     delete data.no_of_rating_five;

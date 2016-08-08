@@ -99,7 +99,6 @@ function waitingList(req, res) {
                     waitingRequest.dataValues.lastname = user.lastname || "";
                     waitingRequest.dataValues.phone_number = user.phone_number || "";
                     waitingRequest.dataValues.email = user.email || "";
-
                     completeWaitingList.push(waitingRequest);
                 }
                 else {

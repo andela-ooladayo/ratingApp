@@ -1,5 +1,4 @@
 'use strict';
-
 var _ = require('lodash'),
     db = require('../../config/sequelize'),
     errorHandler = require('./errors'),
@@ -8,9 +7,7 @@ var _ = require('lodash'),
 
 exports.create = function(req, res) {
     var images = req.body;
-
     var error = checkRequestBody(req.body, ['service_id', 'url']);
-
     if(error) {
         return res.status(400).json(error);
     }
@@ -32,11 +29,8 @@ exports.read = function(req, res) {
 
 
 exports.update = function(req, res) {
-
     var images = req.images;
-
     images = _.extend(images, req.body);
-
     images.save().then(function() {
         res.jsonp(images);
     }, function(err) {
@@ -49,7 +43,6 @@ exports.update = function(req, res) {
 
 exports.delete = function(req, res) {
     var images = req.images;
-
     images.destroy().then(function() {
         res.jsonp(images);
     }, function(err) {
@@ -62,7 +55,6 @@ exports.delete = function(req, res) {
 
 exports.listbyServiceId = function(req, res) {
     var serviceId = req.body.serviceId;
-
     db.images.findAll({where: { service_id: serviceId } }).then(function(images) {
         return res.status(200).json(images);
     }, function(err) {
