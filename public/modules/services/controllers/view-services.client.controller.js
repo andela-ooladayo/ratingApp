@@ -181,6 +181,7 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$roo
         };
 
         $scope.remove = function(service) {
+            confirm("Are you sure you want to continue?");
             if (service) {
                 service.$remove();
 
