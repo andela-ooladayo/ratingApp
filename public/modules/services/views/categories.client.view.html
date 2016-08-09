@@ -18,6 +18,14 @@
                 <hr>
             </div>
             <ul class="collection m-b-lg">
+                <li class="collection-item">
+                    <div class="controls">
+                        <select id="cat" class="browser-default" data-ng-model="business_category_id" data-ng-options="k as v for (k,v) in categories track by k" convert-to-number required>
+                            <option value=''>Category</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="collection-item" ng-if="categoryArr.length === 0">No service in this category</li>
                 <li ng-repeat="service in categoryArr | orderBy:'-created'"class="collection-item service-avatar">
                     <div class="row">
                         <div class="col m8 s12">

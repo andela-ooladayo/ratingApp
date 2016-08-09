@@ -39,15 +39,19 @@
             <div id="gallery">
                 <a ng-repeat="category in categories | limitTo: 11" href="/categories/{{$index}}" >
                     <figure>
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/placeimg01.jpg" alt="">
+                        <div class="img_overlay">
+                            <img ng-src="{{categories[$index].image}}" alt="">
+                        </div>
                         <h4 class="text-center white-text">
-                            {{categories[$index]}}
+                            {{categories[$index].name}}
                         </h4>
                     </figure>
                 </a>
-                <a href="/categories/1" >
+                <a href="/categories/0" >
                     <figure>
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/placeimg01.jpg" alt="">
+                        <div class="img_overlay">
+                            <img src="/modules/core/img/Maintenance.jpg" alt="">
+                        </div>
                         <h4 class="text-center white-text">
                             More
                         </h4>

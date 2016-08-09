@@ -37,6 +37,10 @@ angular.module('services').controller('CategoriesController', ['$scope', '$state
 
         console.log($stateParams);
         $scope.categoryArr = [];
+
+        // $scope.getCategory = function() {
+
+        // }
         $http.get('/service/category/' + $stateParams.categoryId).success(function(response) {
             $scope.category = $scope.categories[$stateParams.categoryId];
             console.log(response);
@@ -83,6 +87,38 @@ angular.module('services').controller('CategoriesController', ['$scope', '$state
             console.log(response);
           });
         }
+
+        $('#cat').on('change', function() {
+          $scope.categoryArr = [];
+          var val = this.value;
+          $http.get('/service/category/' + val).success(function(response) {
+              $scope.category = $scope.categories[val];
+              console.log(response);
+              response.forEach(function(service) {
+                  var service = ServiceFac.get({
+                      serviceId: service.id
+                  }, function() {
+                      var len = service.reviews.length;
+                      var total = 0;
+                      if(service.reviews.length > 0) {
+                          service.reviews.forEach(function(review) {
+                              total += review.value;
+                          });
+                          service.avg_rating = Math.round(total/len);
+                          // console.log(service);
+                          $scope.categoryArr.push(service); 
+                      }
+                      else {
+                          service.avg_rating = 0;
+                          $scope.categoryArr.push(service);
+                      }
+                  });
+
+              });
+          }).error(function(response) {
+              console.log(response);
+          });
+        })
 
     }
 ]);

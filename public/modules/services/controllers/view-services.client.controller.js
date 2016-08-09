@@ -54,7 +54,7 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$roo
             this.review = "";
         }
 
-        var ratingValue = [{},{comment: "Poor", color: "label-danger"}, {comment: "Ok", color: "label-warning"}, {comment: "Average", color: "label-info"}, {comment: "Very Good", color: "label-primary"}, {comment: "Excellent", color: "label-success"}];
+        var ratingValue = [{comment: "select a rating", color: "label-default"},{comment: "Poor", color: "label-danger"}, {comment: "Ok", color: "label-warning"}, {comment: "Average", color: "label-info"}, {comment: "Very Good", color: "label-primary"}, {comment: "Excellent", color: "label-success"}];
 
         $scope.starRating1 = 0;
         $scope.click1 = function (param) {

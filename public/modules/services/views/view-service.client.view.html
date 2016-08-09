@@ -33,7 +33,7 @@
                     <a href="/services/{{service.id}}/edit" data-ng-show="user.id == service.merchant_id" class="list-group-item"><i class="fa fa-edit"></i> Edit</a>
                     <a href="#" data-ng-show="user.id == service.merchant_id" class="list-group-item" data-ng-click="remove();"><i class="fa fa-remove"></i> Delete</a>
                 </div>
-                <div>
+                <!-- <div>
                     <div class="star-detail">
                         <span>5 <i class="fa fa-star"></i></span>
                         <div class="progress">
@@ -74,7 +74,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="row m-t-lg" ng-show="showReview">
@@ -85,7 +85,7 @@
                     <div class="row">
                         <div class="col s12 m-t-lg">
                             <!-- <div star-rating rating-value="rating" max="5" on-rating-selected="rateFunction(rating)"></div> -->
-                            <div stark-rating rating="starRating1" read-only="false" max-rating="5" click="click1(param)" mouse-hover="mouseHover1(param)"> </div> 
+                            <div stark-rating rating="starRating1" read-only="false" max-rating="5" click="click1(param)" mouse-hover="mouseHover1(param)" mouse-leave="mouseLeave1(param)"> </div> 
                             <span ng-class="hoverClass" class="label rating-value">{{hoverRating1}}</span>
                             <div> 
                                 <!-- <span class="label label-primary">Star Rating: {{starRating1}}</span> -->
