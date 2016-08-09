@@ -18,14 +18,16 @@
             <h2 class="m-t-xlg">Reviewers</h2>
             <p class="m-t-lg" style="font-size: 14px;">Sign up to rate a specific or several brands based on your interaction with them. You can also drop a comment to recommend their services or otherwise. Will you help others save time and money? </p>
             <div class="m-t-lg">
-                <a ui-sref="signup" class="waves-effect waves-light btn-large grey lighten-3 green-text" style="width: 200px; font-weight: 700; font-size: 14px;">Come along here</a>
+                <a ui-sref="listServices" ng-if="isAuthenticated" class="waves-effect waves-light btn-large grey lighten-3 green-text" style="width: 200px; font-weight: 700; font-size: 14px;">Start Rating</a>
+                <a ui-sref="signup" ng-if="!isAuthenticated" class="waves-effect waves-light btn-large grey lighten-3 green-text" style="width: 200px; font-weight: 700; font-size: 14px;">Come along here</a>
             </div>
         </div>
         <div class="col l6 m6 s12 grey lighten-3 green-text" style="height: 400px; padding: 0 50px;">
             <h2 class="m-t-xlg">Merchants</h2>
             <p class="m-t-lg" style="font-size: 14px;">With Raytee, you can improve your company’s business performance through timely customer feedback and industry peer rating. We will provide the performance analytics with the right marketing mix to back you up.</p>
             <div class="m-t-lg">
-                <a href="/settings/accounts/profile" class="waves-effect waves-light btn-large green white-text" style="width: 200px; font-weight: 700; font-size: 14px;">Ask for an invite</a>
+                <a ui-sref="signin" ng-if="!isAuthenticated" class="waves-effect waves-light btn-large green white-text" style="width: 200px; font-weight: 700; font-size: 14px;">Get Started</a>
+                <a href="/settings/accounts/profile" ng-if="isAuthenticated" class="waves-effect waves-light btn-large green white-text" style="width: 200px; font-weight: 700; font-size: 14px;">Ask for an invite</a>
             </div>
         </div>
     </div>
