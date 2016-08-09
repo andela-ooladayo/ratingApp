@@ -27,7 +27,8 @@
             <p class="m-t-lg" style="font-size: 14px;">With Raytee, you can improve your company’s business performance through timely customer feedback and industry peer rating. We will provide the performance analytics with the right marketing mix to back you up.</p>
             <div class="m-t-lg">
                 <a ui-sref="signin" ng-if="!isAuthenticated" class="waves-effect waves-light btn-large green white-text" style="width: 200px; font-weight: 700; font-size: 14px;">Get Started</a>
-                <a href="/settings/accounts/profile" ng-if="isAuthenticated" class="waves-effect waves-light btn-large green white-text" style="width: 200px; font-weight: 700; font-size: 14px;">Ask for an invite</a>
+                <a href="/settings/accounts/profile" ng-if="isAuthenticated && user.roleTitle === 'user'" class="waves-effect waves-light btn-large green white-text" style="width: 200px; font-weight: 700; font-size: 14px;">Ask for an invite</a>
+                <a href="/settings/accounts/profile" ng-if="isAuthenticated && user.roleTitle === 'merchant'" class="waves-effect waves-light btn-large green white-text" style="width: 200px; font-weight: 700; font-size: 14px;">Add a Business</a>
             </div>
         </div>
     </div>

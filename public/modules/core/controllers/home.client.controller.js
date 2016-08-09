@@ -1,9 +1,10 @@
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$scope', 'Authentication', '$http', 'ServiceFac',
-	function($scope, Authentication, $http, ServiceFac) {
+angular.module('core').controller('HomeController', ['$scope', 'Authentication', '$http', 'ServiceFac', 'User',
+	function($scope, Authentication, $http, ServiceFac, User) {
 		// This provides Authentication context.
+    $scope.user = User.get();
 		$scope.authentication = Authentication;
     $scope.isAuthenticated = Authentication.isAuthenticated();
     

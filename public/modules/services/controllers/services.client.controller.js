@@ -38,6 +38,10 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
           "Utilities",
         ];
 
+        $scope.setFilter = function(param) {
+            $scope.filter = param;
+        }
+
         function getSignedRequest(file) {
             var xhr;
             if (window.ActiveXObject) {
@@ -270,7 +274,6 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                             review.service_image = service.images[0].url;
                         });
                         $scope.reviews.push(review);
-                        console.log($scope.reviews);
                     });
                 }
             }).error(function(errorResponse) {

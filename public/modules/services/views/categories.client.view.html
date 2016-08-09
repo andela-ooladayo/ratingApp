@@ -9,10 +9,10 @@
                 </div>
                 <div class="col m6 s12">
                     <div class="list-group list-group-horizontal right" style="font-size: 8px;">
-                        <a class="list-group-item filter-btn-padding" ng-click="toggleReview()">All</a>
-                        <a href="#" class="list-group-item filter-btn-padding">Recent</a>
-                        <a href="#" class="list-group-item filter-btn-padding" data-ng-click="remove();">Most Rated</a>
-                        <a href="#" class="list-group-item filter-btn-padding" data-ng-click="remove();">Top Rated</a>
+                        <a class="list-group-item filter-btn-padding" ng-click="setFilter()">All</a>
+                        <a href="#" class="list-group-item filter-btn-padding" ng-click="setFilter('-created')">Recent</a>
+                        <a href="#" class="list-group-item filter-btn-padding" ng-click="setFilter('-reviews.length');">Most Rated</a>
+                        <a href="#" class="list-group-item filter-btn-padding" ng-click="setFilter('-avg_rating');">Top Rated</a>
                     </div>
                 </div>
                 <hr>
@@ -27,7 +27,7 @@
                         </div>
                     </li>
                     <li class="collection-item" ng-if="categoryArr.length === 0">No service in this category</li>
-                    <li ng-repeat="service in categoryArr | orderBy:'-created'"class="collection-item service-avatar">
+                    <li ng-repeat="service in categoryArr | orderBy: filter"class="collection-item service-avatar">
                         <div class="row">
                             <div class="col m8 s12">
                                 <a href="">

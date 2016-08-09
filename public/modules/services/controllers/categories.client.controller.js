@@ -39,6 +39,10 @@ angular.module('services').controller('CategoriesController', ['$scope', '$state
         console.log($stateParams);
         $scope.categoryArr = [];
 
+        $scope.setFilter = function(param) {
+            $scope.filter = param;
+        }
+
         // $scope.getCategory = function() {
 
         // }
