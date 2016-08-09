@@ -225,7 +225,6 @@ angular.module('services').controller('ViewServicesController', ['$scope', '$roo
 
             $scope.avg_rating = 0;
         $scope.findOne = function(ServiceProvider) {
-            console.log('got here');
             $scope.service = ServiceProvider.get({
                 serviceId: $stateParams.serviceId
             }, function() {

@@ -36,7 +36,6 @@ angular.module('services').controller('CategoriesController', ['$scope', '$state
           "Utilities",
         ];
 
-        console.log($stateParams);
         $scope.categoryArr = [];
 
         $scope.setFilter = function(param) {
@@ -48,7 +47,6 @@ angular.module('services').controller('CategoriesController', ['$scope', '$state
         // }
         $http.get('/service/category/' + $stateParams.categoryId).success(function(response) {
             $scope.category = $scope.categories[$stateParams.categoryId];
-            console.log(response);
             response.forEach(function(service) {
                 var service = ServiceFac.get({
                     serviceId: service.id
@@ -98,7 +96,6 @@ angular.module('services').controller('CategoriesController', ['$scope', '$state
           var val = this.value;
           $http.get('/service/category/' + val).success(function(response) {
               $scope.category = $scope.categories[val];
-              console.log(response);
               response.forEach(function(service) {
                   var service = ServiceFac.get({
                       serviceId: service.id

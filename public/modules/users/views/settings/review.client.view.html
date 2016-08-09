@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <h4 class="section-title red-text">All My Reviews</h4>
                 <ul class="collection">
-                    <li ng-repeat="review in reviews" class="collection-item">
+                    <li ng-repeat="review in reviews | orderBy: '-created'" class="collection-item">
                         <div>
                             <p>On {{review.created | date:'medium'}} You wrote "<i>{{review.review}}</i>" about <a href="/services/{{review.service_id}}">{{review.service_name}}</a></p>
                         </div>

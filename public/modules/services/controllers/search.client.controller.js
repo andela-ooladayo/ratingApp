@@ -11,7 +11,6 @@ angular.module('services').controller('SearchController', ['$scope', '$statePara
         
         $http.get('services/search', {params: $stateParams}).success(function(response) {
             $scope.searchTerm = $stateParams.q
-            console.log(response);
             $scope.searchResult = response;
         }).error(function(response) {
             console.log(response);
