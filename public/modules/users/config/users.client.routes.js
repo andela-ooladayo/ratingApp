@@ -48,6 +48,13 @@ angular.module('users').config(['$stateProvider',
                     access : access.user
                 }
         }).
+        state('accounts.review', {
+            url: '/review',
+            templateUrl: 'modules/users/views/settings/review.client.view.html',
+                data : {
+                    access : access.user
+                }
+        }).
 		state('signup', {
 			url: '/signup',
 			templateUrl: 'modules/users/views/authentication/signup.client.view.html',

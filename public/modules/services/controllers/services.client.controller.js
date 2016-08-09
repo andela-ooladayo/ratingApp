@@ -6,7 +6,6 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
         $scope.isAuthenticated = Authentication.isAuthenticated();
 
         $scope.user = User.get();
-        console.log($scope.user);
         var image_url = '';
 
         $scope.categories = [
@@ -55,7 +54,6 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
                         var response = JSON.parse(xhr.responseText);
-                        console.log(response, "response");
                         image_url = response.url;
                         uploadFile(file, response.signed_request, response.url);
                     } else {
@@ -211,7 +209,6 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
 
                 });
             });
-            console.log($scope.serviceArray);
         };
 
         $scope.findOne = function() {
@@ -226,15 +223,15 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                     total += review.value;
                 });
                 $scope.avg_rating += Math.round(total/len);
-                console.log($scope.avg_rating);
+
             });
-            console.log($scope.service);
+
         };
 
         $scope.findMy = function(index) {
             $scope.services = [];
             $http.get('service/merchant/' + index).success(function(response) {
-                console.log(response.length);
+
                 if (response.length > 0) {
                     response.forEach(function(service) {
                         var len = service.reviews.length;
@@ -259,6 +256,28 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
             })
         };
 
+        $scope.findRev = function(index) {
+            $scope.reviews = [];
+            $http.get('review-ratings/user/' + index).success(function(response) {
+
+                if (response.length > 0) {
+                    response.forEach(function(rev) {
+                        var review = rev;
+                        var service = Services.get({
+                          serviceId: review.service_id  
+                        }, function() {
+                            review.service_name = service.business_name;
+                            review.service_image = service.images[0].url;
+                        });
+                        $scope.reviews.push(review);
+                        console.log($scope.reviews);
+                    });
+                }
+            }).error(function(errorResponse) {
+                console.log(errorResponse);
+            })
+        };
+
         $scope.createReview = function() {
             var review = new Reviews({
                 service_id: $scope.service.id,
@@ -266,7 +285,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                 review: this.review,
                 user_id: $scope.user.id
             });
-            console.log(review);
+
             review.$save(function(response) {
                 Message.success('Review','successfully added review');
                 $location.path('services/' + $scope.service.id);
@@ -281,7 +300,6 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
           $scope.isLoadingReviews = true;
           $http.get('service/top-reviews').success(function(response) {
             response.data.forEach(function(review) {
-                console.log(review);
                 var res = ServiceFac.get({
                     serviceId: review.service_id
                 }, function() {
@@ -298,12 +316,10 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
         }
 
         $scope.like = function(param) {
-            console.log("liked", param);
             Likes.like(param);
         }
 
         $scope.dislike = function(param) {
-            console.log("disliked", param);
             Likes.dislike(param);
         }
 

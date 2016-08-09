@@ -1,7 +1,7 @@
 <section data-ng-controller="ViewServicesController" data-ng-init="finder()">
-    <section id="business_detail">
+    <section>
         <div class="row green lighten-5" style="border-bottom: 1px solid rgba(0,0,0,0.1);">
-            <div class="col m6 s12">
+            <div class="col m6 s12" id="business_detail">
                 <ul class="m-t-lg collection">
                     <li class="collection-item service-avatar">
                         <div class="row">
@@ -33,7 +33,7 @@
                     <a href="/services/{{service.id}}/edit" data-ng-show="user.id == service.merchant_id" class="list-group-item"><i class="fa fa-edit"></i> Edit</a>
                     <a href="#" data-ng-show="user.id == service.merchant_id" class="list-group-item" data-ng-click="remove();"><i class="fa fa-remove"></i> Delete</a>
                 </div>
-                <!-- <div>
+                <div>
                     <div class="star-detail">
                         <span>5 <i class="fa fa-star"></i></span>
                         <div class="progress">
@@ -74,7 +74,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
         <div class="row m-t-lg" ng-show="showReview">

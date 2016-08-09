@@ -209,6 +209,7 @@ nav ul a:hover, .nav-wrapper a {
   border-bottom-left-radius: 20px !important;
   padding-left: 10px !important;
   color: grey;
+  line-height: 1;
   vertical-align: bottom;  /*safari fix*/
 }
 
@@ -220,7 +221,6 @@ nav ul a:hover, .nav-wrapper a {
   position: absolute;
   top: 1.3em;
   right: 7em;
-  line-height: 1;
   border-top-right-radius: 20px;
   border-top-left-radius: 0px;
   height: 2.4em;
@@ -352,6 +352,14 @@ nav ul a:hover, .nav-wrapper a {
 .collection .collection-item.service-avatar {
   padding-top: 15px;
   padding-left: 150px; 
+}
+
+#business_detail .collection {
+  border: none;
+}
+
+#business_detail .collection li {
+  background: none;
 }
 
 .no-border {

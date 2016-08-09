@@ -1,0 +1,14 @@
+<div data-ng-controller="ServicesController" data-ng-init="findRev(user.id)">
+    <div class="col-md-12">
+        <h4 class="section-title red-text">All My Reviews</h4>
+                <ul class="collection">
+                    <li ng-repeat="review in reviews" class="collection-item">
+                        <div>
+                            <p>On {{review.created | date:'medium'}} You wrote "<i>{{review.review}}</i>" about <a href="/services/{{review.service_id}}">{{review.service_name}}</a></p>
+                        </div>
+                    </li>
+                    
+                    <li class="text-center" ng-if="services.length === 0">No service yet,<a href="" ui-sref="createService" class="meta-text blue-text darken-4">create new</a></li>
+                </ul>
+    </div>
+</div>
