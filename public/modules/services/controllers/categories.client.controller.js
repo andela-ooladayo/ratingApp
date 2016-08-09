@@ -3,11 +3,12 @@
 angular.module('services').controller('CategoriesController', ['$scope', '$stateParams', '$window', '$location', '$http', 'User', 'Authentication','Message', 'Storage', 'Services', 'ServiceFac', 'Images', 'Reviews', 'Likes',
     function($scope, $stateParams, $window, $location, $http, User, Authentication, Message, Storage, Services, ServiceFac, Images, Reviews, Likes) {
 
-        $scope.user = User.get();
+        $scope.authentication = Authentication;
+        $scope.isAuthenticated = Authentication.isAuthenticated();
 
         $scope.categories = [
-          "Agriculture & Agro-Allied",
-          "Banking & Finance (banks)",
+          "Agro-Allied",
+          "Banking & Finance",
           "Business Services",
           "ICT",
           "Educational",

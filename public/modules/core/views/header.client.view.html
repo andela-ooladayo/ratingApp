@@ -14,13 +14,7 @@
     <nav class="white darken-4">
         <div class="nav-wrapper">
             <a href="/" class="brand-logo sc-logo left hide-on-small-only"><img src="/modules/core/img/raytee3.png" class="" style="width:150px;"></a>
-             <!-- <form>
-                <div class="input-field">
-                    <input id="search" type="search" placeholder="enter search query" required>
-                    <label for="search"><i class="material-icons">search</i></label>
-                    <i class="material-icons">close</i>
-                </div>
-            </form> -->
+            <a href="/" class="brand-logo msc-logo left"><img src="/modules/core/img/raytee5.png" class="" style="width: 40px;"></a>
             <form name="searchForm" id="searchBar" ng-submit="search()">
                 <div class="search-bar">
                     <input id="search" type="text" ng-model="searchTerm" required class="round-input" placeholder="Type a word and press enter">
@@ -70,13 +64,6 @@
                 </li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
-                <li>
-                    <form name="searchForm" id="searchBar" ng-submit="search()">
-                        <div class="search-bar">
-                            <input id="search" type="text" ng-model="searchTerm" required class="round-input" placeholder="Type a word and press enter">
-                        </div>
-                    </form>
-                </li>
                 <li ui-sref="listServices" ng-class="{active: $uiRoute}"><a class="waves-effect waves-light blue-text">Explore</a></li>
                 <li ui-sref="signup" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Sign Up</a></li>
                 <li li ui-sref="signin" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Log In</a></li>

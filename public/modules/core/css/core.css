@@ -86,7 +86,7 @@ hr {
 }
 
 a {
-  color: grey !important;
+  color: #4CAF50  !important;
 }
 
 nav ul a {
@@ -122,6 +122,10 @@ nav ul a:hover, .nav-wrapper a {
 
 .m-b-lg {
   margin-bottom: 25px !important;
+}
+
+.m-b-xlg {
+  margin-bottom: 50px !important;
 }
 
 .m-t-md {
@@ -204,7 +208,8 @@ nav ul a:hover, .nav-wrapper a {
   border-top-left-radius: 20px !important;
   border-bottom-left-radius: 20px !important;
   padding-left: 10px !important;
-  color: grey
+  color: grey;
+  vertical-align: bottom;  /*safari fix*/
 }
 
 .round-input:focus {
@@ -213,11 +218,12 @@ nav ul a:hover, .nav-wrapper a {
 
 .btn-search {
   position: absolute;
-  top: 17px;
+  top: 1.3em;
   right: 7em;
+  line-height: 1;
   border-top-right-radius: 20px;
   border-top-left-radius: 0px;
-  height: 3.3rem;
+  height: 2.4em;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 0px;
 
@@ -309,7 +315,7 @@ nav ul a:hover, .nav-wrapper a {
 .tabs-left > .nav-tabs .active > a:hover,
 .tabs-left > .nav-tabs .active > a:focus {
   border-color: #ddd transparent #ddd #ddd;
-  *border-right-color: #ffffff;
+  border-right-color: #ffffff;
 }
 
 .tab-pane .collection {
@@ -442,10 +448,6 @@ ul.rating {
   left: 260px;
 }*/
 
-.filter-btn-padding {
-  padding: 4px 10px;
-}
-
 
 /*button group*/
 .list-group {
@@ -467,6 +469,10 @@ ul.rating {
 .list-group-horizontal .list-group-item:last-child {
   border-top-right-radius:4px;
   border-bottom-left-radius:0;
+}
+
+.filter-btn-padding {
+  padding: 4px 10px !important;
 }
 
 .label.rating-value {
@@ -581,12 +587,63 @@ figure {
   transition: transform .2s ease-in-out;
 }
 
+.msc-logo {
+  display: none !important;
+}
+
 @media only screen and (max-width: 600px) {
   #toast-container {
     min-width: 0;
   }
+  .msc-logo {
+    display: block !important;
+  }
+  .btn-search {
+    top: 0.7em;
+  }
 }
 
+@media only screen and (max-width: 560px) {
+  nav .nav-wrapper form, nav .nav-wrapper form .input-field {
+    left: 15%;
+  }
+}
+
+@media only screen and (max-width: 490px) {
+  nav .nav-wrapper form, nav .nav-wrapper form .input-field {
+    left: 10%;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  nav .nav-wrapper form, nav .nav-wrapper form .input-field {
+    width: 370px;
+    left: 7%;
+  }
+  .search-bar {
+    width: 270px;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  nav .nav-wrapper form, nav .nav-wrapper form .input-field {
+    width: 300px;
+    left: 5%;
+  }
+  .search-bar {
+    width: 200px;
+  }
+}
+
+.hide-on-large {
+  display: none;
+}
+
+@media only screen and (max-width: 640px) {
+  .hide-on-large {
+    display: block;
+  }
+}
 /*.p a {
   display: inline;
   font-size: 13px;

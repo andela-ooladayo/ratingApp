@@ -27,6 +27,6 @@
             </li>
             <li class="text-center" ng-show="user.roleTitle === 'merchant'"><a href="" ui-sref="createService" class="meta-text blue-text darken-4">Create new</a></li>
         </ul>
-        <p>Can't find what you're looking for? <span ng-if="!user"><a ui-sref="signin" href="">Login</a> and add the business</span><span ng-if="user.roleTitle === 'merchant'"><a ui-sref="createService" href="">Add a business</a></span><span ng-if="user.roleTitle === 'user'"><a class="green-text darken-4" href="/settings/accounts/profile">Become a merchant</a> and add businesses</span></p>
+        <p class="m-b-xlg">Can't find what you're looking for? <span ng-if="!isAuthenticated"><a ui-sref="signin" href="#" class="green-text darken-4">Login</a> and add the business</span><span ng-if="user.roleTitle === 'merchant'"><a ui-sref="createService" href="">Add a business</a></span><span ng-if="user.roleTitle === 'user'"><a class="green-text darken-4" href="/settings/accounts/profile">Become a merchant</a> and add businesses</span></p>
     </div>
 </section>

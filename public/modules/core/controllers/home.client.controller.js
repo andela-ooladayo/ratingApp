@@ -8,8 +8,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
     $scope.isAuthenticated = Authentication.isAuthenticated();
     
     $scope.categories = [
-      { name: "Agriculture & Agro-Allied", image: "/modules/core/img/agric.jpg" },
-      { name: "Banking & Finance (banks)", image: "/modules/core/img/biz_service.jpg" },
+      { name: "Agro-Allied", image: "/modules/core/img/agric.jpg" },
+      { name: "Banking & Finance", image: "/modules/core/img/biz_service.jpg" },
       { name: "Business Services", image: "/modules/core/img/business.jpg" },
       { name: "ICT", image: "/modules/core/img/ict.jpg" },
       { name: "Educational", image: "/modules/core/img/edu.jpg" },
