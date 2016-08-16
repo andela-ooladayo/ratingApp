@@ -46,6 +46,23 @@ input[type=text], input[type=password], input[type=email], input[type=tel] {
   width: 100%;
 }
 
+.bg-color-green {
+background-color: #fff;
+color: #5cb85c;
+}
+ .bg-color-blue {
+background-color: #fff;
+color: #4CB1CF
+}
+  .bg-color-red {
+background-color: #fff;
+color:#F0433D;
+}
+  .bg-color-brown {
+background-color: #fff;
+color:#f0ad4e;
+}
+
 /*dashboard*/
 /*      light colors         */
 @keyframes spin {
@@ -446,6 +463,15 @@ body > .navbar-collapse:before {
   -webkit-transition-timing-function: linear,linear;
   transition-timing-function: linear,linear;
   -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 991px) {
+  .sidebar {
+    display: none;
+  }
+  .main-panel {
+    width: 100%;
+  }
 }
 
 .sec-content {

@@ -4,27 +4,23 @@
 	    	<div class="sidebar-wrapper">
 
 	            <ul class="nav">
-	                <li ng-show="user.roleTitle === 'admin'">
+	                <li>
 	                    <a ui-sref=".dashboard" class="white-text">
-	                        <i class="pe-7s-graph"></i>
 	                        <p>Dashboard</p>
 	                    </a>
 	                </li>
 	                <li ng-show="user.roleTitle === 'merchant'">
 	                    <a ui-sref=".service" class="white-text">
-	                        <i class="pe-7s-user"></i>
-	                        <p>Service</p>
+	                        <p>Add Business</p>
 	                    </a>
 	                </li>
 	                <li class="">
 	                    <a ui-sref=".profile" class="white-text">
-	                        <i class="pe-7s-graph"></i>
 	                        <p>Edit Profile</p>
 	                    </a>
 	                </li>
 	                <li class="">
 	                    <a ui-sref=".review" class="white-text">
-	                        <i class="pe-7s-graph"></i>
 	                        <p>Reviews</p>
 	                    </a>
 	                </li>

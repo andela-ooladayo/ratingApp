@@ -17,42 +17,12 @@
             <a href="/" class="brand-logo msc-logo left"><img src="/modules/core/img/raytee5.png" class="" style="width: 40px;"></a>
             <form name="searchForm" id="searchBar" ng-submit="search()">
                 <div class="search-bar">
-                    <input id="search" type="text" ng-model="searchTerm" required class="round-input" placeholder="Type a word and press enter">
+                    <input id="search" type="text" ng-model="searchTerm" required class="round-input" placeholder="Search Raytee">
                     <button class="btn btn-search green darken-1" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                 </div>
             </form>
             <a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="fa fa-bars"></i></a>
             <ul class="right m-r-md hide-on-med-and-down" >
-                <!-- <li>
-                    <div class="input-group">
-                        <div class="input-group-btn search-panel">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <span id="search_concept">Filter by</span> <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                              <li><a href="#contains">Contains</a></li>
-                              <li><a href="#its_equal">It's equal</a></li>
-                              <li><a href="#greather_than">Greather than ></a></li>
-                              <li><a href="#less_than">Less than < </a></li>
-                              <li class="divider"></li>
-                              <li><a href="#all">Anything</a></li>
-                            </ul>
-                        </div>
-                        <input type="hidden" name="search_param" value="all" id="search_param">         
-                        <input type="text" class="form-control" name="x" placeholder="Search term...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                        </span>
-                    </div>
-                </li> -->
-                <li>
-                    <!-- <form name="searchForm" id="searchBar" ng-submit="search()">
-                        <div class="search-bar">
-                            <input id="search" type="text" ng-model="searchTerm" required class="round-input" placeholder="Type a word and press enter">
-                            <button class="btn btn-search" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-                        </div>
-                    </form> -->
-                </li>
         		<li ui-sref="listServices" ng-class="{active: $uiRoute}"><a class="waves-effect waves-light blue-text">Explore</a></li>
                 <li ui-sref="signup" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Sign Up</a></li>
                 <li li ui-sref="signin" ng-class="{active: $uiRoute}" data-ng-hide="isAuthenticated"><a class="waves-effect waves-light blue-text">Log In</a></li>
