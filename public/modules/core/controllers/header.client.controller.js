@@ -35,8 +35,10 @@ angular.module('core').controller('HeaderController', ['$scope','$rootScope','$h
 
         $scope.searchTerm;
         $scope.search = function() {
-            $location.url('/search?q=' + $scope.searchTerm);
-            $scope.searchTerm = "";   
+            if ($scope.searchTerm != "") {
+                $location.url('/search?q=' + $scope.searchTerm);
+                $scope.searchTerm = "";   
+            }
         }
 
         $('.dropdown-button').dropdown({
