@@ -432,6 +432,11 @@ body > .navbar-collapse:before {
   z-index: 2;
 }*/
 
+.chart {
+  width: 500px;
+  height: 400px;
+}
+
 .main-panel {
   background: rgba(203, 203, 210, 0.15);
   position: relative;
