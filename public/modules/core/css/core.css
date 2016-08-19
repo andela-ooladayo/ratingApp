@@ -74,6 +74,7 @@ hr {
 
 a {
   color: #4CAF50  !important;
+  cursor: pointer;
 }
 
 nav ul a {
@@ -128,7 +129,7 @@ nav ul a:hover, .nav-wrapper a {
 }
 
 .m-r-md {
-  margin-right: 10px;
+  margin-right: 6px;
 }
 
 /*Padding helpers*/
