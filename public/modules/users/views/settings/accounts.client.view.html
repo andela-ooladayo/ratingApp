@@ -4,7 +4,7 @@
 	    	<div class="sidebar-wrapper">
 
 	            <ul class="nav">
-	                <li>
+	                <li ng-show="user.roleTitle === 'admin'">
 	                    <a ui-sref=".dashboard" class="white-text">
 	                        <p>Dashboard</p>
 	                    </a>
@@ -33,7 +33,7 @@
 	            <div class="">
 	            	<nav class="green nav-hide-on-large">
 			            <ul>
-			                <li>
+			                <li ng-show="user.roleTitle === 'admin'">
 			                    <a ui-sref=".dashboard" class="white-text">
 			                        <p>Dashboard</p>
 			                    </a>
