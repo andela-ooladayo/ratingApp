@@ -232,20 +232,42 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
 
         };
 
+        $scope.showGraph = false;
+
+        $scope.toggleView = function() {
+            $scope.showGraph = !$scope.showGraph;
+        };
+
         $scope.findMy = function(index) {
             $scope.services = [];
+            $scope.labels = [];
+            $scope.data = [];
+            var num_rev = [];
+            var averges = [];
             $http.get('service/merchant/' + index).success(function(response) {
 
                 if (response.length > 0) {
                     response.forEach(function(service) {
+                        // console.log(service);
+                        $scope.labels.push(service.business_name);
                         var len = service.reviews.length;
+                        num_rev.push(len);
                         var total = 0;
                         if(service.reviews.length > 0) {
+                            service.labels = ["5 Star", "4 Star", "3 Star", "2 Star", "1 Star"]
+                            service.data = [
+                                parseInt(service.no_of_rating_five),
+                                parseInt(service.no_of_rating_four),
+                                parseInt(service.no_of_rating_three),
+                                parseInt(service.no_of_rating_two),
+                                parseInt(service.no_of_rating_one)
+                            ];
                             service.reviews.forEach(function(review) {
                                 total += review.value;
                             });
                             service.avg_rating = Math.round(total/len);
-                            // console.log(service);
+                            averges.push(service.avg_rating);
+                            console.log(service);
                             $scope.services.push(service); 
                         }
                         else {
@@ -254,6 +276,9 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                         }
 
                     });
+                    $scope.data.push(num_rev);
+                    $scope.data.push(averges);
+                    $scope.series = ['Reviews', 'Average Rating'];
                 }
             }).error(function(errorResponse) {
                 console.log(errorResponse);

@@ -33,6 +33,13 @@ angular.module('users').config(['$stateProvider',
                 data : {
                     access : access.user
                 }
+        }). 
+        state('accounts.service.service-stats', {
+            url: '/service/stats',
+            templateUrl: 'modules/users/views/settings/service-stats.client.view.html',
+                data : {
+                    access : access.user
+                }
         }).
         state('accounts.service.create', {
             url: '/create-service',

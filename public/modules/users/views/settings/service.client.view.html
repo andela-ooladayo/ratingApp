@@ -1,7 +1,7 @@
 <div data-ng-controller="ServicesController" data-ng-init="findMy(user.id)">
     <div class="col-md-12">
-        <h4 class="section-title red-text">All My Services<span><a href="" ui-sref="createService" class="pull-right blue-text meta-text">create-new</a></span></h4>
-                <ul class="collection">
+        <h4 class="section-title red-text">All My Services<span><a href="" ui-sref="createService" class="pull-right blue-text meta-text"> | create-new</a></span><span><a class="pull-right blue-text meta-text" ng-click="toggleView()" style="cursor: pointer;">change view</a></span></h4>
+                <ul class="collection" ng-hide="showGraph">
                     <li ng-repeat="service in services" class="collection-item service-avatar">
                         <div class="row">
                             <div class="col m8 s12">
@@ -24,7 +24,7 @@
                                         <a href="/services/{{service.id}}" class="red-text">View Reviews</a>
                                     </p>
                                     <p class="m-t-lg">
-                                        <a href="/services/{{service.id}}" class="grey-text">View Stats</a>
+                                        <a href="/services/{{service.id}}/stats" class="grey-text">View Stats</a>
                                     </p>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                         <a href="/services/{{service.id}}" class="red-text">View Reviews</a>
                                     </p>
                                     <p class="m-t-lg">
-                                        <a href="/services/{{service.id}}" class="grey-text">View Stats</a>
+                                        <a ui-sref=".service-stats" class="grey-text">View Stats</a>
                                     </p>
                                 </div>
                             </div>
@@ -47,6 +47,35 @@
                     
                     <li class="text-center" ng-if="services.length === 0">No service yet,<a href="" ui-sref="createService" class="meta-text blue-text darken-4">create new</a></li>
                 </ul>
+                <div class="row" ng-if="showGraph">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder bg-color-green">
+                            <div class="panel-body">
+                                <canvas id="base" class="chart chart-bar" chart-series="series" chart-data="data" chart-labels="labels">
+                                </canvas>
+                            </div>
+                            <div class="panel-footer back-footer-green">
+                                Graphical Overview
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <h3>Individual Overview</h3>
+                        <div ng-repeat="service in services" class="col-md-4 col-sm-12 col-xs-12">
+                            <div class="panel panel-primary text-center no-boder bg-color-green">
+                                <div class="panel-body">
+                                    <canvas id="doughnut" class="chart chart-doughnut" chart-data="service.data" chart-labels="service.labels">
+                                    </canvas>
+                                </div>
+                                <div class="panel-footer back-footer-green">
+                                    <p ng-bind="service.business_name"></p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
     </div>
 </div>
 

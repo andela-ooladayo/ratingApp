@@ -469,6 +469,7 @@ ul.rating {
   margin-bottom: 0;
   margin-left:-4px;
   margin-right: 0;
+  cursor: pointer;
 }
 .list-group-horizontal .list-group-item:first-child {
   border-top-right-radius:0;
@@ -698,6 +699,23 @@ figure {
 
 }
 
+.hide-on-laps {
+  display: none;
+}
+
+@media (max-width: 950px) {
+  .hide-on-tabs {
+    display: none;
+  }
+  .hide-on-laps {
+  display: block;
+}
+}
+/*
+.drag-target {
+  width: 30%;
+}
+*/
 /**/
 /*.p a {
   display: inline;

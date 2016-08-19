@@ -105,22 +105,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col m3 offset-m1 s12" ng-init="getServiceByCategory(service.business_category_id)">
-                <h4 class="section-title red-text">Reviews for Similar Businesses</h4>
-                <hr>
-                <ul class="collection m-b-lg">
-                    <li ng-repeat="service in categoryArr" class="collection-item avatar">
-                        <a href=""><img src="{{service.images[0].url ? service.images[0].url : 'http://placehold.it/60x60'}}" class="square"></a>
-                        <p class="text-sm_bold m-b-md"><a href="/services/{{service.id}}" class="blue-text darken-4" ng-bind="service.business_name"></a></p>
-                        <p class="red-text"> <div star-rating rating-value="service.avg_rating" max="5" readonly="true" class="small-star"></div> <span>{{service.reviews.length}} Review</span><span ng-if="service.reviews.length > 1">s</span></p>
-                        <div class="review m-t-sm" ng-show="service.reviews.length">
-                            <a href=""><img src="{{service.reviews[0].User.image_url}}" class="img img-responsive avatar"></a>
-                            <p class="meta-text" ng-bind="service.reviews[0].review"></p>
-                        </div>
-                        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                    </li>
-                </ul>
-            </div> -->
         </div>
         <div class="row">
             <div class="col m6 s12">
@@ -149,10 +133,15 @@
                                     <!-- <p class="m-t-md">
                                         <img src="http://placehold.it/300x300" class="img img-responsive">
                                     </p> -->
-                                    <p class="meta-text m-t-md">
-                                        <p class="m-t-md">Helpful? <a href="" class="btn btn-upvote" ng-click="like(review)"><span><i class="fa fa-thumbs-o-up"></i> {{review.no_of_likes}}</span><span> Like</span><span ng-if="review.no_of_likes > 1">s</span></a> 
-                                        <a href="" ng-click="dislike(review)"><span><i class="fa fa-thumbs-o-down"></i> {{review.no_of_dislikes}}</span><span> Dislike</span><span ng-if="review.no_of_dislikes > 1">s</span></a></p>
+                                    <p class="meta-text m-t-md hide-on-tabs">
+                                        <span class="m-t-md">Helpful? <a href="" class="btn btn-upvote" ng-click="like(review)"><span><i class="fa fa-thumbs-o-up"></i> {{review.no_of_likes}}</span><span> Like</span><span ng-if="review.no_of_likes > 1">s</span></a> 
+                                        <a href="" class="red-text" ng-click="dislike(review)"><span><i class="fa fa-thumbs-o-down"></i> {{review.no_of_dislikes}}</span><span> Dislike</span><span ng-if="review.no_of_dislikes > 1">s</span></a></span>
                                     </p>
+                                    <div class="hide-on-laps m-t-lg">
+                                        <p class="grey-text m-b-md"><span>Helpful?</span></p>
+                                        <a href="" class="m-r-md" ng-click="like(review)"><span><i class="fa fa-thumbs-o-up"></i> {{review.no_of_likes}}</span><span> Like</span><span ng-if="review.no_of_likes > 1">s</span></a>
+                                        <a href="" class="red-text" ng-click="dislike(review)"><span><i class="fa fa-thumbs-o-down"></i> {{review.no_of_dislikes}}</span><span> Dislike</span><span ng-if="review.no_of_dislikes > 1">s</span></a></span>
+                                    </div>
                                 </div>
                             </div>
                             <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a> -->

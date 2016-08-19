@@ -16,6 +16,27 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
                 data : {
                     access : access.anon
                 }
-		});
+		}).
+        state('about', {
+            url: '/about',
+            templateUrl: 'modules/core/views/about-us.client.view.html',
+                data : {
+                    access : access.anon
+                }
+        }).
+        state('contact', {
+            url: '/contact',
+            templateUrl: 'modules/core/views/contact.client.view.html',
+                data : {
+                    access : access.anon
+                }
+        }).
+        state('faq', {
+            url: '/faq',
+            templateUrl: 'modules/core/views/faq.client.view.html',
+                data : {
+                    access : access.anon
+                }
+        });
 	}
 ]);

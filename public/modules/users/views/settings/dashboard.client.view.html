@@ -53,15 +53,29 @@
     <div class="">
         <h2 class="text-center m-b-lg">Charts</h2>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            <canvas id="line" class="chart chart-line" chart-data="data1"
-                chart-labels="labels1" chart-series="series" chart-options="options"
-                chart-dataset-override="datasetOverride" chart-click="onClick">
-            </canvas> 
+            <div class="panel panel-primary text-center no-boder bg-color-green">
+                <div class="panel-body">
+                    <canvas id="base" class="chart-horizontal-bar" chart-data="data" chart-labels="labels">
+                    </canvas> 
+                </div>
+                <div class="panel-footer back-footer-green">
+                    Total Reviews
+
+                </div>
+            </div>
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            <canvas id="polar-area" class="chart chart-polar-area"
-              chart-data="data" chart-labels="labels" >
-            </canvas> 
+            <div class="panel panel-primary text-center no-boder bg-color-green">
+                <div class="panel-body">
+                    <canvas id="polar-area" class="chart chart-polar-area"
+                      chart-data="data" chart-labels="labels" >
+                    </canvas> 
+                </div>
+                <div class="panel-footer back-footer-green">
+                    Total Reviews
+
+                </div>
+            </div>
         </div>
     </div>
     <div class="col-md-12 col-sm-12 col-xs-12">

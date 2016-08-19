@@ -4,7 +4,7 @@ angular.module('users').controller('SettingsController', ['$scope', '$rootScope'
 	function($scope, $rootScope, $state, $http, $location, $timeout, Users, Authentication, User, Message, Storage, Merchant) {
 		$scope.user = User.get();
 
-		console.log($scope.user);
+		// console.log($scope.user);
 		// If user is not signed in then redirect back home
 		if (!$scope.user) $location.path('/');
 
