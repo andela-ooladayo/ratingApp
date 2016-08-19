@@ -28,7 +28,7 @@
             <div class="m-t-lg">
                 <a ui-sref="signin" ng-if="!isAuthenticated" class="waves-effect waves-light btn-large green white-text" style="width: 200px; font-weight: 700; font-size: 14px;">Get Started</a>
                 <a href="/settings/accounts/profile" ng-if="isAuthenticated && user.roleTitle === 'user'" class="waves-effect waves-light btn-large green white-text" style="width: 200px; font-weight: 700; font-size: 14px;">Ask for an invite</a>
-                <a href="/settings/accounts/profile" ng-if="isAuthenticated && user.roleTitle === 'merchant'" class="waves-effect waves-light btn-large green white-text" style="width: 200px; font-weight: 700; font-size: 14px;">Add a Business</a>
+                <a ui-sref="createService" ng-if="isAuthenticated && user.roleTitle === 'merchant'" class="waves-effect waves-light btn-large green white-text" style="width: 200px; font-weight: 700; font-size: 14px;">Add a Business</a>
             </div>
         </div>
     </div>
@@ -40,23 +40,13 @@
                     <span></span>
                 </div>
             <div id="gallery">
-                <a ng-repeat="category in categories | limitTo: 11" href="/categories/{{$index}}" >
+                <a ng-repeat="category in categories | limitTo: 12" href="/categories/{{$index}}" >
                     <figure>
                         <div class="img_overlay">
                             <img ng-src="{{categories[$index].image}}" alt="">
                         </div>
                         <h4 class="text-center white-text">
                             {{categories[$index].name}}
-                        </h4>
-                    </figure>
-                </a>
-                <a href="/categories/0" >
-                    <figure>
-                        <div class="img_overlay">
-                            <img src="/modules/core/img/Maintenance.jpg" alt="">
-                        </div>
-                        <h4 class="text-center white-text">
-                            More
                         </h4>
                     </figure>
                 </a>

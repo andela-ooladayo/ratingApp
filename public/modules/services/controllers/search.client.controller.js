@@ -6,8 +6,6 @@ angular.module('services').controller('SearchController', ['$scope', '$statePara
         $scope.isAuthenticated = Authentication.isAuthenticated();
 
         $scope.user = User.get();
-
-        console.log($stateParams);
         
         $http.get('services/search', {params: $stateParams}).success(function(response) {
             $scope.searchTerm = $stateParams.q

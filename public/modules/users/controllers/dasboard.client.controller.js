@@ -4,13 +4,13 @@ angular.module('users').controller('DashboardController', ['$scope', '$rootScope
     function($scope, $rootScope, $state, $http, $location, $timeout, Users, Authentication, User, Message, Storage, Merchant) {
         $scope.user = User.get();
 
-        console.log($scope.user);
+        // console.log($scope.user);
         // If user is not signed in then redirect back home
         if (!$scope.user) $location.path('/');
 
         $scope.getStats = function() {
             $http.get('/api/stats').success(function(response) {
-                console.log(response);
+                // console.log(response);
                 $scope.stats = response;
                 $scope.labels = ["Users", "Merchants", "Businesses", "Reviews"];
                 $scope.data = [$scope.stats.total_users, $scope.stats.total_merchants, $scope.stats.total_services, $scope.stats.total_reviews];
@@ -24,7 +24,7 @@ angular.module('users').controller('DashboardController', ['$scope', '$rootScope
 
             Merchant.getList().then(function(response) {
                 $scope.waitingList = response
-                console.log($scope.waitingList);
+                // console.log($scope.waitingList);
             });
         };
 

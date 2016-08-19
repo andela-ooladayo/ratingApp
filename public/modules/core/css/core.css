@@ -606,6 +606,7 @@ figure {
   }
   .msc-logo {
     display: block !important;
+    z-index: 999;
   }
   .btn-search {
     top: 0.7em;
@@ -711,11 +712,11 @@ figure {
   display: block;
 }
 }
-/*
+
 .drag-target {
-  width: 30%;
+  width: 0 !important;
 }
-*/
+
 /**/
 /*.p a {
   display: inline;

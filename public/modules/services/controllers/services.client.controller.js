@@ -143,7 +143,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                 });
 
                 image.$save(function(response) {
-                    console.log(response);
+                    // console.log(response);
                     Message.success('Image','Image successfully uploaded');
                 }, function(err) {
                     Message.error('Image', err.data.message);
@@ -267,7 +267,7 @@ angular.module('services').controller('ServicesController', ['$scope', '$statePa
                             });
                             service.avg_rating = Math.round(total/len);
                             averges.push(service.avg_rating);
-                            console.log(service);
+                            // console.log(service);
                             $scope.services.push(service); 
                         }
                         else {
