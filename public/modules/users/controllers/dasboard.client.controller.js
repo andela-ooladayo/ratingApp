@@ -12,6 +12,8 @@ angular.module('users').controller('DashboardController', ['$scope', '$rootScope
             $http.get('/api/stats').success(function(response) {
                 console.log(response);
                 $scope.stats = response;
+                $scope.labels = ["Users", "Merchants", "Businesses", "Reviews"];
+                $scope.data = [$scope.stats.total_users, $scope.stats.total_merchants, $scope.stats.total_services, $scope.stats.total_reviews];
             }).error(function(response) {
                 console.log(response);
             });
@@ -26,43 +28,45 @@ angular.module('users').controller('DashboardController', ['$scope', '$rootScope
             });
         };
 
+        $scope.findResult = function() {
+            // this function is not defined
+            this.willNeverWork();
+        }
+
 
 
         $scope.approveMerchant = function(req) {
             Merchant.approve(req);
         }
 
-        $scope.config = {
-            title: 'Products',
-            tooltips: true,
-            labels: false,
-            mouseover: function() {},
-            mouseout: function() {},
-            click: function() {},
-            legend: {
-                display: true,
-                //could be 'left, right'
-                position: 'right'
+        $scope.labels1 = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+        $scope.series = ['Users', 'Merchants', 'Reviews', 'Services'];
+        $scope.data1 = [
+          [65, 59, 80, 81, 56, 55, 40],
+          [28, 48, 40, 19, 86, 27, 90],
+          [34, 23, 87, 12, 64, 34, 22],
+          [83, 65, 65, 33, 65, 23, 87]
+        ];
+        $scope.onClick = function(points, evt) {
+            console.log(points, evt);
+        };
+        $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+        $scope.options = {
+          scales: {
+              yAxes: [{
+                  id: 'y-axis-1',
+                  type: 'linear',
+                  display: true,
+                  position: 'left'
+              }, {
+                  id: 'y-axis-2',
+                  type: 'linear',
+                  display: true,
+                  position: 'right'
+              }]
             }
         };
 
-        $scope.data = {
-            series: ['Sales', 'Income', 'Expense', 'Laptops', 'Keyboards'],
-            data: [{
-                x: "Laptops",
-                y: [100, 500, 0],
-                tooltip: "this is tooltip"
-            }, {
-                x: "Desktops",
-                y: [300, 100, 100]
-            }, {
-                x: "Mobiles",
-                y: [351]
-            }, {
-                x: "Tablets",
-                y: [54, 0, 879]
-            }]
-        };
 
     }
 ]);

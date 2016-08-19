@@ -50,6 +50,20 @@
         </div>
     </div>
     <!-- <h1>Hi, I'm the dashboard</h1> -->
+    <div class="">
+        <h2 class="text-center m-b-lg">Charts</h2>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <canvas id="line" class="chart chart-line" chart-data="data1"
+                chart-labels="labels1" chart-series="series" chart-options="options"
+                chart-dataset-override="datasetOverride" chart-click="onClick">
+            </canvas> 
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <canvas id="polar-area" class="chart chart-polar-area"
+              chart-data="data" chart-labels="labels" >
+            </canvas> 
+        </div>
+    </div>
     <div class="col-md-12 col-sm-12 col-xs-12">
         <p><a href="" ng-click="findMerchantList()">Find Merchant List</a></p>
         <!-- {{waitingList.length}} -->
@@ -83,10 +97,6 @@
             </div>
         </div>
 
-    </div>
-    <div class="row">
-        <div data-ac-chart="'pie'" data-ac-data="data" data-ac-config="config" class="chart">
-        </div>
     </div>
     <!-- <p>{{waitingList}}</p> -->
 </div>

@@ -30,7 +30,31 @@
 
 	    <div class="main-panel">
 	        <div class="content">
-	            <div class="container-fluid">
+	            <div class="">
+	            	<nav class="green nav-hide-on-large">
+			            <ul>
+			                <li>
+			                    <a ui-sref=".dashboard" class="white-text">
+			                        <p>Dashboard</p>
+			                    </a>
+			                </li>
+			                <li ng-show="user.roleTitle === 'merchant'">
+			                    <a ui-sref=".service" class="white-text">
+			                        <p>Add Business</p>
+			                    </a>
+			                </li>
+			                <li class="">
+			                    <a ui-sref=".profile" class="white-text">
+			                        <p>Edit Profile</p>
+			                    </a>
+			                </li>
+			                <li class="">
+			                    <a ui-sref=".review" class="white-text">
+			                        <p>Reviews</p>
+			                    </a>
+			                </li>
+			            </ul>
+			        </nav>
 	            	<div ui-view></div>
 	            </div>
 	        </div>

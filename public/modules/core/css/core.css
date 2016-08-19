@@ -643,14 +643,59 @@ figure {
   }
 }
 
-.hide-on-large {
+.hide-on-large, .nav-hide-on-large {
   display: none;
+}
+
+.nav-hide-on-large {
+    position: relative;
+    top: -30px;
+    left: -14px;
+    width: 104%;
+}
+
+.nav-hide-on-large ul {
+  margin-right: 20px;
+  margin-left: 30px;
 }
 
 @media only screen and (max-width: 640px) {
   .hide-on-large {
     display: block;
   }
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-hide-on-large {
+    display: block;
+  }
+}
+
+@media (max-width: 425px) {
+  .nav-hide-on-large {
+    width: 108%;
+  }
+  .nav-hide-on-large ul li a {
+    font-size: 12px;
+  }
+
+}
+
+@media (max-width: 375px) {
+  .nav-hide-on-large {
+    width: 109%;
+  }
+  .nav-hide-on-large ul li a {
+    font-size: 10px;
+  }
+
+}
+
+@media (max-width: 375px) {
+  .nav-hide-on-large ul li a {
+    font-size: 9px;
+  }
+
 }
 
 /**/

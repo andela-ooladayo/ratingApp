@@ -4,24 +4,40 @@
                 <ul class="collection">
                     <li ng-repeat="service in services" class="collection-item service-avatar">
                         <div class="row">
-                            <div class="col s8">
-                                <a href=""><img src="{{service.images[0].url ? service.images[0].url : 'http://placehold.it/60x60'}}" class="square-mid"></a>
-                                <p class="text-sm_bold m-b-sm" ng-bind="service.business_name"><a href="/services/{{service.id}}" class="blue-text darken-4"></a></p>
+                            <div class="col m8 s12">
+                                <a href="">
+                                    <img src="{{service.images[0].url ? service.images[0].url : 'http://placehold.it/60x60'}}" class="square-mid">
+                                </a>
+                                <p class="text-sm_bold m-b-sm" style="font-size: 18px; font-weight: 700"><a href="/services/{{service.id}}" class="blue-text darken-4" ng-bind="service.business_name"></a></>
                                 <p><span class="grey-text meta-text" ng-bind="categories[service.business_category_id]"></span></p>
                                 <div class="m-t-sm">
-                                    <p class="meta-text" ng-bind="service.business_description"></p>
-                                    <p class="meta-text"><a href=""ng-bind="service.business_address"><i class="fa fa-home">: </i></a></p>
-                                    <p class="meta-text"><a href="" ng-bind="service.business_phone_number"><i class="fa fa-phone">: </i></a></p>
-                                    <p class="meta-text"><a href="" ng-bind="service.business_email"><i class="fa fa-envelope">: </i></a></p>
+                                    <p class="meta-text" ng-bind="service.business_description">.</p>
+                                    <p class="meta-text"><a href="" data-ng-bind="service.business_address"><i class="fa fa-home">: </i></a></p>
+                                    <p class="meta-text"><a href="" data-ng-bind="service.business_phone_number"><i class="fa fa-phone">: </i>+1234567890</a></p>
+                                    <p class="meta-text"><a href="" data-ng-bind="service.business_email"><i class="fa fa-envelope">: </i>email@example.com</a></p>
+                                </div>
+                                <div class="hide-on-large m-t-lg">
+                                    <h4 class="green-text lighten-2" ng-bind="service.avg_rating | number:1"></h4>
+                                    <div stark-rating rating="service.avg_rating" read-only="true" max-rating="5" class="small-star"> </div>
+                                    <p class="m-t-sm">{{service.reviews.length}} <i class="fa fa-user"></i></p>
+                                    <p class="m-t-lg">
+                                        <a href="/services/{{service.id}}" class="red-text">View Reviews</a>
+                                    </p>
+                                    <p class="m-t-lg">
+                                        <a href="/services/{{service.id}}" class="grey-text">View Stats</a>
+                                    </p>
                                 </div>
                             </div>
-                            <div class="col s4 sec-content">
+                            <div class="col m4 sec-content hide-on-small-only">
                                 <div class="text-center">
                                     <h1 class="green-text lighten-2" ng-bind="service.avg_rating | number:1"></h1>
-                                    <p class="red-text darken-4"><div star-rating class="mid-star" rating-value="service.avg_rating" max="5" readonly="true"></div></p>
-                                    <p>{{service.reviews.length}} <i class="fa fa-user"></i></p>
+                                    <div stark-rating rating="service.avg_rating" read-only="true" max-rating="5" class="small-star"> </div>
+                                    <p class="m-t-sm">{{service.reviews.length}} <i class="fa fa-user"></i></p>
                                     <p class="m-t-lg">
-                                        <a href="/services/{{service.id}}" class="red-text">Read Reviews</a>
+                                        <a href="/services/{{service.id}}" class="red-text">View Reviews</a>
+                                    </p>
+                                    <p class="m-t-lg">
+                                        <a href="/services/{{service.id}}" class="grey-text">View Stats</a>
                                     </p>
                                 </div>
                             </div>

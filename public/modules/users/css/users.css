@@ -449,11 +449,23 @@ body > .navbar-collapse:before {
   padding: 30px 15px;
   min-height: calc(100% - 123px);
 }
+
 .main-panel > .footer {
   border-top: 1px solid #e7e7e7;
 }
 .main-panel .navbar {
   margin-bottom: 0;
+}
+
+@media (max-width: 320px) {
+  .main-panel > .content {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .collection .collection-item.avatar p {
+    font-size: 10px;
+  }
 }
 
 .sidebar,
@@ -470,7 +482,7 @@ body > .navbar-collapse:before {
   -webkit-overflow-scrolling: touch;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 768px) {
   .sidebar {
     display: none;
   }
