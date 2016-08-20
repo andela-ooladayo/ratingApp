@@ -696,6 +696,12 @@ figure {
   }
 }
 
+@media (max-width: 425px) {
+  .top-content h2 {
+    font-size: 16px;
+  }
+}
+
 .drag-target {
   width: 0 !important;
 }
