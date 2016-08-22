@@ -144,7 +144,7 @@ nav ul a:hover, .nav-wrapper a {
 /*Meta*/
 .meta-text {
   font-size: 12px;
-  margin-left: 5px;
+  /*margin-left: 5px;*/
 }
 
 .text-bold {
@@ -243,6 +243,17 @@ nav ul a:hover, .nav-wrapper a {
   width: 80%;
   position: relative;
   margin: 100px auto 140px;
+}
+
+#reviewer, #merchant {
+  height: 300px;
+  padding: 0 30px;
+}
+
+@media (max-width: 768px) {
+  #merchant {
+    padding: 0 26px;
+  }
 }
 
 .tabs-left > .nav-tabs {
@@ -618,7 +629,17 @@ figure {
   }
 }
 
-@media only screen and (max-width: 390px) {
+@media only screen and (max-width: 375px) {
+  nav .nav-wrapper form, nav .nav-wrapper form .input-field {
+    width: 340px;
+    left: 5%;
+  }
+  .search-bar {
+    width: 240px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
   nav .nav-wrapper form, nav .nav-wrapper form .input-field {
     width: 300px;
     left: 5%;
@@ -698,7 +719,10 @@ figure {
 
 @media (max-width: 425px) {
   .top-content h2 {
-    font-size: 16px;
+    font-size: 20px;
+  }
+  .top-content {
+    margin-top: 70px;
   }
 }
 
