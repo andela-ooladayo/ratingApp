@@ -3,6 +3,7 @@ var passport = require('passport');
 
 module.exports = function(app) {
 	var users = require('../../app/controllers/users'),
+        emailPoster = require('../../app/controllers/email.poster.server.controller'),
         fileSigning = require('../../app/controllers/file.signing.server.controller');
 
 	app.route('/api/users/me').get(users.me);
@@ -31,6 +32,6 @@ module.exports = function(app) {
 	// app.route('/auth/linkedin').get(passport.authenticate('linkedin'));
 	// app.route('/auth/linkedin/callback').get(users.oauthCallback('linkedin'));
 
-	
+    app.route('/post_email').post(emailPoster.receiveEmailandPostIt);
 	app.param('userId', users.userByID);
 };

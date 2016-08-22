@@ -3,6 +3,7 @@
 var users = require('../../app/controllers/users'),
     images = require('../../app/controllers/images');
 
+
 module.exports = function(app) {
     app.route('/api/images')
         .post(users.isAuthenticated, users.isAuthorized('user'), images.create);
