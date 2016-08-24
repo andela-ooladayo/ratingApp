@@ -2,11 +2,11 @@
 
 module.exports = {
     db: {
-        dbName: process.env.DBNAME  || 'sean-prod',
-        username : process.env.DBUSER  || 'SeanDB',
-        password : process.env.DBPASSWORD || 'HU7XQQBNWq',
-        dialect: "postgres", // 'sqlite', 'postgres', 'mariadb','mysql'
-        port : 5432 //    5432 for postgres, 3306 for mysql and mariaDB ,
+        dbName: process.env.DBNAME,
+        username : process.env.DBUSER,
+        password : process.env.DBPASSWORD,
+        dialect: "postgres",
+        port : 5432
     },
 	assets: {
 		lib: {
